@@ -10,4 +10,7 @@
  */
 public class BuildIT {
     
+    public void print(){
+        System.out.println();
+    }
 }
