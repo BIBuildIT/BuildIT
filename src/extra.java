@@ -9,5 +9,7 @@
  * @author piverfai
  */
 public class extra {
-    
+    public String geefHallo(){
+        return "Hallo";
+    }
 }
