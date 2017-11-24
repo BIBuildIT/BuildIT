@@ -53,63 +53,32 @@ public class DBBuildIt {
 		}
 	}
     
-    public static void save(Student s) throws DBException {
+    public static void save(Equipment s) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			String sql = "SELECT number "
-					+ "FROM Students "
+					+ "FROM Equipment "
 					+ "WHERE number = "
 					+ s.getNumber();
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
-				sql = "UPDATE Students "
-						+ "SET name = '" + s.getName() + "'"
-						+ ", number = " + s.getNumber()
-						+ ", GPA = '" + s.getGPA()
-						+ "'" + ", fullTime = " + s.isFullTime()
-						+ ", commuting = " + s.isCommuting()
-						+ ", graduate = " + s.isGraduate()
-						+ ", summary = '" + s.getSummary() + "'";
+				sql = "UPDATE Equipment "
+						+ "SET number" + s.getNumber();
 				stmt.executeUpdate(sql);
 			} else {
 				// INSERT
-				sql = "INSERT into Students "
-						+ "(number, name, GPA, fullTime, commuting, graduate, summary) "
-						+ "VALUES (" + s.getNumber()
-						+ ", '" + s.getName() + "'"
-						+ ", '" + s.getGPA() + "'"
-						+ ", " + s.isFullTime()
-						+ ", " + s.isCommuting()
-						+ ", " + s.isGraduate()
-						+ ", '" + s.getSummary() + "')";
+				sql = "INSERT into Equipment "
+						+ "(number) "
+						+ "VALUES (" + s.getNumber()+"')";
+						
 				stmt.executeUpdate(sql);
 			}
-			// majors
-			sql = "DELETE FROM StudentMajors "
-					+ "WHERE studentNumber = " + s.getNumber();
-			stmt.executeUpdate(sql);
-			ArrayList<String> majors = s.getMajors();
-			for (int i = 0; i < majors.size(); i++) {
-				// indien nodig
-                                try {
-				sql = "INSERT INTO Majors "
-						+ "(name) "
-						+ "VALUES ('" + majors.get(i) + "')";
-				stmt.executeUpdate(sql);
-                                } catch(MySQLIntegrityConstraintViolationException eee) {
-                                    //bestond al
-                                }
-				//voeg student major toe
-				sql = "INSERT INTO StudentMajors "
-						+ "(studentNumber, majorName) "
-						+ "VALUES (" + s.getNumber() + ", '"
-						+ majors.get(i) + "')";
-				stmt.executeUpdate(sql);
-			}
+			
+			
 			DBConnector.closeConnection(con);
 		} catch (Exception ex) {
 			ex.printStackTrace();
