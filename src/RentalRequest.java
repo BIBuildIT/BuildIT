@@ -17,8 +17,8 @@ public class RentalRequest {
     private Date requestDate;
     private Date rentalPeriodStart;
     private Date rentalPeriodEnd;
-    private boolean rentalStatus;
-    //MOET DAT BOOLEAN ZIJN --> IS HET GEHUURD OF NIET
+    private RentalStatus currentStatus;
+    //nog ergens fout in ENUM, maar weet niet hoe die eruit te halen is
     private String reasonForCancelationOrRefusal;
     private Employee requestor;
     //WANT REQUESTOR IS ALTIJD EEN EMPLOYEE
@@ -26,7 +26,7 @@ public class RentalRequest {
     private String equipmentType;
     private int employeeID;
 
-    public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, boolean rentalStatus, String reasonForCancelationOrRefusal, Employee requestor, ConstructionSite constructionSite, String equipmentType, int employeeID) {
+    public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, Employee requestor, ConstructionSite constructionSite, String equipmentType, int employeeID) {
         
         if(!(requestor.getEmployeeID() == employeeID))
             System.out.println("Error: employeeID does not comply to requestor.");
@@ -35,7 +35,7 @@ public class RentalRequest {
         this.requestDate = requestDate;
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
-        this.rentalStatus = rentalStatus;
+        this.currentStatus = currentStatus;
         this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;
         this.requestor = requestor;
         this.constructionSite = constructionSite;
@@ -76,13 +76,15 @@ public class RentalRequest {
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
 
-    public boolean isRentalStatus() {
-        return rentalStatus;
+    public RentalStatus getCurrentStatus() {
+        return currentStatus;
     }
 
-    public void setRentalStatus(boolean rentalStatus) {
-        this.rentalStatus = rentalStatus;
+    public void setCurrentStatus(RentalStatus currentStatus) {
+        this.currentStatus = currentStatus;
     }
+
+    
 
     public String getReasonForCancelationOrRefusal() {
         return reasonForCancelationOrRefusal;
