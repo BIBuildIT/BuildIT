@@ -117,27 +117,27 @@ public class DBBuildIt {
 		}
 	}
     
-    public static void save(Equipment s) throws DBException {
+    public static void save(Equipment e) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT number "
+			String sql = "SELECT code "
 					+ "FROM Equipment "
-					+ "WHERE number = "
-					+ s.getNumber();
+					+ "WHERE code = "
+					+ e.getCode();
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Equipment "
-						+ "SET number" + s.getNumber();
+						+ "SET code" + e.getCode();
 				stmt.executeUpdate(sql);
 			} else {
 				// INSERT
 				sql = "INSERT into Equipment "
-						+ "(number) "
-						+ "VALUES (" + s.getNumber()+"')";
+						+ "(code) "
+						+ "VALUES (" + e.getCode()+"')";
 						
 				stmt.executeUpdate(sql);
 			}
