@@ -72,13 +72,42 @@ public class DBBuildIt {
                                 + "rentStartDate DATE NOT NULL,"
                                 + "endDate DATE NOT NULL,"
                                 + "totalPrice NUMBER(15) NOT NULL,"
-                                + "constructionSite VARCHAR(50) NOT NULL";
+                                + "constructionSite VARCHAR(50) NOT NULL,"
+                                + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
+                                + "numberInvoice NUMBER(15) NOT NULL,"
+                                + "nameSupplier VARCHAR(50) NOT NULL,"
+                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "PRIMARY KEY(orderNr),"
+                                + "FOREIGN KEY(numberInvoice) REFERENCES Invoice(number),"
+                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name),"
+                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE RentalRequest ()";
+                        sql = "CREATE TABLE RentalRequest ("
+                                + "requestNumber NUMBER(15) NOT NULL,"
+                                + "requestDATE DATE NOT NULL,"
+                                + "rentalPeriodStart DATE NOT NULL,"
+                                + "rentalPeriodEnd DATE NOT NULL,"
+                                + "rentalStatus BOOLEAN NOT NULL,"
+                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL"//overal nog aanpassen met twee l'en
+                                + "requestor VARCHAR(50) NOT NULL,"
+                                + "constructionSite VARCHAR(50) NOT NULL,"
+                                + "equipmentType VARCHAR(50) NOT NULL,"
+                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "PRIMARY KEY(requestNumber),"
+                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE Employee ()";
+                        sql = "CREATE TABLE Employee ("
+                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "function VARCHAR(50) NOT NULL,"
+                                + "emailAdress VARCHAR(50) NOT NULL,"
+                                + "phoneNumber VARCHAR(50) NOT NULL,"
+                                + "group VARCHAR(50) NOT NULL,"
+                                + "adressConstructionSite VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(employeeID))";
                         stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE ConstructionSite ()";
+                        sql = "CREATE TABLE ConstructionSite ("
+                                + "adress VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(adress))";
 			stmt.executeUpdate(sql);
                         /**stmt.executeUpdate(sql);
 			sql = "CREATE TABLE Depot ()";*/
