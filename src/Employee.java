@@ -17,6 +17,7 @@ public class Employee {
     private String group;
     //IS DAT OF HET BIJ SITE, WORK ENGINEER OF CLERK HOORT?
     private String adressConstructionSite;
+    //booleans aanmaken met WorksEngineer, CLerck etc. en dan methodes isWorksEngineer, isClerk etc.ipv String/Enum group?
 
     public Employee(int employeeID, String function, String emailAdress, String phoneNumber, String group, String adressConstructionSite) {
         this.employeeID = employeeID;
