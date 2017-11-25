@@ -1,5 +1,6 @@
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,13 +19,13 @@ public class RentalRequest {
     private Date rentalPeriodStart;
     private Date rentalPeriodEnd;
     private RentalStatus currentStatus;
-    //nog ergens fout in ENUM, maar weet niet hoe die eruit te halen is
     private String reasonForCancelationOrRefusal;
     private Employee requestor;
     //WANT REQUESTOR IS ALTIJD EEN EMPLOYEE
     private ConstructionSite constructionSite;
     private String equipmentType;
     private int employeeID;
+    //arraylist voor de requests bij te houden??
 
     public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, Employee requestor, ConstructionSite constructionSite, String equipmentType, int employeeID) {
         
@@ -41,9 +42,11 @@ public class RentalRequest {
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
         this.employeeID = employeeID;
+        
         }
     }
 
+    
     public int getRequestNumber() {
         return requestNumber;
     }
