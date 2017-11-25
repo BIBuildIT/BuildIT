@@ -27,6 +27,7 @@ public class DBConnector {
 
             con = DriverManager.getConnection(URL);
             return con;
+            
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             closeConnection(con);

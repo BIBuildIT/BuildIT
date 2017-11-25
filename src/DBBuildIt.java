@@ -116,6 +116,43 @@ public class DBBuildIt {
 			e.printStackTrace();
 		}
 	}
+    public static Equipment getEquipment(int code) throws DBException {
+		Connection con = null;
+		try {
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT code, type, description "
+					+ "FROM Equipment "
+					+ "WHERE code = " + code;
+			// let op de spatie na 'summary' en 'Students' in voorgaande SQL
+			ResultSet srs = stmt.executeQuery(sql);
+			String type, description;
+			
+			
+
+			if (srs.next()) {
+				code = srs.getInt("code");
+				type = srs.getString("type");
+				description = srs.getString("description");
+				
+			} else {// we verwachten slechts 1 rij...
+				DBConnector.closeConnection(con);
+				return null;
+			}
+
+			Equipment equipment = new Equipment(code, type, description);
+			//hier nog iets???
+			
+
+			DBConnector.closeConnection(con);
+			return equipment;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+	}
     
     public static void save(Equipment e) throws DBException {
 		Connection con = null;
