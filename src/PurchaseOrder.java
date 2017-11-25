@@ -24,13 +24,13 @@ public class PurchaseOrder {
     private Date rentStartDate;
     private Date endDate;
     private double totalPrice;
-    private String constructionSite;
+    private ConstructionSite constructionSite;
     private String phoneSiteEngineer;
     private int numberInvoice;
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, Date date, int handlingClerk, String supplier, int seqCode, double dailyRentalPrice, Date rentStartDate, Date endDate, double totalPrice, String constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, Date date, int handlingClerk, String supplier, int seqCode, double dailyRentalPrice, Date rentStartDate, Date endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = date;
         this.handlingClerk = handlingClerk;
@@ -119,11 +119,11 @@ public class PurchaseOrder {
         this.totalPrice = totalPrice;
     }
 
-    public String getConstructionSite() {
+    public ConstructionSite getConstructionSite() {
         return constructionSite;
     }
 
-    public void setConstructionSite(String constructionSite) {
+    public void setConstructionSite(ConstructionSite constructionSite) {
         this.constructionSite = constructionSite;
     }
 

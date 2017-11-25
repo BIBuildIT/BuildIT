@@ -34,19 +34,54 @@ public class DBBuildIt {
 			Connection con = DBConnector.getConnection();
 			Statement stmt = con.createStatement();
 			String sql = "CREATE TABLE Equipment ("
-                                + "number int(11) NOT NULL)";
+                                + "code NUMBER(15) NOT NULL,"
+                                + "type VARCHAR(50) NOT NULL,"
+                                + "description VARCHAR(200) NOT NULL,"
+                                + "PRIMARY KEY(code))";
+                        //moet er not null bij description?
+			
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE Depot ()";
+			sql = "CREATE TABLE Supplier ("
+                                + "name VARCHAR(50) NOT NULL,"
+                                + "email VARCHAR(50) NOT NULL,"
+                                + "phoneNumber VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(name))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE Supplier ()";
+                        sql = "CREATE TABLE Invoice ("
+                                + "number NUMBER(15) NOT NULL AUTO_INCREMENT, "
+                                // AUTO INCREMENT BIJ NIEUWE INVOICE
+                                + "supplierInvoiceNumber NUMBER(15) NOT NULL,"
+                                + "date DATE NOT NULL,"
+                                + "supplier VARCHAR(50) NOT NULL"
+                                + "purchaseOrder VARCHAR(50) NOT NULL,"
+                                + "equipmentCode NUMBER(15) NOT NULL,"
+                                + "rentalPeriodStart DATE NOT NULL,"
+                                + "rentalPeriodEnd DATE NOT NULL,"
+                                + "price NUMBER(15) NOT NULL,"
+                                + "nameSupplier VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(number),"
+                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE Invoice ()";
+                        sql = "CREATE TABLE PurchaseOrder ("
+                                + "orderNr NUMBER(15) NOT NULL,"
+                                + "date DATE NOT NULL,"
+                                + "handlingClerk NUMBER(15) NOT NULL,"
+                                + "supplier VARCHAR(50) NOT NULL,"
+                                + "sequence Code NUMBER(15) NOT NULL,"
+                                + "dailyRentalPrice NUMBER(15) NOT NULL,"
+                                + "rentStartDate DATE NOT NULL,"
+                                + "endDate DATE NOT NULL,"
+                                + "totalPrice NUMBER(15) NOT NULL,"
+                                + "constructionSite VARCHAR(50) NOT NULL";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE PurchaseOrder ()";
+                        sql = "CREATE TABLE RentalRequest ()";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE Request ()";
+                        sql = "CREATE TABLE Employee ()";
+                        stmt.executeUpdate(sql);
+                        sql = "CREATE TABLE ConstructionSite ()";
 			stmt.executeUpdate(sql);
-                        
+                        /**stmt.executeUpdate(sql);
+			sql = "CREATE TABLE Depot ()";*/
 			DBConnector.closeConnection(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
