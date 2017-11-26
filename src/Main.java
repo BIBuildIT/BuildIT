@@ -13,10 +13,10 @@ import java.util.HashMap;
  */
 public class Main {
     
-    private HashMap<Integer, Equipment> equipment;
+    private HashMap<Integer, Equipment> equipments;
 
 	public Main() {
-		equipment = new HashMap<Integer, Equipment>();
+		equipments = new HashMap<Integer, Equipment>();
 	}
     
     public static void main(String[] args) throws Exception {
@@ -26,10 +26,13 @@ public class Main {
 		DBBuildIt.createTables();
 		//3. voegt wat random studenten toe
 		//       for(int i = 0; i < 53; i++) {
-		Equipment e = new Equipment(5,"boormachine", "om te boren");
+		for(int i=0; i<3; i++){
+                    Equipment e= new Equipment(i, "materiaal "+ i, "beschrijving" +i);
+                    DBBuildIt.save(e);
+                }
 		//          for(int j = 0; j < i%4; j++)//voegt wat random majors toe
 		//              s.addMajor("major"+j);
-		DBBuildIt.save(e);//student naar db
+		//student naar db
 		//      }
 		//4. zet dit weer in commentaar en haal de onderstaande code uit commentaar
 

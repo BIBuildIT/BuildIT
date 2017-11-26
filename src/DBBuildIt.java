@@ -59,9 +59,13 @@ public class DBBuildIt {
                                 + "rentalPeriodEnd DATE NOT NULL,"
                                 + "price NUMBER(15) NOT NULL,"
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(number),"
-                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))";
+                                + "PRIMARY KEY(number)"
+                                +")";
 			stmt.executeUpdate(sql);
+                        sql= "ALTER TABLE Invoice "
+                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql);
                         sql = "CREATE TABLE PurchaseOrder ("
                                 + "orderNr NUMBER(15) NOT NULL,"
                                 + "date DATE NOT NULL,"
@@ -77,11 +81,18 @@ public class DBBuildIt {
                                 + "numberInvoice NUMBER(15) NOT NULL,"
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
                                 + "employeeID NUMBER(15) NOT NULL,"
-                                + "PRIMARY KEY(orderNr),"
-                                + "FOREIGN KEY(numberInvoice) REFERENCES Invoice(number),"
-                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name),"
-                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))";
+                                + "PRIMARY KEY(orderNr)"
+                                +")";
 			stmt.executeUpdate(sql);
+                        sql="ALTER TABLE PurchaseOrder "
+                                + " ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql);
+                        
                         sql = "CREATE TABLE RentalRequest ("
                                 + "requestNumber NUMBER(15) NOT NULL,"
                                 + "requestDATE DATE NOT NULL,"
@@ -93,9 +104,14 @@ public class DBBuildIt {
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(50) NOT NULL,"
                                 + "employeeID NUMBER(15) NOT NULL,"
-                                + "PRIMARY KEY(requestNumber),"
-                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))";
+                                + "PRIMARY KEY(requestNumber)"
+                                +")";
+                                
 			stmt.executeUpdate(sql);
+                        sql="ALTER TABLE RentalRequest("
+                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql);
                         sql = "CREATE TABLE Employee ("
                                 + "employeeID NUMBER(15) NOT NULL,"
                                 + "function VARCHAR(50) NOT NULL,"
@@ -116,7 +132,7 @@ public class DBBuildIt {
 			e.printStackTrace();
 		}
 	}
-    public static Equipment getEquipment(int code) throws DBException {
+    public static Equipment getEquipment(int coEq) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
@@ -124,10 +140,11 @@ public class DBBuildIt {
 
 			String sql = "SELECT code, type, description "
 					+ "FROM Equipment "
-					+ "WHERE code = " + code;
+					+ "WHERE code = " + coEq;
 			// let op de spatie na 'summary' en 'Students' in voorgaande SQL
 			ResultSet srs = stmt.executeQuery(sql);
 			String type, description;
+                        int code;
 			
 			
 
@@ -168,13 +185,17 @@ public class DBBuildIt {
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Equipment "
-						+ "SET code" + e.getCode();
+						+ "SET code = " + e.getCode() 
+                                                +", type = '"+ e.getType()+"'"
+                                                +", description = '"+ e.getDescription()+"'";
 				stmt.executeUpdate(sql);
 			} else {
 				// INSERT
 				sql = "INSERT into Equipment "
-						+ "(code) "
-						+ "VALUES (" + e.getCode()+"')";
+						+ "(code, type, description) "
+						+ "VALUES (" + e.getCode()
+                                                +", '"+e.getType()+ "'"
+                                                +", '"+e.getDescription()+"')";
 						
 				stmt.executeUpdate(sql);
 			}
@@ -187,5 +208,33 @@ public class DBBuildIt {
 			throw new DBException(ex);
 		}
 	}
+    public static ArrayList<Equipment> getEquipments() throws DBException {
+        Connection con= null;
+        try {
+            con= DBConnector.getConnection();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String sql= "SELECT code"
+                       +"FROM Equipment";
+            ResultSet srs= stmt.executeQuery(sql);
+            
+            ArrayList<Equipment> equipments= new ArrayList<>();
+            while(srs.next())
+                equipments.add(getEquipment(srs.getInt("code")));
+            
+            DBConnector.closeConnection(con);
+            return equipments;
+        }
+        catch (DBException dbe){
+            dbe.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw dbe;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw new DBException(ex);
+        }
+    }
     
 }
