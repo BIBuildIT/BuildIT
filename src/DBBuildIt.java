@@ -47,25 +47,41 @@ public class DBBuildIt {
                                 + "phoneNumber VARCHAR(50) NOT NULL,"
                                 + "PRIMARY KEY(name))";
 			stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE Invoice ("
-                                + "number NUMBER(15) NOT NULL AUTO_INCREMENT, "
-                                // AUTO INCREMENT BIJ NIEUWE INVOICE
-                                + "supplierInvoiceNumber NUMBER(15) NOT NULL,"
-                                + "date DATE NOT NULL,"
-                                + "supplier VARCHAR(50) NOT NULL"
-                                + "purchaseOrder VARCHAR(50) NOT NULL,"
-                                + "equipmentCode NUMBER(15) NOT NULL,"
+                        sql = "CREATE TABLE Employee ("
+                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "function VARCHAR(50) NOT NULL,"
+                                + "emailAdress VARCHAR(50) NOT NULL,"
+                                + "phoneNumber VARCHAR(50) NOT NULL,"
+                                + "group VARCHAR(50) NOT NULL,"
+                                + "adressConstructionSite VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(employeeID))";
+                        stmt.executeUpdate(sql);
+                        sql = "CREATE TABLE ConstructionSite ("
+                                + "adress VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(adress))";
+			stmt.executeUpdate(sql);
+                        
+                        
+                        sql = "CREATE TABLE RentalRequest ("
+                                + "requestNumber NUMBER(15) NOT NULL,"
+                                + "requestDATE DATE NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
-                                + "price NUMBER(15) NOT NULL,"
-                                + "nameSupplier VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(number)"
+                                + "rentalStatus BOOLEAN NOT NULL,"
+                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL"//overal nog aanpassen met twee l'en
+                                + "requestor VARCHAR(50) NOT NULL,"
+                                + "constructionSite VARCHAR(50) NOT NULL,"
+                                + "equipmentType VARCHAR(50) NOT NULL,"
+                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "PRIMARY KEY(requestNumber)"
                                 +")";
+                                
 			stmt.executeUpdate(sql);
-                        sql= "ALTER TABLE Invoice "
-                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))"
+                        sql="ALTER TABLE RentalRequest("
+                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
                                 +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
+                        
                         sql = "CREATE TABLE PurchaseOrder ("
                                 + "orderNr NUMBER(15) NOT NULL,"
                                 + "date DATE NOT NULL,"
@@ -93,38 +109,25 @@ public class DBBuildIt {
                                 +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
                         
-                        sql = "CREATE TABLE RentalRequest ("
-                                + "requestNumber NUMBER(15) NOT NULL,"
-                                + "requestDATE DATE NOT NULL,"
+                        sql = "CREATE TABLE Invoice ("
+                                + "number NUMBER(15) NOT NULL AUTO_INCREMENT, "
+                                // AUTO INCREMENT BIJ NIEUWE INVOICE
+                                + "supplierInvoiceNumber NUMBER(15) NOT NULL,"
+                                + "date DATE NOT NULL,"
+                                + "supplier VARCHAR(50) NOT NULL"
+                                + "purchaseOrder VARCHAR(50) NOT NULL,"
+                                + "equipmentCode NUMBER(15) NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
-                                + "rentalStatus BOOLEAN NOT NULL,"
-                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL"//overal nog aanpassen met twee l'en
-                                + "requestor VARCHAR(50) NOT NULL,"
-                                + "constructionSite VARCHAR(50) NOT NULL,"
-                                + "equipmentType VARCHAR(50) NOT NULL,"
-                                + "employeeID NUMBER(15) NOT NULL,"
-                                + "PRIMARY KEY(requestNumber)"
+                                + "price NUMBER(15) NOT NULL,"
+                                + "nameSupplier VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY(number)"
                                 +")";
-                                
 			stmt.executeUpdate(sql);
-                        sql="ALTER TABLE RentalRequest("
-                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
+                        sql= "ALTER TABLE Invoice "
+                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))"
                                 +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE Employee ("
-                                + "employeeID NUMBER(15) NOT NULL,"
-                                + "function VARCHAR(50) NOT NULL,"
-                                + "emailAdress VARCHAR(50) NOT NULL,"
-                                + "phoneNumber VARCHAR(50) NOT NULL,"
-                                + "group VARCHAR(50) NOT NULL,"
-                                + "adressConstructionSite VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(employeeID))";
-                        stmt.executeUpdate(sql);
-                        sql = "CREATE TABLE ConstructionSite ("
-                                + "adress VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(adress))";
-			stmt.executeUpdate(sql);
                         /**stmt.executeUpdate(sql);
 			sql = "CREATE TABLE Depot ()";*/
 			DBConnector.closeConnection(con);
@@ -178,16 +181,16 @@ public class DBBuildIt {
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			String sql = "SELECT code "
-					+ "FROM Equipment "
-					+ "WHERE code = "
-					+ e.getCode();
+					+ "FROM Equipment ";
+					
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Equipment "
-						+ "SET code = " + e.getCode() 
+						+ "SET code = '" + e.getCode() 
                                                 +", type = '"+ e.getType()+"'"
-                                                +", description = '"+ e.getDescription()+"'";
+                                                +", description = '"+ e.getDescription()+"'"
+                                                +" WHERE code = "+ e.getCode();
 				stmt.executeUpdate(sql);
 			} else {
 				// INSERT
