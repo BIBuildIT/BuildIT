@@ -10,8 +10,8 @@
  */
 public class Clerk extends Employee {
     
-    public Clerk(int employeeID, String function, String emailAdress, String phoneNumber, String group, String adressConstructionSite) {
-        super(employeeID, function, emailAdress, phoneNumber, group, adressConstructionSite);
+    public Clerk(int employeeID, String function, String emailAdress, String phoneNumber) {
+        super(employeeID, function, emailAdress, phoneNumber);
     }
-    
+    // methodes: aanvulle
 }

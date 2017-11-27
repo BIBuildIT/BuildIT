@@ -20,32 +20,32 @@ public class RentalRequest {
     private Date rentalPeriodEnd;
     private RentalStatus currentStatus;
     private String reasonForCancelationOrRefusal;
-    private Employee requestor;
-    //WANT REQUESTOR IS ALTIJD EEN EMPLOYEE
+    private SiteEngineer requestor;//MOET altijd siteEngineer zijn
     private ConstructionSite constructionSite;
     private String equipmentType;
-    private int employeeID;
+    private Equipment selectedEquipment;
+    private Supplier selectedSupplier;
+    private double dailyRentalPrice;
+    
     //arraylist voor de requests bij te houden??
 
-    public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, Employee requestor, ConstructionSite constructionSite, String equipmentType, int employeeID) {
+    public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, SiteEngineer requestor, ConstructionSite constructionSite, String equipmentType) {
         
-        if(!(requestor.getEmployeeID() == employeeID))
-            System.out.println("Error: employeeID does not comply to requestor.");
-        else{
+        
         this.requestNumber = requestNumber;
         this.requestDate = requestDate;
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
-        this.currentStatus = currentStatus;
-        this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;
+        this.currentStatus = currentStatus;//als je rentalRequest aanmaakt, is status sowieso requested, dus dit gelijk stellen aan this.currentstatus = rentalStatus.requested?? indien ja: aanpassen in makerequest en constructor
+        this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;// als je rentalRequest aanmaakt, is er nooit een cancellation, dus dit null?
         this.requestor = requestor;
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
-        this.employeeID = employeeID;
-        
-        }
+        this.selectedEquipment = null;
+        this.selectedSupplier = null;
+        this.dailyRentalPrice = 0.0;
+                
     }
-
     
     public int getRequestNumber() {
         return requestNumber;
@@ -87,8 +87,6 @@ public class RentalRequest {
         this.currentStatus = currentStatus;
     }
 
-    
-
     public String getReasonForCancelationOrRefusal() {
         return reasonForCancelationOrRefusal;
     }
@@ -97,11 +95,11 @@ public class RentalRequest {
         this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;
     }
 
-    public Employee getRequestor() {
+    public SiteEngineer getRequestor() {
         return requestor;
     }
 
-    public void setRequestor(Employee requestor) {
+    public void setRequestor(SiteEngineer requestor) {
         this.requestor = requestor;
     }
 
@@ -120,21 +118,31 @@ public class RentalRequest {
     public void setEquipmentType(String equipmentType) {
         this.equipmentType = equipmentType;
     }
-
-    public int getEmployeeID() {
-        return employeeID;
+    
+    public Equipment getSelectedEquipment() {
+        return selectedEquipment;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setSelectedEquipment(Equipment selectedEquipment) {
+        this.selectedEquipment = selectedEquipment;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public Supplier getSelectedSupplier() {
+        return selectedSupplier;
+    }
+
+    public void setSelectedSupplier(Supplier selectedSupplier) {
+        this.selectedSupplier = selectedSupplier;
+    }
+
+    public double getDailyRentalPrice() {
+        return dailyRentalPrice;
+    }
+
+    public void setDailyRentalPrice(double dailyRentalPrice) {
+        this.dailyRentalPrice = dailyRentalPrice;
+    }
+
+
     
 }
