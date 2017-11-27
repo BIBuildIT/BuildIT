@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//  
+
 /**
  *
- * @author lmoentje
- *//*
+ * @author jonas & pieter
+ //
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -60,7 +60,6 @@ public class DBBuildIt {
                                 + "PRIMARY KEY(adress)"+")";
 			stmt.executeUpdate(sql);
                         
-                        
                         sql = "CREATE TABLE RentalRequest ("
                                 + "requestNumber int(15) NOT NULL,"
                                 + "requestDATE DATE NOT NULL,"
@@ -76,15 +75,15 @@ public class DBBuildIt {
                                 
 			stmt.executeUpdate(sql);
                         sql="ALTER TABLE RentalRequest"
-                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID)"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                                +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
                          sql = "CREATE TABLE Invoice ("
-                                + "number NUMBER(15) NOT NULL AUTO_INCREMENT, "
+                                + "number int(15) NOT NULL AUTO_INCREMENT, "
                                 // AUTO INCREMENT BIJ NIEUWE INVOICE
-                                + "supplierInvoiceNumber NUMBER(15) NOT NULL,"
+                                + "supplierInvoiceNumber int(15) NOT NULL,"
                                 + "date DATE NOT NULL,"
-                                + "supplier VARCHAR(50) NOT NULL"
+                                + "supplier VARCHAR(50) NOT NULL,"
                                 + "purchaseOrder VARCHAR(50) NOT NULL,"
                                 + "equipmentCode int(15) NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
@@ -95,8 +94,8 @@ public class DBBuildIt {
                                 +")";
 			stmt.executeUpdate(sql);
                         sql= "ALTER TABLE Invoice "
-                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
                         
                         sql = "CREATE TABLE PurchaseOrder ("
@@ -104,7 +103,7 @@ public class DBBuildIt {
                                 + "date DATE NOT NULL,"
                                 + "handlingClerk int(15) NOT NULL,"
                                 + "supplier VARCHAR(50) NOT NULL,"
-                                + "sequence Code int(15) NOT NULL,"
+                                + "sequenceCode int(15) NOT NULL,"
                                 + "dailyRentalPrice int(15) NOT NULL,"
                                 + "rentStartDate DATE NOT NULL,"
                                 + "endDate DATE NOT NULL,"
@@ -117,18 +116,18 @@ public class DBBuildIt {
                                 + "PRIMARY KEY(orderNr)"
                                 +")";
 			stmt.executeUpdate(sql);
-                        /**sql="ALTER TABLE PurchaseOrder "
-                                + "ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
-                        stmt.executeUpdate(sql); */
+                        sql="ALTER TABLE PurchaseOrder "
+                                +" ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql); 
                         
                        
-                        /**stmt.executeUpdate(sql);
-			sql = "CREATE TABLE Depot ()";*/
+                        stmt.executeUpdate(sql);
+			sql = "CREATE TABLE Depot ()";
 			DBConnector.closeConnection(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
