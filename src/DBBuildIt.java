@@ -34,10 +34,10 @@ public class DBBuildIt {
 			Connection con = DBConnector.getConnection();
 			Statement stmt = con.createStatement();
 			String sql = "CREATE TABLE Equipment ("
-                                + "code NUMBER(15) NOT NULL,"
+                                + "code int(15) NOT NULL,"
                                 + "type VARCHAR(50) NOT NULL,"
                                 + "description VARCHAR(200) NOT NULL,"
-                                + "PRIMARY KEY(code))";
+                                + "PRIMARY KEY(code)"+")";
                         //moet er not null bij description?
 			
 			stmt.executeUpdate(sql);
@@ -45,81 +45,51 @@ public class DBBuildIt {
                                 + "name VARCHAR(50) NOT NULL,"
                                 + "email VARCHAR(50) NOT NULL,"
                                 + "phoneNumber VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(name))";
+                                + "PRIMARY KEY(name)"+")";
 			stmt.executeUpdate(sql);
                         sql = "CREATE TABLE Employee ("
-                                + "employeeID NUMBER(15) NOT NULL,"
+                                + "employeeID int(15) NOT NULL,"
                                 + "function VARCHAR(50) NOT NULL,"
                                 + "emailAdress VARCHAR(50) NOT NULL,"
                                 + "phoneNumber VARCHAR(50) NOT NULL,"
-                                + "group VARCHAR(50) NOT NULL,"
                                 + "adressConstructionSite VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(employeeID))";
+                                + "PRIMARY KEY(employeeID)"+")";
                         stmt.executeUpdate(sql);
                         sql = "CREATE TABLE ConstructionSite ("
                                 + "adress VARCHAR(50) NOT NULL,"
-                                + "PRIMARY KEY(adress))";
+                                + "PRIMARY KEY(adress)"+")";
 			stmt.executeUpdate(sql);
                         
                         
                         sql = "CREATE TABLE RentalRequest ("
-                                + "requestNumber NUMBER(15) NOT NULL,"
+                                + "requestNumber int(15) NOT NULL,"
                                 + "requestDATE DATE NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
-                                + "rentalStatus BOOLEAN NOT NULL,"
-                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL"//overal nog aanpassen met twee l'en
+                                + "rentalStatus ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment') NOT NULL,"
+                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL,"
                                 + "requestor VARCHAR(50) NOT NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(50) NOT NULL,"
-                                + "employeeID NUMBER(15) NOT NULL,"
-                                + "PRIMARY KEY(requestNumber)"
-                                +")";
+                                + "employeeID int(15) NOT NULL,"
+                                + "PRIMARY KEY(requestNumber)"+")";
                                 
 			stmt.executeUpdate(sql);
-                        sql="ALTER TABLE RentalRequest("
-                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
+                        sql="ALTER TABLE RentalRequest"
+                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID)"
                                 +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
-                        
-                        sql = "CREATE TABLE PurchaseOrder ("
-                                + "orderNr NUMBER(15) NOT NULL,"
-                                + "date DATE NOT NULL,"
-                                + "handlingClerk NUMBER(15) NOT NULL,"
-                                + "supplier VARCHAR(50) NOT NULL,"
-                                + "sequence Code NUMBER(15) NOT NULL,"
-                                + "dailyRentalPrice NUMBER(15) NOT NULL,"
-                                + "rentStartDate DATE NOT NULL,"
-                                + "endDate DATE NOT NULL,"
-                                + "totalPrice NUMBER(15) NOT NULL,"
-                                + "constructionSite VARCHAR(50) NOT NULL,"
-                                + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
-                                + "numberInvoice NUMBER(15) NOT NULL,"
-                                + "nameSupplier VARCHAR(50) NOT NULL,"
-                                + "employeeID NUMBER(15) NOT NULL,"
-                                + "PRIMARY KEY(orderNr)"
-                                +")";
-			stmt.executeUpdate(sql);
-                        sql="ALTER TABLE PurchaseOrder "
-                                + " ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
-                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
-                        stmt.executeUpdate(sql);
-                        
-                        sql = "CREATE TABLE Invoice ("
+                         sql = "CREATE TABLE Invoice ("
                                 + "number NUMBER(15) NOT NULL AUTO_INCREMENT, "
                                 // AUTO INCREMENT BIJ NIEUWE INVOICE
                                 + "supplierInvoiceNumber NUMBER(15) NOT NULL,"
                                 + "date DATE NOT NULL,"
                                 + "supplier VARCHAR(50) NOT NULL"
                                 + "purchaseOrder VARCHAR(50) NOT NULL,"
-                                + "equipmentCode NUMBER(15) NOT NULL,"
+                                + "equipmentCode int(15) NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
-                                + "price NUMBER(15) NOT NULL,"
+                                + "price int(15) NOT NULL,"
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
                                 + "PRIMARY KEY(number)"
                                 +")";
@@ -128,6 +98,35 @@ public class DBBuildIt {
                                 +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name))"
                                 +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
+                        
+                        sql = "CREATE TABLE PurchaseOrder ("
+                                + "orderNr int(15) NOT NULL,"
+                                + "date DATE NOT NULL,"
+                                + "handlingClerk int(15) NOT NULL,"
+                                + "supplier VARCHAR(50) NOT NULL,"
+                                + "sequence Code int(15) NOT NULL,"
+                                + "dailyRentalPrice int(15) NOT NULL,"
+                                + "rentStartDate DATE NOT NULL,"
+                                + "endDate DATE NOT NULL,"
+                                + "totalPrice int(15) NOT NULL,"
+                                + "constructionSite VARCHAR(50) NOT NULL,"
+                                + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
+                                + "numberInvoice int(15) NOT NULL,"
+                                + "nameSupplier VARCHAR(50) NOT NULL,"
+                                + "employeeID int(15) NOT NULL,"
+                                + "PRIMARY KEY(orderNr)"
+                                +")";
+			stmt.executeUpdate(sql);
+                        /**sql="ALTER TABLE PurchaseOrder "
+                                + "ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID))"
+                                +"ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql); */
+                        
+                       
                         /**stmt.executeUpdate(sql);
 			sql = "CREATE TABLE Depot ()";*/
 			DBConnector.closeConnection(con);
@@ -181,14 +180,15 @@ public class DBBuildIt {
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			String sql = "SELECT code "
-					+ "FROM Equipment ";
+					+ "FROM Equipment "
+                                        +"WHERE code = " 
+                                        +e.getCode();
 					
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Equipment "
-						+ "SET code = '" + e.getCode() 
-                                                +", type = '"+ e.getType()+"'"
+						+ "SET type = '"+ e.getType()+"'"
                                                 +", description = '"+ e.getDescription()+"'"
                                                 +" WHERE code = "+ e.getCode();
 				stmt.executeUpdate(sql);
