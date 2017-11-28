@@ -70,9 +70,16 @@ public class DBBuildIt {
                                 + "requestor VARCHAR(50) NOT NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(50) NOT NULL,"
-                                + "employeeID int(15) NOT NULL,"
+                                + "selectedEquipment VARCHAR(50) NOT NULL,"
+                                + "selectedSupplier VARCHAR(50) NOT NULL,"
+                                + "dailyRentalPrice int(15) NOT NULL,"
                                 + "PRIMARY KEY(requestNumber)"+")";
                                 
+                        /*private Equipment selectedEquipment;
+                                private Supplier selectedSupplier;
+                                private double dailyRentalPrice;
+                                */
+                        
 			stmt.executeUpdate(sql);
                         sql="ALTER TABLE RentalRequest"
                                 +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"
