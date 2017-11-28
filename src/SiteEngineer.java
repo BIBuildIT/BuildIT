@@ -21,7 +21,8 @@ public class SiteEngineer extends Employee {
     }
     public void makeRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, ConstructionSite constructionSite, String equipmentType){
         if (site.contains(constructionSite)){
-        RentalRequest reRe= new RentalRequest(requestNumber, requestDate, rentalPeriodStart, rentalPeriodEnd, currentStatus, reasonForCancelationOrRefusal, this, constructionSite, equipmentType, requestNumber);
+        RentalRequest reRe= new RentalRequest(requestNumber, requestDate, rentalPeriodStart, rentalPeriodEnd, currentStatus, reasonForCancelationOrRefusal, this, constructionSite, equipmentType);
+        
         //toevoegen aan uw arraylistRequest
         }
         else {

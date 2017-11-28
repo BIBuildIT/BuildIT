@@ -14,6 +14,7 @@ public class Employee {
     private String function;//subklasses vervangen dit!
     private String emailAdress;
     private String phoneNumber;
+    
 
     public Employee(int employeeID, String function, String emailAdress, String phoneNumber) {
         this.employeeID = employeeID;

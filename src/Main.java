@@ -28,7 +28,11 @@ public class Main {
 		//       for(int i = 0; i < 53; i++) {
 		for(int i=0; i<3; i++){
                     Equipment e= new Equipment(i, "materiaal "+ i, "beschrijving" +i);
+                    Supplier s= new Supplier("naam"+i, "email"+i, "phoneNumber"+i);
+                    Employee t = new Employee(i, "function"+i, "emailAdress"+i, "phoneNumber"+i);
                     DBBuildIt.save(e);
+                    DBBuildIt.saveS(s);
+                    DBBuildIt.saveE(t);
                 }
 		//          for(int j = 0; j < i%4; j++)//voegt wat random majors toe
 		//              s.addMajor("major"+j);
