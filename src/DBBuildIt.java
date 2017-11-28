@@ -133,8 +133,7 @@ public class DBBuildIt {
                         stmt.executeUpdate(sql); 
                         
                        
-                        stmt.executeUpdate(sql);
-			sql = "CREATE TABLE Depot ()";
+                        
 			DBConnector.closeConnection(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
