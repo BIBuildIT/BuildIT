@@ -1,5 +1,6 @@
-
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class RentalRequest {
     
     private int requestNumber;
-    private Date requestDate;
+    private LocalDate requestDate;
     private Date rentalPeriodStart;
     private Date rentalPeriodEnd;
     private RentalStatus currentStatus;
@@ -29,21 +30,23 @@ public class RentalRequest {
     
     //arraylist voor de requests bij te houden??
 
-    public RentalRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, SiteEngineer requestor, ConstructionSite constructionSite, String equipmentType) {
+    public RentalRequest(int requestNumber, Date rentalPeriodStart, Date rentalPeriodEnd, SiteEngineer requestor, ConstructionSite constructionSite, String equipmentType) {
         
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
         
         this.requestNumber = requestNumber;
-        this.requestDate = requestDate;
+        this.requestDate = localDate;
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
-        this.currentStatus = currentStatus;//als je rentalRequest aanmaakt, is status sowieso requested, dus dit gelijk stellen aan this.currentstatus = rentalStatus.requested?? indien ja: aanpassen in makerequest en constructor
-        this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;// als je rentalRequest aanmaakt, is er nooit een cancellation, dus dit null?
+        this.currentStatus= RentalStatus.requested;
+        this.reasonForCancelationOrRefusal = null;
         this.requestor = requestor;
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
-        this.selectedEquipment = null;
-        this.selectedSupplier = null;
-        this.dailyRentalPrice = 0.0;
+        this.selectedEquipment = null;//vanaf rentalstatus processed
+        this.selectedSupplier = null;//vanaf rentalstatus processed
+        this.dailyRentalPrice = 0.0;//vanaf rentalstatus processed
                 
     }
     
@@ -55,11 +58,11 @@ public class RentalRequest {
         this.requestNumber = requestNumber;
     }
 
-    public Date getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
     }
 

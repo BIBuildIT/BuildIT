@@ -34,7 +34,9 @@ public class NewJFrame extends javax.swing.JFrame {
         employeeID = new javax.swing.JTextField();
         giveDate = new javax.swing.JLabel();
         date = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        giveConstructionSite = new javax.swing.JLabel();
+        constructionSite = new javax.swing.JTextField();
+        giveStartRentalPeriod = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -66,7 +68,9 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jLabel2");
+        giveConstructionSite.setText("ConstructionSite:");
+
+        giveStartRentalPeriod.setText("Start of rental period:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,10 +80,14 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(giveStartRentalPeriod)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(giveConstructionSite)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(constructionSite))
                             .addComponent(Titel)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(giveEmployeeID)
@@ -113,8 +121,12 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(giveDate)
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(giveConstructionSite)
+                    .addComponent(constructionSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(giveStartRentalPeriod)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,12 +182,14 @@ public class NewJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nummerlabel;
     private javax.swing.JLabel Titel;
+    private javax.swing.JTextField constructionSite;
     private javax.swing.JTextField date;
     private javax.swing.JTextField employeeID;
+    private javax.swing.JLabel giveConstructionSite;
     private javax.swing.JLabel giveDate;
     private javax.swing.JLabel giveEmployeeID;
+    private javax.swing.JLabel giveStartRentalPeriod;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField requestNumber;
     // End of variables declaration//GEN-END:variables
 }

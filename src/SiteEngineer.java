@@ -19,10 +19,9 @@ public class SiteEngineer extends Employee {
         super(employeeID, function, emailAdress, phoneNumber);
         this.site = site;
     }
-    public void makeRequest(int requestNumber, Date requestDate, Date rentalPeriodStart, Date rentalPeriodEnd, RentalStatus currentStatus, String reasonForCancelationOrRefusal, ConstructionSite constructionSite, String equipmentType){
+    public void makeRequest(int requestNumber,  Date rentalPeriodStart, Date rentalPeriodEnd, ConstructionSite constructionSite, String equipmentType){
         if (site.contains(constructionSite)){
-        RentalRequest reRe= new RentalRequest(requestNumber, requestDate, rentalPeriodStart, rentalPeriodEnd, currentStatus, reasonForCancelationOrRefusal, this, constructionSite, equipmentType);
-        
+        RentalRequest reRe= new RentalRequest(requestNumber, rentalPeriodStart, rentalPeriodEnd, this, constructionSite, equipmentType);
         //toevoegen aan uw arraylistRequest
         }
         else {
