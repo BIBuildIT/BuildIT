@@ -1,5 +1,6 @@
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -81,7 +82,9 @@ public class Main {
                     PurchaseOrder po = new PurchaseOrder(i, d, i, "supplier"+i, i, a, b, h, a, constr, "phoneSiteEngineer"+i, i, "nameSupplier"+i, i);
                     
                 }
-                
+                ArrayList<ConstructionSite> sites = DBBuildIt.getConstructionSites();
+                RentalRequestForm njf = new RentalRequestForm(sites);
+                njf.setVisible(true);
                    
 		//          for(int j = 0; j < i%4; j++)//voegt wat random majors toe
 		//              s.addMajor("major"+j);

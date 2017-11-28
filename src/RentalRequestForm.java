@@ -2,6 +2,8 @@
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 
 
@@ -10,13 +12,21 @@ import java.text.SimpleDateFormat;
  * omdat een equipment voor meerdere constructionsites kan gebruikt worden
  * zie ER schema
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class RentalRequestForm extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    ArrayList<ConstructionSite> sites;
+    public RentalRequestForm(ArrayList<ConstructionSite> sites) {
         initComponents();
+        this.sites = sites;
+        DefaultListModel listModel = new DefaultListModel();
+        for (int i = 0; i < sites.size(); i++)
+        {
+            listModel.addElement(sites.get(i).getAdress());
+        }
+        ConstructionSiteList.setModel(listModel);
     }
 
     /**
@@ -36,14 +46,12 @@ public class NewJFrame extends javax.swing.JFrame {
         giveDate = new javax.swing.JLabel();
         date = new javax.swing.JTextField();
         giveConstructionSite = new javax.swing.JLabel();
-        constructionSite = new javax.swing.JTextField();
         giveStartRentalPeriod = new javax.swing.JLabel();
         startRentalPeriod = new javax.swing.JTextField();
         giveEndofRentalPeriod = new javax.swing.JLabel();
         endRentalPeriod = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ConstructionSiteList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,50 +88,39 @@ public class NewJFrame extends javax.swing.JFrame {
 
         giveEndofRentalPeriod.setText("End of rental period:");
 
-        jRadioButton1.setText("Gent KBC toren");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
+        ConstructionSiteList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-
-        jRadioButton2.setText("Antwerpen flatgebouw");
-
-        jRadioButton3.setText("Brussel winkelcentrum");
+        jScrollPane1.setViewportView(ConstructionSiteList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Titel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(giveEmployeeID)
-                                    .addComponent(giveConstructionSite))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(constructionSite, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                                    .addComponent(employeeID)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(giveEndofRentalPeriod)
-                                    .addComponent(giveStartRentalPeriod))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(startRentalPeriod, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(endRentalPeriod)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Titel)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(giveEndofRentalPeriod)
+                                .addComponent(giveStartRentalPeriod))
+                            .addGap(133, 133, 133)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(startRentalPeriod, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(endRentalPeriod)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(giveEmployeeID)
+                                .addComponent(giveConstructionSite))
+                            .addGap(50, 50, 50)
+                            .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Nummerlabel)
@@ -151,15 +148,9 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(giveDate)
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(giveConstructionSite)
-                    .addComponent(constructionSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton1)
+                .addComponent(giveConstructionSite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveStartRentalPeriod)
@@ -186,10 +177,6 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dateActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -207,28 +194,44 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                ArrayList<ConstructionSite> test = new ArrayList<>();
+                test.add(new ConstructionSite("Sint-Martens-Latem"));
+                new RentalRequestForm(test).setVisible(true);
             }
         });
     }
+    
+    public void sendRequestForm() {
+        Date d = null;
+        Date b = null;
+
+        SiteEngineer site = null;
+        ConstructionSite  constr = null;      
+        //NIET ALLES STAAT IN DE CONSTRUCTOR, WAAROM?
+        double a = 0.05;
+
+        //RentalRequest r = new RentalRequest(i, d, b, site, constr, "equipmentType"+i);
+        //Save.saveRR(r);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ConstructionSiteList;
     private javax.swing.JLabel Nummerlabel;
     private javax.swing.JLabel Titel;
-    private javax.swing.JTextField constructionSite;
     private javax.swing.JTextField date;
     private javax.swing.JTextField employeeID;
     private javax.swing.JTextField endRentalPeriod;
@@ -237,21 +240,21 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel giveEmployeeID;
     private javax.swing.JLabel giveEndofRentalPeriod;
     private javax.swing.JLabel giveStartRentalPeriod;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField requestNumber;
     private javax.swing.JTextField startRentalPeriod;
     // End of variables declaration//GEN-END:variables
 
+    
  public int getEmployeeID()
     {
         return (Integer.parseInt(employeeID.getText().trim()));
     }
  public String getConstructionSite()
     {
-     return constructionSite.getText().trim();
+     return null;
     }
+
  public Date getStartRentalRequest() throws ParseException
     {
      SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");

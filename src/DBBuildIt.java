@@ -208,4 +208,33 @@ public class DBBuildIt {
         }
     }
     
+    
+    public static ArrayList<ConstructionSite> getConstructionSites() throws DBException {
+        Connection con= null;
+        try {
+            con= DBConnector.getConnection();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String sql= "SELECT adress"
+                       +"FROM ConstructionSite";
+            ResultSet srs= stmt.executeQuery(sql);
+            
+            ArrayList<ConstructionSite> constructionsites= new ArrayList<>();
+            while(srs.next())
+                constructionsites.add(new ConstructionSite(srs.getString("adress")));
+            
+            DBConnector.closeConnection(con);
+            return constructionsites;
+        }
+        catch (DBException dbe){
+            dbe.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw dbe;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw new DBException(ex);
+        }
+    }
 }
