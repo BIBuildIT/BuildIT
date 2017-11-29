@@ -66,7 +66,7 @@ public class DBBuildIt {
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
                                 + "rentalStatus ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment') NOT NULL,"
-                                + "reasonFOrCancellationOrRefusal VARCHAR(50) NOT NULL,"
+                                + "reasonForCancellationOrRefusal VARCHAR(50) NOT NULL,"
                                 + "requestor VARCHAR(50) NOT NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(50) NOT NULL,"
