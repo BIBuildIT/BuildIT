@@ -21,7 +21,7 @@ public class RentalRequest {
     private Date rentalPeriodEnd;
     private RentalStatus currentStatus;
     private String reasonForCancelationOrRefusal;
-    private SiteEngineer requestor;//MOET altijd siteEngineer zijn
+    private int employeeID;//MOET altijd siteEngineer zijn
     private ConstructionSite constructionSite;
     private String equipmentType;
     private Equipment selectedEquipment;
@@ -30,24 +30,31 @@ public class RentalRequest {
     
     //arraylist voor de requests bij te houden??
 
-    public RentalRequest(int requestNumber, Date rentalPeriodStart, Date rentalPeriodEnd, SiteEngineer requestor, ConstructionSite constructionSite, String equipmentType) {
+
+    public RentalRequest(int requestNumber, Date rentalPeriodStart, Date rentalPeriodEnd, int employeeID, ConstructionSite constructionSite, String equipmentType) {
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
         
         this.requestNumber = requestNumber;
-        this.requestDate = localDate;
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
+
         this.currentStatus= RentalStatus.requested;
         this.reasonForCancelationOrRefusal = null;
-        this.requestor = requestor;
+
+        this.employeeID = employeeID;
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
+
+        this.selectedEquipment = null;
+        this.selectedSupplier = null;
+        this.dailyRentalPrice = 0.0;
+
         this.selectedEquipment = null;//vanaf rentalstatus processed
         this.selectedSupplier = null;//vanaf rentalstatus processed
         this.dailyRentalPrice = 0.0;//vanaf rentalstatus processed
-                
+        
     }
     
     public int getRequestNumber() {
@@ -60,10 +67,6 @@ public class RentalRequest {
 
     public LocalDate getRequestDate() {
         return requestDate;
-    }
-
-    public void setRequestDate(LocalDate requestDate) {
-        this.requestDate = requestDate;
     }
 
     public Date getRentalPeriodStart() {
@@ -98,12 +101,12 @@ public class RentalRequest {
         this.reasonForCancelationOrRefusal = reasonForCancelationOrRefusal;
     }
 
-    public SiteEngineer getRequestor() {
-        return requestor;
+    public int getEmployeeID() {
+        return employeeID;
     }
 
-    public void setRequestor(SiteEngineer requestor) {
-        this.requestor = requestor;
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 
     public ConstructionSite getConstructionSite() {
@@ -145,7 +148,7 @@ public class RentalRequest {
     public void setDailyRentalPrice(double dailyRentalPrice) {
         this.dailyRentalPrice = dailyRentalPrice;
     }
-
-
+    
+   
     
 }

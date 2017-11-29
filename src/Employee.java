@@ -1,3 +1,6 @@
+
+import java.sql.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,14 +14,14 @@
 public class Employee {
     
     private int employeeID;
-    private String function;//subklasses vervangen dit!
+    private Function group;//subklasses vervangen dit!
     private String emailAdress;
     private String phoneNumber;
     
 
-    public Employee(int employeeID, String function, String emailAdress, String phoneNumber) {
+    public Employee(int employeeID, Function group, String emailAdress, String phoneNumber) {
         this.employeeID = employeeID;
-        this.function = function;
+        this.group = group;
         this.emailAdress = emailAdress;
         this.phoneNumber = phoneNumber;
     }
@@ -31,14 +34,14 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
-    public String getFunction() {
-        return function;
+    public Function getGroup() {
+        return group;
     }
 
-    public void setFunction(String function) {
-        this.function = function;
+    public void setGroup(Function group) {
+        this.group = group;
     }
-
+    
     public String getEmailAdress() {
         return emailAdress;
     }
@@ -53,5 +56,15 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }    
+    }
+    
+    public void makeRequest(int requestNumber,  Date rentalPeriodStart, Date rentalPeriodEnd, ConstructionSite constructionSite, String equipmentType){
+      
+           
+           RentalRequest req = new RentalRequest(requestNumber,  rentalPeriodStart,  rentalPeriodEnd, this.employeeID , constructionSite, equipmentType);
+           Event ev= new Event(req,this.employeeID);
+           
+           
+        
+    }      
 }
