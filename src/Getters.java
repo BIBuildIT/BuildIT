@@ -99,7 +99,7 @@ public class Getters {
             
         }
         
-        public static RentalRequest getRentalRequest(int reqnr){
+        public static RentalRequest getRentalRequest(int reqnr) throws DBException{
             Connection con= null; 
         try {
             
@@ -128,16 +128,17 @@ public class Getters {
                     requestor = new SiteEngineer(); //hier moeten nog constructors komen maar ik weet niet goed hoe?
                     constructionSite = new ConstructionSite(srs.getString("constructionSite"));
                     equipmentType = srs.getString("equipmentType");
-                    selectedEquipment = new Equipment(srs.getString("selectedEquipment"));// idem als hiervoor
-            } else {
+                    
+            
+                } else {
                     DBConnector.closeConnection(con);
                     return null;
                 }
             
-            Employee employee = new Employee(employeeID,function,emailAdress,phoneNumber);
+            RentalRequest rentalrequest = new RentalRequest(requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType);
             
             DBConnector.closeConnection(con);
-            return employee;
+            return rentalrequest;
         }
             catch (Exception ex) {
 			ex.printStackTrace();
