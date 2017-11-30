@@ -22,6 +22,42 @@ public class Getters {
     }
     
     
+    
+    public static Supplier getSupplier() throws DBException {
+		Connection con = null;
+		try {
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT name, email, phoneNumber "
+					+ "FROM Supplier ";
+					
+			
+			ResultSet srs = stmt.executeQuery(sql);
+			String name, email, phoneNumber;
+			
+
+			if (srs.next()) {
+				name = srs.getString("name");
+				email = srs.getString("email");
+				phoneNumber = srs.getString("phoneNumber");
+				
+			} else {
+				DBConnector.closeConnection(con);
+				return null;
+			}
+
+			Supplier supplier = new Supplier(name, email, phoneNumber);
+			
+
+			DBConnector.closeConnection(con);
+			return supplier;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+	}
         public static Equipment getEquipment(int coEq) throws DBException {
 		Connection con = null;
 		try {
