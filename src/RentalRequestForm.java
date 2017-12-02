@@ -3,6 +3,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 
@@ -17,8 +19,10 @@ public class RentalRequestForm extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    
     ArrayList<ConstructionSite> sites;
-    public RentalRequestForm(ArrayList<ConstructionSite> sites) {
+    
+    /**public RentalRequestForm(ArrayList<ConstructionSite> sites) {
         initComponents();
         this.sites = sites;
         DefaultListModel listModel = new DefaultListModel();
@@ -27,6 +31,11 @@ public class RentalRequestForm extends javax.swing.JFrame {
             listModel.addElement(sites.get(i).getAdress());
         }
         ConstructionSiteList.setModel(listModel);
+    }*/
+    
+    public RentalRequestForm() throws DBException{
+        sites = Getters.getConstructionSites();
+        
     }
 
     /**
@@ -208,9 +217,13 @@ public class RentalRequestForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ArrayList<ConstructionSite> test = new ArrayList<>();
-                test.add(new ConstructionSite("Sint-Martens-Latem"));
-                new RentalRequestForm(test).setVisible(true);
+                /*ArrayList<ConstructionSite> test = new ArrayList<>();
+                test.add(new ConstructionSite("Sint-Martens-Latem"));*/
+                try {
+                    new RentalRequestForm().setVisible(true);
+                } catch (DBException ex) {
+                    Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

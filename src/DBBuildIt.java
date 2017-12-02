@@ -49,10 +49,9 @@ public class DBBuildIt {
 			stmt.executeUpdate(sql);
                         sql = "CREATE TABLE Employee ("
                                 + "employeeID int(15) NOT NULL AUTO_INCREMENT,"
-                                + "function VARCHAR(50) NOT NULL,"
+                                + "grp ENUM('SiteEngineer', 'Clerk', 'WorksEngineer') NOT NULL,"
                                 + "emailAdress VARCHAR(50) NOT NULL,"
                                 + "phoneNumber VARCHAR(50) NOT NULL,"
-                                
                                 + "PRIMARY KEY(employeeID)"+")";
                         stmt.executeUpdate(sql);
                         sql = "CREATE TABLE ConstructionSite ("
@@ -73,6 +72,7 @@ public class DBBuildIt {
                                 + "selectedEquipment VARCHAR(50) NOT NULL,"
                                 + "selectedSupplier VARCHAR(50) NOT NULL,"
                                 + "dailyRentalPrice int(15) NOT NULL,"
+                                + "employeeID int(15) NOT NULL AUTO_INCREMENT,"
                                 + "PRIMARY KEY(requestNumber)"+")";
                                 
                         /*private Equipment selectedEquipment;
@@ -128,8 +128,8 @@ public class DBBuildIt {
                                 +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
                                 +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
                                 +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (EmployeeID)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                                +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT";
                         stmt.executeUpdate(sql); 
                         
                        

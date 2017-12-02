@@ -58,10 +58,10 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
     
-    public void makeRequest(int requestNumber,  Date rentalPeriodStart, Date rentalPeriodEnd, ConstructionSite constructionSite, String equipmentType){
+    public void makeRequest(Date rentalPeriodStart, Date rentalPeriodEnd, ConstructionSite constructionSite, String equipmentType){
       
            
-           RentalRequest req = new RentalRequest(requestNumber,  rentalPeriodStart,  rentalPeriodEnd, this.employeeID , constructionSite, equipmentType);
+           RentalRequest req = new RentalRequest ( rentalPeriodStart,  rentalPeriodEnd, this.employeeID , constructionSite, equipmentType);
            Event ev= new Event(req,this.employeeID);
            
            

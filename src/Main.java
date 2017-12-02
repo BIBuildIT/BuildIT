@@ -28,7 +28,7 @@ public class Main {
 		DBBuildIt.createTables();
 		//3. voegt wat random studenten toe
 		//       for(int i = 0; i < 53; i++) {
-		for(int i=0; i<3; i++){
+		/*for(int i=0; i<3; i++){
                     Equipment e= new Equipment(i, "materiaal "+ i, "beschrijving" +i);
                     Save.saveE(e);
                 }
@@ -38,7 +38,7 @@ public class Main {
                 }
                 
                 for(int i=0; i<3; i++){
-                    Employee t = new Employee(i, "function"+i, "emailAdress"+i, "phoneNumber"+i);
+                    Employee t = new Employee(i, Function.SiteEngineer, "emailAdress"+i, "phoneNumber"+i);
                     Save.saveE(t);
                 }
                 
@@ -63,12 +63,13 @@ public class Main {
                     Date d = null;
                     Date b = null;
                     
-                    SiteEngineer site = null;
+                    
+                    int employeeID = 5; // moet aangepast worden
                     ConstructionSite  constr = null;      
                     //NIET ALLES STAAT IN DE CONSTRUCTOR, WAAROM?
                     double a = 0.05;
                     
-                    RentalRequest r = new RentalRequest(i, d, b, site, constr, "equipmentType"+i);
+                    RentalRequest r = new RentalRequest(d, b, employeeID, constr, "equipmentType"+i);
                     Save.saveRR(r);
                 }
                 
@@ -81,9 +82,9 @@ public class Main {
                     
                     PurchaseOrder po = new PurchaseOrder(i, d, i, "supplier"+i, i, a, b, h, a, constr, "phoneSiteEngineer"+i, i, "nameSupplier"+i, i);
                     
-                }
-                ArrayList<ConstructionSite> sites = DBBuildIt.getConstructionSites();
-                RentalRequestForm njf = new RentalRequestForm(sites);
+                }*/
+                //ArrayList<ConstructionSite> sites = Getters.getConstructionSites();
+                RentalRequestForm njf = new RentalRequestForm();
                 njf.setVisible(true);
                    
 		//          for(int j = 0; j < i%4; j++)//voegt wat random majors toe

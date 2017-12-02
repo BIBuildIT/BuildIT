@@ -104,17 +104,18 @@ public class Getters {
                 con= DBConnector.getConnection();
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT employeeID, function, emailAdress, phoneNumber "
+                String sql = "SELECT employeeID, group, emailAdress, phoneNumber "
 					+ "FROM Employee "
 					+ "WHERE EmployeeID = " + eID;
                 ResultSet srs = stmt.executeQuery(sql);
-                String function, emailAdress, phoneNumber;
+                String emailAdress, phoneNumber;
                 int employeeID;
+                Function group;
             
             
                 if (srs.next()){
                     employeeID = srs.getInt("employeeID");
-                    function = srs.getString("function");
+                    group = null; //group moet nog aangepast worden, function 
                     emailAdress = srs.getString("emailAdress");
                     phoneNumber = srs.getString("phoneNumber");
             } else {
@@ -122,7 +123,7 @@ public class Getters {
                     return null;
                 }
             
-            Employee employee = new Employee(employeeID,function,emailAdress,phoneNumber);
+            Employee employee = new Employee(employeeID, group ,emailAdress,phoneNumber);
             
             DBConnector.closeConnection(con);
             return employee;
@@ -142,7 +143,7 @@ public class Getters {
                 con= DBConnector.getConnection();
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType, selectedEquipment"
+                String sql = "SELECT requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType, selectedEquipment "
 					+ "FROM RentalRequest "
 					+ "WHERE requestNumber = " + reqnr;
                 ResultSet srs = stmt.executeQuery(sql);
@@ -151,17 +152,17 @@ public class Getters {
                 int requestNumber;
                 Date rentalPeriodStart;
                 Date rentalPeriodEnd;
-                SiteEngineer requestor;
+                int employeeID;
                 ConstructionSite constructionSite;
                 String equipmentType;
                 Equipment selectedEquipment;
                 
             
                 if (srs.next()){
-                    requestNumber = srs.getInt("requestNumber");
+                    //requestNumber = srs.getInt("requestNumber");
                     rentalPeriodStart = srs.getDate("rentalPeriodStart");
                     rentalPeriodEnd = srs.getDate("rentalPeriodEnd");
-                    requestor = new SiteEngineer(); //hier moeten nog constructors komen maar ik weet niet goed hoe?
+                   employeeID = srs.getInt("employeeID");
                     constructionSite = new ConstructionSite(srs.getString("constructionSite"));
                     equipmentType = srs.getString("equipmentType");
                     
@@ -171,7 +172,7 @@ public class Getters {
                     return null;
                 }
             
-            RentalRequest rentalrequest = new RentalRequest(requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType);
+            RentalRequest rentalrequest = new RentalRequest( rentalPeriodStart, rentalPeriodEnd, employeeID, constructionSite, equipmentType);
             
             DBConnector.closeConnection(con);
             return rentalrequest;
@@ -189,7 +190,7 @@ public class Getters {
             con= DBConnector.getConnection();
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-            String sql= "SELECT code"
+            String sql= "SELECT code "
                        +"FROM Equipment";
             ResultSet srs= stmt.executeQuery(sql);
             
@@ -219,7 +220,7 @@ public class Getters {
             con= DBConnector.getConnection();
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-            String sql= "SELECT adress"
+            String sql= "SELECT adress "
                        +"FROM ConstructionSite";
             ResultSet srs= stmt.executeQuery(sql);
             

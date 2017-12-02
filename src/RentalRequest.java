@@ -31,7 +31,7 @@ public class RentalRequest {
     //arraylist voor de requests bij te houden??
 
 
-    public RentalRequest(int requestNumber, Date rentalPeriodStart, Date rentalPeriodEnd, int employeeID, ConstructionSite constructionSite, String equipmentType) {
+    public RentalRequest(Date rentalPeriodStart, Date rentalPeriodEnd, int employeeID, ConstructionSite constructionSite, String equipmentType) {
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();

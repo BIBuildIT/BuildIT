@@ -95,7 +95,7 @@ public class Save {
 	}
     
     
-    public static void saveE(Employee e) throws DBException {
+    /*public static void saveE(Employee e) throws DBException {
 		Connection con = null;
 		try {
                     
@@ -105,13 +105,13 @@ public class Save {
 			String sql = "SELECT EmployeeID "
 					+ "FROM Employee "
                                         +"WHERE EmployeeID = " 
-                                        +e.getEmployeeID();
+                                        + e.getEmployeeID();
 					
-			ResultSet srs = stmt.executeQuery(sql);
+			//ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Employee "
-						+ "SET function = '"+ e.getFunction()+"'"
+						+ "SET group = '"+ e.getGroup()+"'"
                                                 +", emailAdress = '"+e.getEmailAdress()+"'"
                                                 +", phoneNumber = '"+ e.getPhoneNumber()+"'"
                                                
@@ -120,9 +120,9 @@ public class Save {
 			} else {
 				// INSERT
 				sql = "INSERT into Employee "
-						+ "(EmployeeID , function, emailAdress, phoneNumber) "
+						+ "(employeeID, group, emailAdress, phoneNumber) "
 						+ "VALUES (" + e.getEmployeeID()
-                                                +", '"+e.getFunction()+ "'"
+                                                +", '"+e.getGroup()+ "'"
                                                 +", '"+e.getEmailAdress()+"'"
                                                 +", '"+e.getPhoneNumber()+"')";
 						
@@ -136,9 +136,9 @@ public class Save {
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
 		}
-	}
+	}*/
         
-    public static void saveC(ConstructionSite e) throws DBException {
+    /*public static void saveC(ConstructionSite e) throws DBException {
 		Connection con = null;
 		try {
                     
@@ -174,7 +174,7 @@ public class Save {
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
 		}
-	}
+	}*/
     
     public static void saveI(Invoice e) throws DBException {
 		Connection con = null;
@@ -256,7 +256,7 @@ public class Save {
                                                 +", rentalPeriodEnd = '"+e.getRentalPeriodEnd()+"'"
                                                 +", rentalStatus = '"+e.getCurrentStatus()+"'"
                                                 +", reasonFOrCancellationOrRefusal = '"+e.getReasonForCancelationOrRefusal()+"'"
-                                                +", requestor = '"+e.getRequestor()+"'"
+                                                +", employeeID = '"+e.getEmployeeID()+"'"
                                                 +", constructionSite = "+e.getConstructionSite()
                                                 +", equipmentType = '"+e.getEquipmentType()+"'"
                                                 +", selectedEquipment = '"+e.getSelectedEquipment()+"'"
@@ -276,7 +276,7 @@ public class Save {
                                                 +", '"+e.getRentalPeriodEnd()+"'"
                                                 +", '"+e.getCurrentStatus()+"'"
                                                 +", '"+e.getReasonForCancelationOrRefusal()+"'"
-                                                +", '"+e.getRequestor()+"'"
+                                                +", '"+e.getEmployeeID()+"'"
                                                 +", '"+e.getConstructionSite()+"'"
                                                 +", '"+e.getEquipmentType()+"'"
                                                 +", '"+e.getSelectedEquipment()+"'"

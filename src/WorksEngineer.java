@@ -10,8 +10,8 @@
  */
 public class WorksEngineer extends Employee {
     
-    public WorksEngineer(int employeeID, String function, String emailAdress, String phoneNumber) {
-        super(employeeID, function, emailAdress, phoneNumber);
+    public WorksEngineer(int employeeID, Function group, String emailAdress, String phoneNumber) {
+        super(employeeID, group, emailAdress, phoneNumber);
     }
    
 }
