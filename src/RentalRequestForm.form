@@ -26,46 +26,47 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="Titel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="giveEndofRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="giveStartRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Titel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="giveStartRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="giveEndofRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="endRentalPeriod" pref="108" max="32767" attributes="0"/>
+                                  <Component id="startRentalPeriod" min="-2" pref="107" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="startRentalPeriod" alignment="1" max="32767" attributes="0"/>
-                              <Component id="endRentalPeriod" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="giveEmployeeID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="giveConstructionSite" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="employeeID" min="-2" pref="51" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="giveEmployeeID" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="giveConstructionSite" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="employeeID" min="-2" pref="51" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="6" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="Nummerlabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="label1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="giveDate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="EquipmentTypeList" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="146" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="date" pref="36" max="32767" attributes="0"/>
-                  <Component id="requestNumber" max="32767" attributes="0"/>
-              </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,33 +75,33 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Titel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Nummerlabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="requestNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="Titel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="giveEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="employeeID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="giveDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="date" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="giveConstructionSite" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="79" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="label1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="EquipmentTypeList" min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="giveStartRentalPeriod" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="startRentalPeriod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="giveEndofRentalPeriod" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="endRentalPeriod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,34 +115,14 @@
         <Property name="text" type="java.lang.String" value="Rentalrequest"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Nummerlabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nummer"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="requestNumber">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestNumberActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="giveEmployeeID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EmployeeID :"/>
+        <Property name="text" type="java.lang.String" value="EmployeeID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="employeeID">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="employeeIDActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="giveDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Date"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="date">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="giveConstructionSite">
@@ -188,5 +169,20 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="java.awt.Label" name="label1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="label1"/>
+      </Properties>
+    </Component>
+    <Component class="java.awt.Choice" name="EquipmentTypeList">
+    </Component>
+    <Component class="javax.swing.JButton" name="SubmitButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Submit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubmitButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 
@@ -21,6 +22,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
      */
     
     ArrayList<ConstructionSite> sites;
+    ArrayList<Equipment> types;
     
     /**public RentalRequestForm(ArrayList<ConstructionSite> sites) {
         initComponents();
@@ -32,11 +34,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
         }
         ConstructionSiteList.setModel(listModel);
     }*/
-    
-    public RentalRequestForm() throws DBException{
-        sites = Getters.getConstructionSites();
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,12 +45,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
     private void initComponents() {
 
         Titel = new javax.swing.JLabel();
-        Nummerlabel = new javax.swing.JLabel();
-        requestNumber = new javax.swing.JTextField();
         giveEmployeeID = new javax.swing.JLabel();
         employeeID = new javax.swing.JTextField();
-        giveDate = new javax.swing.JLabel();
-        date = new javax.swing.JTextField();
         giveConstructionSite = new javax.swing.JLabel();
         giveStartRentalPeriod = new javax.swing.JLabel();
         startRentalPeriod = new javax.swing.JTextField();
@@ -61,33 +54,20 @@ public class RentalRequestForm extends javax.swing.JFrame {
         endRentalPeriod = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ConstructionSiteList = new javax.swing.JList<>();
+        label1 = new java.awt.Label();
+        EquipmentTypeList = new java.awt.Choice();
+        SubmitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Titel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Titel.setText("Rentalrequest");
 
-        Nummerlabel.setText("Nummer");
-
-        requestNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestNumberActionPerformed(evt);
-            }
-        });
-
-        giveEmployeeID.setText("EmployeeID :");
+        giveEmployeeID.setText("EmployeeID:");
 
         employeeID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 employeeIDActionPerformed(evt);
-            }
-        });
-
-        giveDate.setText("Date");
-
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
             }
         });
 
@@ -104,6 +84,15 @@ public class RentalRequestForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ConstructionSiteList);
 
+        label1.setText("label1");
+
+        SubmitButton.setText("Submit");
+        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,80 +100,78 @@ public class RentalRequestForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Titel)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(41, 41, 41)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(giveEndofRentalPeriod)
-                                .addComponent(giveStartRentalPeriod))
-                            .addGap(133, 133, 133)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(startRentalPeriod, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(endRentalPeriod)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(giveEmployeeID)
-                                .addComponent(giveConstructionSite))
-                            .addGap(50, 50, 50)
-                            .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Nummerlabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(giveDate)
-                        .addGap(20, 20, 20)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(requestNumber))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Titel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(giveStartRentalPeriod)
+                                    .addComponent(giveEndofRentalPeriod))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(endRentalPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                    .addComponent(startRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(giveEmployeeID)
+                                    .addComponent(giveConstructionSite))
+                                .addGap(50, 50, 50)
+                                .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(66, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(EquipmentTypeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SubmitButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Titel)
-                    .addComponent(Nummerlabel)
-                    .addComponent(requestNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Titel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveEmployeeID)
-                    .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(giveDate)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(giveConstructionSite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EquipmentTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveStartRentalPeriod)
                     .addComponent(startRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveEndofRentalPeriod)
                     .addComponent(endRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
+                .addGap(18, 18, 18)
+                .addComponent(SubmitButton)
+                .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_requestNumberActionPerformed
-
     private void employeeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeIDActionPerformed
 
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
+    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
+        String selectedConstructionSite = ConstructionSiteList.getSelectedValue();
+        JOptionPane.showMessageDialog(null, "U chose " + selectedConstructionSite);
+    }//GEN-LAST:event_SubmitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,17 +202,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                /*ArrayList<ConstructionSite> test = new ArrayList<>();
-                test.add(new ConstructionSite("Sint-Martens-Latem"));*/
-                try {
-                    new RentalRequestForm().setVisible(true);
-                } catch (DBException ex) {
-                    Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
     }
     
     public void sendRequestForm() {
@@ -243,21 +219,39 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ConstructionSiteList;
-    private javax.swing.JLabel Nummerlabel;
+    private java.awt.Choice EquipmentTypeList;
+    private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel Titel;
-    private javax.swing.JTextField date;
     private javax.swing.JTextField employeeID;
     private javax.swing.JTextField endRentalPeriod;
     private javax.swing.JLabel giveConstructionSite;
-    private javax.swing.JLabel giveDate;
     private javax.swing.JLabel giveEmployeeID;
     private javax.swing.JLabel giveEndofRentalPeriod;
     private javax.swing.JLabel giveStartRentalPeriod;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField requestNumber;
+    private java.awt.Label label1;
     private javax.swing.JTextField startRentalPeriod;
     // End of variables declaration//GEN-END:variables
 
+    public RentalRequestForm() throws DBException{
+        initComponents();
+        
+        sites = Getters.getConstructionSites();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(ConstructionSite site : sites){
+            model.addElement(site.getAdress());
+        }
+        
+        ConstructionSiteList.setModel(model);
+        
+        types = Getters.getEquipments();
+       
+        for(Equipment type : types){
+            EquipmentTypeList.add(type.getType());
+        }
+    }
     
  public int getEmployeeID()
     {
@@ -278,13 +272,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
     {
      SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
      Date datum = (Date) originalFormat.parse(endRentalPeriod.getText().trim());
-     return datum;
-    }
-      
- public Date getDateOfRequest() throws ParseException
-    {
-     SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-     Date datum = (Date) originalFormat.parse(date.getText().trim());
      return datum;
     }
 }

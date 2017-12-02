@@ -72,7 +72,7 @@ public class DBBuildIt {
                                 + "selectedEquipment VARCHAR(50) NOT NULL,"
                                 + "selectedSupplier VARCHAR(50) NOT NULL,"
                                 + "dailyRentalPrice int(15) NOT NULL,"
-                                + "employeeID int(15) NOT NULL AUTO_INCREMENT,"
+                                + "employeeID int(15) NOT NULL,"
                                 + "PRIMARY KEY(requestNumber)"+")";
                                 
                         /*private Equipment selectedEquipment;
