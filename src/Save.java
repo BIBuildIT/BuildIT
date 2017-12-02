@@ -3,16 +3,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author lmoentje
- */
 public class Save {
     
     public static void saveE(Equipment e) throws DBException {

@@ -26,10 +26,5 @@ public class SiteEngineer extends Employee {
 
     public void setSite(ArrayList<ConstructionSite> site) {
         this.site = site;
-    }
-
-    
-
-
-    
+    }   
 }

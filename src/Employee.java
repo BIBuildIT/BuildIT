@@ -14,14 +14,14 @@ import java.sql.Date;
 public class Employee {
     
     private int employeeID;
-    private Function group;//subklasses vervangen dit!
+    private Function grp;//subklasses vervangen dit!
     private String emailAdress;
     private String phoneNumber;
     
 
-    public Employee(int employeeID, Function group, String emailAdress, String phoneNumber) {
+    public Employee(int employeeID, Function grp, String emailAdress, String phoneNumber) {
         this.employeeID = employeeID;
-        this.group = group;
+        this.grp = grp;
         this.emailAdress = emailAdress;
         this.phoneNumber = phoneNumber;
     }
@@ -35,11 +35,11 @@ public class Employee {
     }
 
     public Function getGroup() {
-        return group;
+        return grp;
     }
 
-    public void setGroup(Function group) {
-        this.group = group;
+    public void setGroup(Function grp) {
+        this.grp = grp;
     }
     
     public String getEmailAdress() {

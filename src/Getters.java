@@ -104,18 +104,18 @@ public class Getters {
                 con= DBConnector.getConnection();
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT employeeID, group, emailAdress, phoneNumber "
+                String sql = "SELECT employeeID, grp, emailAdress, phoneNumber "
 					+ "FROM Employee "
 					+ "WHERE EmployeeID = " + eID;
                 ResultSet srs = stmt.executeQuery(sql);
                 String emailAdress, phoneNumber;
                 int employeeID;
-                Function group;
+                Function grp;
             
             
                 if (srs.next()){
                     employeeID = srs.getInt("employeeID");
-                    group = null; //group moet nog aangepast worden, function 
+                    grp = null; //group moet nog aangepast worden, function 
                     emailAdress = srs.getString("emailAdress");
                     phoneNumber = srs.getString("phoneNumber");
             } else {
@@ -123,7 +123,7 @@ public class Getters {
                     return null;
                 }
             
-            Employee employee = new Employee(employeeID, group ,emailAdress,phoneNumber);
+            Employee employee = new Employee(employeeID, grp ,emailAdress,phoneNumber);
             
             DBConnector.closeConnection(con);
             return employee;
@@ -162,7 +162,7 @@ public class Getters {
                     //requestNumber = srs.getInt("requestNumber");
                     rentalPeriodStart = srs.getDate("rentalPeriodStart");
                     rentalPeriodEnd = srs.getDate("rentalPeriodEnd");
-                   employeeID = srs.getInt("employeeID");
+                    employeeID = srs.getInt("employeeID");
                     constructionSite = new ConstructionSite(srs.getString("constructionSite"));
                     equipmentType = srs.getString("equipmentType");
                     
