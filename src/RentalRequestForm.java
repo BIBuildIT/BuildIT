@@ -84,11 +84,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        ConstructionSiteList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ConstructionSiteListMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(ConstructionSiteList);
 
         SubmitButton.setText("Submit");
@@ -175,22 +170,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
        // String selectedConstructionSite = ConstructionSiteListMouseClicked(ConstructionSiteList);
        String selectedConstructionSite = ConstructionSiteList.getSelectedValue();
-        String selectedEquipment=EquipmentTypeList.getSelectedItem();
-        JOptionPane.showMessageDialog(null, "U chose equipment " +selectedEquipment+" to work on constructionsite(s) " + selectedConstructionSite);
+        JOptionPane.showMessageDialog(null, "U chose " + selectedConstructionSite);
     }//GEN-LAST:event_SubmitButtonActionPerformed
-/*
-    private void ConstructionSiteListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstructionSiteListMouseClicked
-   ArrayList<ConstructionSite> cs= new ArrayList<>();
-   for(int i=0; i< ConstructionSiteList.getSelectedValuesList().size(); i++)   {
-       String s =  ConstructionSiteList.getSelectedValuesList().get(i);
-       ConstructionSite c = new ConstructionSite(s);
-       cs.add(c);
-   }  
-   
-    ArrayList<String> a = new ArrayList<>();
-    a.add(ConstructionSiteList.getSelectedValuesList());// TODO add your handling code here:
-    }//GEN-LAST:event_ConstructionSiteListMouseClicked
-*/
+
     /**
      * @param args the command line arguments
      */
