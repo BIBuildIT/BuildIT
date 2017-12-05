@@ -22,12 +22,9 @@ public class Main {
 	}
     
     public static void main(String[] args) throws Exception {
-		//TODO: hieronder wat code om de databank aan te maken en wat testdata toe te voegen (zet dit daarna weer in commentaar)
-		//1. vul zelf de DBConnector-klasse aan met je databank en wachtwoord
-		//2. maakt tables aan
-		DBBuildIt.createTables();
-		//3. voegt wat random studenten toe
-		//       for(int i = 0; i < 53; i++) {
+		
+		//DBBuildIt.createTables();
+		
 		/*for(int i=0; i<3; i++){
                     Equipment e= new Equipment(i, "materiaal "+ i, "beschrijving" +i);
                     Save.saveE(e);
@@ -87,16 +84,7 @@ public class Main {
                 RentalRequestForm njf = new RentalRequestForm();
                 njf.setVisible(true);
                    
-		//          for(int j = 0; j < i%4; j++)//voegt wat random majors toe
-		//              s.addMajor("major"+j);
-		//student naar db
-		//      }
-		//4. zet dit weer in commentaar en haal de onderstaande code uit commentaar
-
 		
-		//MyFrame f = new MyFrame(new Main());
-                
-	        //f.setVisible(true);
 	}
     
 }
