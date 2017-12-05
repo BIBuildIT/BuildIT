@@ -3,6 +3,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -53,8 +54,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
         giveEndofRentalPeriod = new javax.swing.JLabel();
         endRentalPeriod = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ConstructionSiteList = new javax.swing.JList<>();
-        EquipmentTypeList = new java.awt.Choice();
+        EquipmentList = new javax.swing.JList<>();
+        ConstructionSiteList = new java.awt.Choice();
         SubmitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -79,12 +80,12 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEndofRentalPeriod.setText("End of rental period:");
 
-        ConstructionSiteList.setModel(new javax.swing.AbstractListModel<String>() {
+        EquipmentList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(ConstructionSiteList);
+        jScrollPane1.setViewportView(EquipmentList);
 
         SubmitButton.setText("Submit");
         SubmitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +116,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                     .addComponent(giveEndofRentalPeriod))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(endRentalPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                    .addComponent(endRentalPeriod)
                                     .addComponent(startRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,13 +124,13 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                     .addComponent(giveConstructionSite))
                                 .addGap(50, 50, 50)
                                 .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(66, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EquipmentTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ConstructionSiteList, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 133, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,13 +143,13 @@ public class RentalRequestForm extends javax.swing.JFrame {
                     .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(giveConstructionSite)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ConstructionSiteList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EquipmentTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveStartRentalPeriod)
                     .addComponent(startRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,10 +170,14 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
        // String selectedConstructionSite = ConstructionSiteListMouseClicked(ConstructionSiteList);
-       String selectedConstructionSite = ConstructionSiteList.getSelectedValue();
-        JOptionPane.showMessageDialog(null, "U chose " + selectedConstructionSite);
+        List<String> selectedEquipment = EquipmentList.getSelectedValuesList();// moeten er meerdere kunnen zijn??
+       String selectedCS = ConstructionSiteList.getSelectedItem();
+       
+        JOptionPane.showMessageDialog(null, "U chose " + selectedEquipment + " for constructionsite "+ selectedCS);
     }//GEN-LAST:event_SubmitButtonActionPerformed
-
+ 
+    
+   
     /**
      * @param args the command line arguments
      */
@@ -218,8 +223,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ConstructionSiteList;
-    private java.awt.Choice EquipmentTypeList;
+    private java.awt.Choice ConstructionSiteList;
+    private javax.swing.JList<String> EquipmentList;
     private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel Titel;
     private javax.swing.JTextField employeeID;
@@ -244,15 +249,26 @@ public class RentalRequestForm extends javax.swing.JFrame {
             model.addElement(site.getAdress());
         }
         
-        ConstructionSiteList.setModel(model);
+        EquipmentList.setModel(model);
         
         types = Getters.getEquipments();
        
         for(Equipment type : types){
-            EquipmentTypeList.add(type.getType());
+            ConstructionSiteList.add(type.getType());
         }
     }
-    
+     
+    /**public RentalRequestForm(ArrayList<ConstructionSite> sites) {
+        initComponents();
+        this.sites = sites;
+        DefaultListModel listModel = new DefaultListModel();
+        for (int i = 0; i < sites.size(); i++)
+        {
+            listModel.addElement(sites.get(i).getAdress());
+        }
+        ConstructionSiteList.setModel(listModel);
+    }*/
+
  public int getEmployeeID()
     {
         return (Integer.parseInt(employeeID.getText().trim()));
