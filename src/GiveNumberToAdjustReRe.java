@@ -55,6 +55,11 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
         });
 
         submitnumber.setText("Submit");
+        submitnumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitnumberActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +92,7 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void numberReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberReReActionPerformed
@@ -101,6 +107,12 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void submitnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitnumberActionPerformed
+        this.setVisible(false);
+        //hier terug naar eerste rental request gaan of nieuwe maken en daarin de gegevens die we al hadden
+        //vanzelf zetten met extra opties om toe te voegen?
+    }//GEN-LAST:event_submitnumberActionPerformed
 
     /**
      * @param args the command line arguments

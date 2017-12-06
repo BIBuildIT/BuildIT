@@ -38,8 +38,11 @@ public class Startscherm extends javax.swing.JFrame {
         invoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tekstbuildit.setForeground(new java.awt.Color(51, 51, 255));
         tekstbuildit.setText("BuildIt");
 
         tekstchoosetask.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
@@ -112,6 +115,7 @@ public class Startscherm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void makeReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReReActionPerformed

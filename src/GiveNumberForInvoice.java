@@ -89,6 +89,7 @@ public class GiveNumberForInvoice extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void numberReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberReReActionPerformed
@@ -96,7 +97,16 @@ public class GiveNumberForInvoice extends javax.swing.JFrame {
     }//GEN-LAST:event_numberReReActionPerformed
 
     private void showinvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showinvoiceActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        ShowInvoice show;
+               //try {
+                   show = new ShowInvoice(); 
+                   show.setVisible(true);
+               //} 
+               /*catch (DBException ex) {
+                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               */
     }//GEN-LAST:event_showinvoiceActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed

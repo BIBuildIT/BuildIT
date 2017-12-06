@@ -8,12 +8,12 @@
  *
  * @author lmoentje
  */
-public class MakePurchaseOrder extends javax.swing.JFrame {
+public class ShowInvoice extends javax.swing.JFrame {
 
     /**
-     * Creates new form MakePurchaseOrder
+     * Creates new form ShowInvoice
      */
-    public MakePurchaseOrder() {
+    public ShowInvoice() {
         initComponents();
     }
 
@@ -26,21 +26,15 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tekstinvoice = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 255, 153));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Purchase Order");
+        tekstinvoice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tekstinvoice.setText("Invoice");
 
         cancel.setText("Cancel");
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
-            }
-        });
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
@@ -52,17 +46,17 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cancel)
-                    .addComponent(jLabel1))
-                .addContainerGap(236, Short.MAX_VALUE))
+                    .addComponent(tekstinvoice)
+                    .addComponent(cancel))
+                .addGap(322, 322, 322))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tekstinvoice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addComponent(cancel)
                 .addContainerGap())
@@ -73,13 +67,9 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelActionPerformed
-
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         this.setVisible(false);
         new Startscherm().setVisible(true);
-    }//GEN-LAST:event_cancelMouseClicked
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,26 +88,26 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakePurchaseOrder().setVisible(true);
+                new ShowInvoice().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel tekstinvoice;
     // End of variables declaration//GEN-END:variables
 }
