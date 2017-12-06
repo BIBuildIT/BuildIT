@@ -35,9 +35,8 @@
                   <Component id="tekstchoosetask" min="-2" max="-2" attributes="0"/>
                   <Component id="tekstbuildit" min="-2" max="-2" attributes="0"/>
                   <Component id="makeReRe" alignment="0" max="32767" attributes="0"/>
-                  <Component id="adjustReRe" alignment="0" max="32767" attributes="0"/>
+                  <Component id="adjustReRe" alignment="0" pref="181" max="32767" attributes="0"/>
                   <Component id="makePO" max="32767" attributes="0"/>
-                  <Component id="invoice" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="200" max="32767" attributes="0"/>
           </Group>
@@ -56,9 +55,7 @@
               <Component id="adjustReRe" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="makePO" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="invoice" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace pref="114" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,14 +103,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="makePOMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="invoice">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Show invoice of rental request"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="invoiceActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -35,7 +35,6 @@ public class Startscherm extends javax.swing.JFrame {
         makeReRe = new javax.swing.JButton();
         adjustReRe = new javax.swing.JButton();
         makePO = new javax.swing.JButton();
-        invoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
@@ -74,13 +73,6 @@ public class Startscherm extends javax.swing.JFrame {
             }
         });
 
-        invoice.setText("Show invoice of rental request");
-        invoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                invoiceActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,9 +83,8 @@ public class Startscherm extends javax.swing.JFrame {
                     .addComponent(tekstchoosetask)
                     .addComponent(tekstbuildit)
                     .addComponent(makeReRe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adjustReRe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(makePO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(invoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adjustReRe, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(makePO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,9 +100,7 @@ public class Startscherm extends javax.swing.JFrame {
                 .addComponent(adjustReRe)
                 .addGap(18, 18, 18)
                 .addComponent(makePO)
-                .addGap(18, 18, 18)
-                .addComponent(invoice)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,19 +151,6 @@ public class Startscherm extends javax.swing.JFrame {
                */
     }//GEN-LAST:event_adjustReReMouseClicked
 
-    private void invoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceActionPerformed
-        this.setVisible(false);
-        GiveNumberForInvoice inv;
-               //try {
-                   inv = new GiveNumberForInvoice(); 
-                   inv.setVisible(true);
-               //} 
-               /*catch (DBException ex) {
-                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               */
-    }//GEN-LAST:event_invoiceActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -212,7 +188,6 @@ public class Startscherm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adjustReRe;
-    private javax.swing.JButton invoice;
     private javax.swing.JButton makePO;
     private javax.swing.JButton makeReRe;
     private javax.swing.JLabel tekstbuildit;
