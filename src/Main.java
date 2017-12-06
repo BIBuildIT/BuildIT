@@ -31,7 +31,10 @@ public class Main {
 	}
     
     public static void main(String[] args) throws Exception {
-       JFrame f = new JFrame("Wat wil u doen?");
+        Startscherm begin = new Startscherm();
+        begin.setVisible(true);
+        
+    /*   JFrame f = new JFrame("Wat wil u doen?");
     f.setVisible(true);
     f.setSize(500, 500);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +82,7 @@ public class Main {
         
     });
     
-    
+    */
                 
 		
 		/*for(int i=0; i<3; i++){
