@@ -14,7 +14,7 @@ public class Clerk extends Employee {
         super(employeeID, Function.Clerk, emailAdress, phoneNumber);
     }
     
-    public void requestStatusAanpassen(RentalStatus currentStatus, RentalRequest request) { //werken met requestNumber ipv request
+  /*  public void requestStatusAanpassen(RentalStatus currentStatus, RentalRequest request) { //werken met requestNumber ipv request
         if (request.getCurrentStatus().equals(RentalStatus.requested) && (currentStatus.equals(RentalStatus.processed))) {
             request.setCurrentStatus(RentalStatus.processed);
             //nu zou methode processed moeten gebeuren, maar we weten niet hoe
@@ -38,5 +38,5 @@ public class Clerk extends Employee {
         request.setDailyRentalPrice(dailyRentalPrice);
         
     }
-    // methodes: aanvullen
+    // methodes: aanvullen*/
 }

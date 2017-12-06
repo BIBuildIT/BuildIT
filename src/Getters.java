@@ -3,8 +3,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -200,6 +202,7 @@ public class Getters {
 		}
 	}
         
+        
         public static Employee getEmployee(int eID) throws DBException {
         Connection con= null; 
         try {
@@ -239,7 +242,7 @@ public class Getters {
             
         }
         
-        public static RentalRequest getRentalRequest(int reqnr) throws DBException{
+        public static RentalRequest getRentalRequest(int reqnr) throws DBException{//moet aangepast worden aan constructor
             Connection con= null; 
         try {
             
@@ -253,21 +256,23 @@ public class Getters {
      
                 
                 int requestNumber;
-                Date rentalPeriodStart;
-                Date rentalPeriodEnd;
+                LocalDate rentalPeriodStart;
+                LocalDate rentalPeriodEnd;
                 int employeeID;
-                ConstructionSite constructionSite;
+                String constructionSite;
+                //String equipmentType;
                 String equipmentType;
-                Equipment selectedEquipment;
                 
             
                 if (srs.next()){
                     //requestNumber = srs.getInt("requestNumber");
-                    rentalPeriodStart = srs.getDate("rentalPeriodStart");
-                    rentalPeriodEnd = srs.getDate("rentalPeriodEnd");
+                    
+                    java.sql.Date rentalStart = srs.getDate("rentalPeriodStart");
+                    rentalPeriodStart= rentalStart.toLocalDate();
+                    rentalPeriodEnd = srs.getDate("rentalPeriodEnd").toLocalDate();
                     employeeID = srs.getInt("employeeID");
-                    constructionSite = new ConstructionSite(srs.getString("constructionSite"));
-                    equipmentType = srs.getString("equipmentType");
+                    constructionSite = srs.getString("constructionSite");
+                    equipmentType= srs.getString("equipmentTypes");
                     
             
                 } else {

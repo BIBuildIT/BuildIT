@@ -33,7 +33,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Startscherm begin = new Startscherm();
         begin.setVisible(true);
-        
+        //DBBuildIt.createTables();
     /*   JFrame f = new JFrame("Wat wil u doen?");
     f.setVisible(true);
     f.setSize(500, 500);

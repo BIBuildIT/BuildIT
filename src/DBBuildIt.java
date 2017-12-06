@@ -60,25 +60,21 @@ public class DBBuildIt {
 			stmt.executeUpdate(sql);
                         
                         sql = "CREATE TABLE RentalRequest ("
-                                + "requestNumber int(15) NOT NULL,"
-                                + "requestDATE DATE NOT NULL,"
+                                + "requestNumber int(15) NOT NULL AUTO_INCREMENT,"//ook auto increment??
+                                + "requestDate DATE NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
                                 + "rentalStatus ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment') NOT NULL,"
-                                + "reasonForCancellationOrRefusal VARCHAR(50) NOT NULL,"
-                                + "requestor VARCHAR(50) NOT NULL,"
+                                + "reasonForCancellationOrRefusal VARCHAR(50) NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(50) NOT NULL,"
-                                + "selectedEquipment VARCHAR(50) NOT NULL,"
-                                + "selectedSupplier VARCHAR(50) NOT NULL,"
-                                + "dailyRentalPrice int(15) NOT NULL,"
+                                + "selectedEquipment VARCHAR(50) NULL,"
+                                + "selectedSupplier VARCHAR(50) NULL,"
+                                + "dailyRentalPrice int(15) NULL,"
                                 + "employeeID int(15) NOT NULL,"
                                 + "PRIMARY KEY(requestNumber)"+")";
                                 
-                        /*private Equipment selectedEquipment;
-                                private Supplier selectedSupplier;
-                                private double dailyRentalPrice;
-                                */
+                      
                         
 			stmt.executeUpdate(sql);
                         sql="ALTER TABLE RentalRequest"
@@ -132,7 +128,7 @@ public class DBBuildIt {
                                 +" ON DELETE RESTRICT ON UPDATE RESTRICT";
                         stmt.executeUpdate(sql); 
                         
-                       
+                        
                         
 			DBConnector.closeConnection(con);
 		} catch (SQLException e) {

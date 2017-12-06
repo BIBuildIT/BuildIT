@@ -2,6 +2,8 @@
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,7 +79,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveStartRentalPeriod.setText("Start of rental period:");
 
-        startRentalPeriod.setText("yyyy/mm/dd");
+        startRentalPeriod.setText("dd/MM/YYYY");
         startRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startRentalPeriodActionPerformed(evt);
@@ -86,7 +88,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEndofRentalPeriod.setText("End of rental period:");
 
-        endRentalPeriod.setText("yyyy/mm/dd");
+        endRentalPeriod.setText("DD/MM/YYYY");
         endRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endRentalPeriodActionPerformed(evt);
@@ -194,11 +196,21 @@ public class RentalRequestForm extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeIDActionPerformed
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-       // String selectedConstructionSite = ConstructionSiteListMouseClicked(ConstructionSiteList);
-        List<String> selectedEquipment = EquipmentList.getSelectedValuesList();// moeten er meerdere kunnen zijn??
-       String selectedCS = ConstructionSiteList.getSelectedItem();
-       
-        JOptionPane.showMessageDialog(null, "U chose " + selectedEquipment + " for constructionsite "+ selectedCS);
+        try {
+            // String selectedConstructionSite = ConstructionSiteListMouseClicked(ConstructionSiteList);
+            List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
+            String selectedEquipmentString =  String.join(",",selectedEquipment);
+            String selectedCS = ConstructionSiteList.getSelectedItem();
+            RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString);
+            System.out.println("je koos voor dit type equipment:"+ req.getEquipmentType());
+            JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS);
+            Save.saveRR(req);
+        } catch (ParseException ex) {
+            Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DBException ex) {
+            Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void startRentalPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startRentalPeriodActionPerformed
@@ -247,18 +259,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
         /* Create and display the form */
     }
     
-    public void sendRequestForm() {
-        Date d = null;
-        Date b = null;
-
-        SiteEngineer site = null;
-        ConstructionSite  constr = null;      
-        //NIET ALLES STAAT IN DE CONSTRUCTOR, WAAROM?
-        double a = 0.05;
-
-        //RentalRequest r = new RentalRequest(i, d, b, site, constr, "equipmentType"+i);
-        //Save.saveRR(r);
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Choice ConstructionSiteList;
@@ -280,20 +281,20 @@ public class RentalRequestForm extends javax.swing.JFrame {
     public RentalRequestForm() throws DBException{
         initComponents();
         
-        sites = Getters.getConstructionSites();
+        types = Getters.getEquipments();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        for(ConstructionSite site : sites){
-            model.addElement(site.getAdress());
+        for(Equipment type : types){
+            model.addElement(type.getType());
         }
         
         EquipmentList.setModel(model);
         
-        types = Getters.getEquipments();
+        sites = Getters.getConstructionSites();
        
-        for(Equipment type : types){
-            ConstructionSiteList.add(type.getType());
+        for(ConstructionSite site : sites){
+            ConstructionSiteList.add(site.getAdress());
         }
     }
      
@@ -313,16 +314,20 @@ public class RentalRequestForm extends javax.swing.JFrame {
         return (Integer.parseInt(employeeID.getText().trim()));
     }
 
- public Date getStartRentalRequest() throws ParseException
+ public LocalDate getStartRentalRequest() throws ParseException
     {
-     SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-     Date datum = (Date) originalFormat.parse(startRentalPeriod.getText().trim());
-     return datum;
+     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    // LocalDate localDate = LocalDate.parse(startRentalPeriod.toString().trim(), formatter);
+        System.out.println(startRentalPeriod.getText());
+    LocalDate localDate = LocalDate.parse(startRentalPeriod.getText());
+    return localDate;
     }
- public Date getEndRentalRequest() throws ParseException
+ public LocalDate getEndRentalRequest() throws ParseException
     {
-     SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-     Date datum = (Date) originalFormat.parse(endRentalPeriod.getText().trim());
-     return datum;
+     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     //LocalDate localDate = LocalDate.parse(endRentalPeriod.toString().trim(), formatter);
+        System.out.println(startRentalPeriod.getText());
+    LocalDate localDate = LocalDate.parse(endRentalPeriod.getText());
+     return localDate;
     }
 }

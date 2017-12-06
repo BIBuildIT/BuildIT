@@ -57,14 +57,5 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    public void makeRequest(Date rentalPeriodStart, Date rentalPeriodEnd, ConstructionSite constructionSite, String equipmentType){
-      
-           
-           RentalRequest req = new RentalRequest ( rentalPeriodStart,  rentalPeriodEnd, this.employeeID , constructionSite, equipmentType);
-           Event ev= new Event(req,this.employeeID);
-           
-           
-        
-    }      
+   
 }
