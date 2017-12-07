@@ -37,6 +37,8 @@ public class DBBuildIt {
                                 + "code int(15) NOT NULL,"
                                 + "type VARCHAR(50) NOT NULL,"
                                 + "description VARCHAR(200) NOT NULL,"
+                                + "price DOUBLE NOT NULL,"
+                                + "supplier VARCHAR(50) NOT NULL,"
                                 + "PRIMARY KEY(code)"+")";
                         //moet er not null bij description?
 			

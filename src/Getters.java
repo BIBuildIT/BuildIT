@@ -128,14 +128,15 @@ public class Getters {
 		}
 	}
     
-    public static Supplier getSupplier() throws DBException {
+    public Supplier getSupplier(String supname) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			String sql = "SELECT name, email, phoneNumber "
-					+ "FROM Supplier ";
+					+ "FROM Supplier"
+                                        + "WHERE name = " + supname ;
 					
 			
 			ResultSet srs = stmt.executeQuery(sql);
@@ -169,13 +170,18 @@ public class Getters {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT code, type, description "
+			String sql = "SELECT code, type, description, price, supplier "
 					+ "FROM Equipment "
 					+ "WHERE code = " + coEq;
 			// let op de spatie na 'summary' en 'Students' in voorgaande SQL
 			ResultSet srs = stmt.executeQuery(sql);
 			String type, description;
                         int code;
+                        double price;
+                        String supplier;
+                        Getters g  = new Getters();
+                        Supplier s;
+                        
 			
 			
 
@@ -183,13 +189,16 @@ public class Getters {
 				code = srs.getInt("code");
 				type = srs.getString("type");
 				description = srs.getString("description");
+                                price = srs.getDouble("price");
+                                supplier = srs.getString("supplier");
+                                s = g.getSupplier(supplier);
 				
 			} else {// we verwachten slechts 1 rij...
 				DBConnector.closeConnection(con);
 				return null;
 			}
 
-			Equipment equipment = new Equipment(code, type, description);
+			Equipment equipment = new Equipment(code, type, description, price, s);
 			//hier nog iets???
 			
 

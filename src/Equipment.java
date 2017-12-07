@@ -14,15 +14,20 @@ public class Equipment {
     private int code;
     private String type;
     private String description;
+    private double price; //om opsplitsing te kunnen maken 
+    private Supplier supplier;
+   
 
     public Equipment() {
     }
 
-    public Equipment(int code, String type, String description) {
-        if(code>0 && !(type.isEmpty())&&!(description.isEmpty())){
+    public Equipment(int code, String type, String description, double price, Supplier supplier) {
+        if(code>0 && !(type.isEmpty())&&!(description.isEmpty())&& price>=0 && !(supplier.equals(null))){
         this.code = code;
         this.type = type;
         this.description = description;
+        this.price = price;
+        this.supplier = supplier;
         }
         else
             System.out.println("Error: wrong syntax");
