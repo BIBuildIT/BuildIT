@@ -1,4 +1,5 @@
 //import java.sql.Date;
+import java.time.Instant;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,15 +10,16 @@ public class RentalRequest {
     
     private int requestNumber;
     private LocalDate requestDate;
-    private Date rentalPeriodStart;
-    private Date rentalPeriodEnd;
+    
+    private LocalDate rentalPeriodStart;
+    private LocalDate rentalPeriodEnd;
     private RentalStatus currentStatus;
     private String reasonForCancelationOrRefusal;
     private int employeeID;//MOET altijd siteEngineer zijn
     private String constructionSite;
-    //private String equipmentType;
+    
    // private ArrayList<Equipment> equipmentNeeded;
-    private Equipment selectedEquipment;//moet dit ook geen ArrayList zijn? of volgende 3 pas bij PO doorvoeren??
+    private Equipment selectedEquipment;//dit String?
     private Supplier selectedSupplier;
     private double dailyRentalPrice;
     private String equipmentType;
@@ -25,14 +27,14 @@ public class RentalRequest {
     
 
 
-    public RentalRequest(Date rentalPeriodStart, Date rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) {
+    public RentalRequest(LocalDate rentalPeriodStart, LocalDate rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) {
         
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        this.requestDate = LocalDate.now();
-        
+       
+       this.requestDate = LocalDate.now();
+
         
         this.equipmentType = equipmentType;
-        this.requestNumber = requestNumber;
+        this.requestNumber = requestNumber;//hoe moet dit??
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
 
@@ -41,7 +43,7 @@ public class RentalRequest {
 
         this.employeeID = employeeID;
         this.constructionSite = constructionSite;
-        //this.equipmentNeeded= equipmentNeeded;
+        
 
 
         this.selectedEquipment = null;//vanaf rentalstatus processed
@@ -62,19 +64,19 @@ public class RentalRequest {
         return requestDate;
     }
 
-    public Date getRentalPeriodStart() {
+    public LocalDate getRentalPeriodStart() {
         return rentalPeriodStart;
     }
 
-    public void setRentalPeriodStart(Date rentalPeriodStart) {
+    public void setRentalPeriodStart(LocalDate rentalPeriodStart) {
         this.rentalPeriodStart = rentalPeriodStart;
     }
 
-    public Date getRentalPeriodEnd() {
+    public LocalDate getRentalPeriodEnd() {
         return rentalPeriodEnd;
     }
 
-    public void setRentalPeriodEnd(Date rentalPeriodEnd) {
+    public void setRentalPeriodEnd(LocalDate rentalPeriodEnd) {
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
 

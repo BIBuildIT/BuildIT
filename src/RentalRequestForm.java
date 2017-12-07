@@ -27,18 +27,58 @@ public class RentalRequestForm extends javax.swing.JFrame {
     
     ArrayList<ConstructionSite> sites;
     ArrayList<Equipment> types;
-    
-    /**public RentalRequestForm(ArrayList<ConstructionSite> sites) {
-        initComponents();
-        this.sites = sites;
-        DefaultListModel listModel = new DefaultListModel();
-        for (int i = 0; i < sites.size(); i++)
-        {
-            listModel.addElement(sites.get(i).getAdress());
+     /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        ConstructionSiteList.setModel(listModel);
-    }*/
+        //</editor-fold>
+        //</editor-fold>
 
+        /* Create and display the form */
+    }
+    public RentalRequestForm() throws DBException{
+        initComponents();
+        
+        types = Getters.getEquipments();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(Equipment type : types){
+            model.addElement(type.getType());
+        }
+        
+        EquipmentList.setModel(model);
+        
+        sites = Getters.getConstructionSites();
+       
+        for(ConstructionSite site : sites){
+            ConstructionSiteList.add(site.getAdress());
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +121,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveStartRentalPeriod.setText("Start of rental period:");
 
-        startRentalPeriod.setText("dd/MM/YYYY");
+        startRentalPeriod.setText("2017-11-11");
         startRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startRentalPeriodActionPerformed(evt);
@@ -90,7 +130,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEndofRentalPeriod.setText("End of rental period:");
 
-        endRentalPeriod.setText("DD/MM/YYYY");
+        endRentalPeriod.setText("2017-12-07");
         endRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endRentalPeriodActionPerformed(evt);
@@ -206,12 +246,12 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         try {
-            // String selectedConstructionSite = ConstructionSiteListMouseClicked(ConstructionSiteList);
+            
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
             String selectedEquipmentString =  String.join(",",selectedEquipment);
             String selectedCS = ConstructionSiteList.getSelectedItem();
             RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
-            System.out.println("je koos voor dit type equipment:"+ req.getEquipmentType());
+            System.out.println("op deze datum is de request aangemaakt: "+java.sql.Date.valueOf(req.getRequestDate()));
             JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS);
             Save.saveRR(req);
         } catch (ParseException ex) {
@@ -237,38 +277,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
  
     
    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RentalRequestForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
-    
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Choice ConstructionSiteList;
@@ -288,50 +297,22 @@ public class RentalRequestForm extends javax.swing.JFrame {
     private javax.swing.JTextField startRentalPeriod;
     // End of variables declaration//GEN-END:variables
 
-    public RentalRequestForm() throws DBException{
-        initComponents();
-        
-        types = Getters.getEquipments();
-        
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        for(Equipment type : types){
-            model.addElement(type.getType());
-        }
-        
-        EquipmentList.setModel(model);
-        
-        sites = Getters.getConstructionSites();
-       
-        for(ConstructionSite site : sites){
-            ConstructionSiteList.add(site.getAdress());
-        }
-    }
-     
-    /**public RentalRequestForm(ArrayList<ConstructionSite> sites) {
-        initComponents();
-        this.sites = sites;
-        DefaultListModel listModel = new DefaultListModel();
-        for (int i = 0; i < sites.size(); i++)
-        {
-            listModel.addElement(sites.get(i).getAdress());
-        }
-        ConstructionSiteList.setModel(listModel);
-    }*/
+    
+   
 
  public int getEmployeeID()
     {
         return (Integer.parseInt(employeeID.getText().trim()));
     }
 
- public Date getStartRentalRequest() throws ParseException
+ public LocalDate getStartRentalRequest() throws ParseException
     {
-     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // LocalDate localDate = LocalDate.parse(startRentalPeriod.toString().trim(), formatter);
         //System.out.println(startRentalPeriod.getText());
-    //LocalDate localDate = LocalDate.parse(startRentalPeriod.getText());
-    //return localDate;
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+   LocalDate date = LocalDate.parse(startRentalPeriod.getText(), formatter);
+   
+       /* SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
         
        Date date=null;
         try {
@@ -341,20 +322,18 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
 
     return date;
     }
- // er staat nu een fout in de getters en savers maar gewoon hier terug veranderen in localdate en in rentalrequest zelf
- // hij pakt nog altijd de datum niet..
- public Date getEndRentalRequest() throws ParseException
+ public LocalDate getEndRentalRequest() throws ParseException
     {
-     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      //LocalDate localDate = LocalDate.parse(endRentalPeriod.toString().trim(), formatter);
        // System.out.println(startRentalPeriod.getText());
-    //LocalDate localDate = LocalDate.parse(endRentalPeriod.getText());
+    LocalDate date = LocalDate.parse(endRentalPeriod.getText(), formatter);
      //return localDate;
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
         Date date=null;
         try {
             date = formatter.parse(endRentalPeriod.toString().trim());
@@ -362,7 +341,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
         } 
         catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
 
     return date;
     }

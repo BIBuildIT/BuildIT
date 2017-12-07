@@ -146,7 +146,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="startRentalPeriod">
       <Properties>
-        <Property name="text" type="java.lang.String" value="dd/MM/YYYY"/>
+        <Property name="text" type="java.lang.String" value="2017-11-11"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startRentalPeriodActionPerformed"/>
@@ -159,7 +159,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="endRentalPeriod">
       <Properties>
-        <Property name="text" type="java.lang.String" value="DD/MM/YYYY"/>
+        <Property name="text" type="java.lang.String" value="2017-12-07"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endRentalPeriodActionPerformed"/>

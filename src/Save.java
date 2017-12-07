@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDate;
 
 public class Save {
    
@@ -241,13 +240,15 @@ public class Save {
                                         +"WHERE requestNumber = " 
                                         +e.getRequestNumber();
 					
+                        
+                        //java.sql.Date sqlDate = new java.sql.Date(e.getRequestDate().getYear(),e.getRequestDate().getMonthValue(),e.getRequestDate().getDayOfYear());
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE RentalRequest "
-						+ "SET requestDate = '"+e.getRequestDate()+"'" //MOET DIE DATE IN GROTE LETTERS BLIJVEN STAAN?
-                                                +", rentalPeriodStart = '"+ e.getRentalPeriodStart()+"'"
-                                                +", rentalPeriodEnd = '"+e.getRentalPeriodEnd()+"'"
+						+ "SET requestDate = "+e.getRequestDate()+"" 
+                                                +", rentalPeriodStart = "+ java.sql.Date.valueOf(e.getRentalPeriodStart())+""
+                                                +", rentalPeriodEnd = "+java.sql.Date.valueOf(e.getRentalPeriodStart())+""
                                                 +", rentalStatus = '"+e.getCurrentStatus()+"'"
                                                 +", reasonFOrCancellationOrRefusal = '"+e.getReasonForCancelationOrRefusal()+"'"
                                                 +", employeeID = '"+e.getEmployeeID()+"'"
@@ -260,23 +261,22 @@ public class Save {
                                                
                                                 +" WHERE requestNumber = "+ e.getRequestNumber();
 				stmt.executeUpdate(sql);
-                                
+                                 
 			} else {
 				// INSERT
 				sql = "INSERT into RentalRequest "
-						+ "(requestDATE, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonFOrCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID) "
-						+ "VALUES (" 
-                                                + java.sql.Date.valueOf(e.getRequestDate())
-                                                +", '"+java.sql.Date.valueOf(e.getRentalPeriodStart())+"'"
-                                                +", '"+java.sql.Date.valueOf(e.getRentalPeriodEnd())+"'"
+						+ "(requestDate, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonFOrCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID) "
+						+ "VALUES (" +java.sql.Date.valueOf(e.getRequestDate())
+                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodStart())
+                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodEnd())
                                                 +", '"+e.getCurrentStatus()+"'"
                                                 +", '"+e.getReasonForCancelationOrRefusal()+"'"
                                                 +", '"+e.getConstructionSite()+"'"
                                                 +", '"+e.getEquipmentType()+"'"
                                                 +", '"+e.getSelectedEquipment()+"'"
                                                 +", '"+e.getSelectedSupplier()+"'"
-                                                +", "+e.getDailyRentalPrice()+ ""
-                                                +", "+5
+                                                +", "+e.getDailyRentalPrice()
+                                                +", "+e.getEmployeeID()
                                         + ")";
 						
 				stmt.executeUpdate(sql);

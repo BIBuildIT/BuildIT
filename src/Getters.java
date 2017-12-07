@@ -128,7 +128,7 @@ public class Getters {
 		}
 	}
     
-    public Supplier getSupplier(String supname) throws DBException {
+    public Supplier getSupplier(String supplierName) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
@@ -136,7 +136,7 @@ public class Getters {
 
 			String sql = "SELECT name, email, phoneNumber "
 					+ "FROM Supplier "
-                                        + "WHERE name =" + supname ;
+                                        + "WHERE name =" + supplierName ;
 					
 			
 			ResultSet srs = stmt.executeQuery(sql);
