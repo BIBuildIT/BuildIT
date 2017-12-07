@@ -20,6 +20,7 @@ public class Startscherm extends javax.swing.JFrame {
     public Startscherm() {
         initComponents();
     }
+   static int teller =0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +119,7 @@ public class Startscherm extends javax.swing.JFrame {
                try {
                    njf = new RentalRequestForm(); 
                    njf.setVisible(true);
+                   teller++;
                } catch (DBException ex) {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                }

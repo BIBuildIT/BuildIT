@@ -135,20 +135,23 @@ public class Getters {
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			String sql = "SELECT name, email, phoneNumber "
-					+ "FROM Supplier"
-                                        + "WHERE name = " + supname ;
+					+ "FROM Supplier "
+                                        + "WHERE name =" + supname ;
 					
 			
 			ResultSet srs = stmt.executeQuery(sql);
 			String name, email, phoneNumber;
 			
 
-			if (srs.next()) {
+			if (srs.next()) 
+                        {
 				name = srs.getString("name");
 				email = srs.getString("email");
 				phoneNumber = srs.getString("phoneNumber");
 				
-			} else {
+			} 
+                        else 
+                        {
 				DBConnector.closeConnection(con);
 				return null;
 			}
@@ -158,7 +161,9 @@ public class Getters {
 
 			DBConnector.closeConnection(con);
 			return supplier;
-		} catch (Exception ex) {
+                        } 
+                catch (Exception ex) 
+                {
 			ex.printStackTrace();
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
@@ -173,14 +178,14 @@ public class Getters {
 			String sql = "SELECT code, type, description, price, supplier "
 					+ "FROM Equipment "
 					+ "WHERE code = " + coEq;
-			// let op de spatie na 'summary' en 'Students' in voorgaande SQL
+			// let op de spatie na 'summary' en 'Students' in voorgaande SQL->??
 			ResultSet srs = stmt.executeQuery(sql);
 			String type, description;
                         int code;
                         double price;
                         String supplier;
-                        Getters g  = new Getters();
-                        Supplier s;
+                        //Getters g  = new Getters();
+                        //Supplier s;
                         
 			
 			
@@ -191,14 +196,14 @@ public class Getters {
 				description = srs.getString("description");
                                 price = srs.getDouble("price");
                                 supplier = srs.getString("supplier");
-                                s = g.getSupplier(supplier);
+                                //s = g.getSupplier(supplier);
 				
 			} else {// we verwachten slechts 1 rij...
 				DBConnector.closeConnection(con);
 				return null;
 			}
 
-			Equipment equipment = new Equipment(code, type, description, price, s);
+			Equipment equipment = new Equipment(code, type, description, price, supplier);
 			//hier nog iets???
 			
 

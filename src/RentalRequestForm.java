@@ -1,5 +1,6 @@
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -61,6 +62,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
         SubmitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +120,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Er moet vanzelf nog een nummer toegevoegd worden?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +136,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ConstructionSiteList, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 133, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -145,11 +149,14 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                     .addComponent(giveEndofRentalPeriod))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(endRentalPeriod)
+                                    .addComponent(endRentalPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                                     .addComponent(startRentalPeriod)))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(Titel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Titel)
                                     .addComponent(giveEmployeeID)
                                     .addComponent(giveConstructionSite))
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -159,7 +166,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Titel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Titel)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveEmployeeID)
@@ -170,9 +179,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
                 .addComponent(ConstructionSiteList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveStartRentalPeriod)
                     .addComponent(startRentalPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -201,7 +210,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
             String selectedEquipmentString =  String.join(",",selectedEquipment);
             String selectedCS = ConstructionSiteList.getSelectedItem();
-            RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString);
+            RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
             System.out.println("je koos voor dit type equipment:"+ req.getEquipmentType());
             JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS);
             Save.saveRR(req);
@@ -274,6 +283,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
     private javax.swing.JLabel giveEndofRentalPeriod;
     private javax.swing.JLabel giveStartRentalPeriod;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField startRentalPeriod;
     // End of variables declaration//GEN-END:variables
@@ -314,20 +324,46 @@ public class RentalRequestForm extends javax.swing.JFrame {
         return (Integer.parseInt(employeeID.getText().trim()));
     }
 
- public LocalDate getStartRentalRequest() throws ParseException
+ public Date getStartRentalRequest() throws ParseException
     {
      //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // LocalDate localDate = LocalDate.parse(startRentalPeriod.toString().trim(), formatter);
-        System.out.println(startRentalPeriod.getText());
-    LocalDate localDate = LocalDate.parse(startRentalPeriod.getText());
-    return localDate;
+        //System.out.println(startRentalPeriod.getText());
+    //LocalDate localDate = LocalDate.parse(startRentalPeriod.getText());
+    //return localDate;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+        
+       Date date=null;
+        try {
+
+             date = formatter.parse(startRentalPeriod.toString().trim());
+            
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    return date;
     }
- public LocalDate getEndRentalRequest() throws ParseException
+ // er staat nu een fout in de getters en savers maar gewoon hier terug veranderen in localdate en in rentalrequest zelf
+ // hij pakt nog altijd de datum niet..
+ public Date getEndRentalRequest() throws ParseException
     {
      //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      //LocalDate localDate = LocalDate.parse(endRentalPeriod.toString().trim(), formatter);
-        System.out.println(startRentalPeriod.getText());
-    LocalDate localDate = LocalDate.parse(endRentalPeriod.getText());
-     return localDate;
+       // System.out.println(startRentalPeriod.getText());
+    //LocalDate localDate = LocalDate.parse(endRentalPeriod.getText());
+     //return localDate;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+        Date date=null;
+        try {
+            date = formatter.parse(endRentalPeriod.toString().trim());
+            
+        } 
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    return date;
     }
 }

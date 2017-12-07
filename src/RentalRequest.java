@@ -1,4 +1,5 @@
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ public class RentalRequest {
     
     private int requestNumber;
     private LocalDate requestDate;
-    private LocalDate rentalPeriodStart;
-    private LocalDate rentalPeriodEnd;
+    private Date rentalPeriodStart;
+    private Date rentalPeriodEnd;
     private RentalStatus currentStatus;
     private String reasonForCancelationOrRefusal;
     private int employeeID;//MOET altijd siteEngineer zijn
@@ -24,7 +25,7 @@ public class RentalRequest {
     
 
 
-    public RentalRequest(LocalDate rentalPeriodStart, LocalDate rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) {
+    public RentalRequest(Date rentalPeriodStart, Date rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) {
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         this.requestDate = LocalDate.now();
@@ -61,19 +62,19 @@ public class RentalRequest {
         return requestDate;
     }
 
-    public LocalDate getRentalPeriodStart() {
+    public Date getRentalPeriodStart() {
         return rentalPeriodStart;
     }
 
-    public void setRentalPeriodStart(LocalDate rentalPeriodStart) {
+    public void setRentalPeriodStart(Date rentalPeriodStart) {
         this.rentalPeriodStart = rentalPeriodStart;
     }
 
-    public LocalDate getRentalPeriodEnd() {
+    public Date getRentalPeriodEnd() {
         return rentalPeriodEnd;
     }
 
-    public void setRentalPeriodEnd(LocalDate rentalPeriodEnd) {
+    public void setRentalPeriodEnd(Date rentalPeriodEnd) {
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
 
