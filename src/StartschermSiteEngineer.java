@@ -66,6 +66,11 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
         });
 
         refuse.setText("Refuse rental request");
+        refuse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refuseActionPerformed(evt);
+            }
+        });
 
         extension.setText("Ask for extension or end rental request");
 
@@ -86,15 +91,14 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addComponent(cancel)
-                    .addComponent(makeReRe, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tekstchoosetask, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(extension, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refuse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelRentalReq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(extension, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refuse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelRentalReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(makeReRe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,14 +143,23 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                
     }//GEN-LAST:event_makeReReMouseClicked
 
-    private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelRentalReqActionPerformed
-
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
         new Startscherm().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
+        this.setVisible(false);
+        GiveNumberToCancelSite can = new GiveNumberToCancelSite();
+        can.setVisible(true);
+    }//GEN-LAST:event_cancelRentalReqActionPerformed
+
+    private void refuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refuseActionPerformed
+        this.setVisible(false);
+        SiteEngineerRefuse refuse;
+        refuse = new SiteEngineerRefuse();
+        refuse.setVisible(true);
+    }//GEN-LAST:event_refuseActionPerformed
 
     /**
      * @param args the command line arguments
