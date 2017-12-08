@@ -1,7 +1,3 @@
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,7 +16,6 @@ public class Startscherm extends javax.swing.JFrame {
     public Startscherm() {
         initComponents();
     }
-   static int teller =0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,45 +27,40 @@ public class Startscherm extends javax.swing.JFrame {
     private void initComponents() {
 
         tekstbuildit = new javax.swing.JLabel();
-        tekstchoosetask = new javax.swing.JLabel();
-        makeReRe = new javax.swing.JButton();
-        adjustReRe = new javax.swing.JButton();
-        makePO = new javax.swing.JButton();
+        showRentalStatus = new javax.swing.JButton();
+        siteEngineer = new javax.swing.JButton();
+        clerk = new javax.swing.JButton();
+        workEngineer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 153, 255));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         tekstbuildit.setForeground(new java.awt.Color(51, 51, 255));
         tekstbuildit.setText("BuildIt");
 
-        tekstchoosetask.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        tekstchoosetask.setText("Choose your task");
+        showRentalStatus.setText("Show rental status");
 
-        makeReRe.setText("Make rental request");
-        makeReRe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                makeReReMouseClicked(evt);
-            }
-        });
-        makeReRe.addActionListener(new java.awt.event.ActionListener() {
+        siteEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        siteEngineer.setText("I'm a site engineer");
+        siteEngineer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeReReActionPerformed(evt);
+                siteEngineerActionPerformed(evt);
             }
         });
 
-        adjustReRe.setText("Adjust rental request");
-        adjustReRe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adjustReReMouseClicked(evt);
+        clerk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        clerk.setText("I'm a clerk");
+        clerk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clerkActionPerformed(evt);
             }
         });
 
-        makePO.setText("Make Purchase Order");
-        makePO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                makePOMouseClicked(evt);
+        workEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        workEngineer.setText("I'm a work engineer");
+        workEngineer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workEngineerActionPerformed(evt);
             }
         });
 
@@ -79,79 +69,77 @@ public class Startscherm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tekstchoosetask)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tekstbuildit)
-                    .addComponent(makeReRe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adjustReRe, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(makePO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(200, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(siteEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(clerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(workEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addComponent(showRentalStatus)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tekstbuildit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tekstchoosetask)
-                .addGap(18, 18, 18)
-                .addComponent(makeReRe)
-                .addGap(18, 18, 18)
-                .addComponent(adjustReRe)
-                .addGap(18, 18, 18)
-                .addComponent(makePO)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(showRentalStatus)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tekstbuildit)
+                        .addGap(32, 32, 32)
+                        .addComponent(siteEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(clerk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(workEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void makeReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReReActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_makeReReActionPerformed
-
-    private void makeReReMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makeReReMouseClicked
-        // TODO add your h
+    private void siteEngineerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteEngineerActionPerformed
         this.setVisible(false);
-        RentalRequestForm njf;
-               try {
-                   njf = new RentalRequestForm(); 
-                   njf.setVisible(true);
-                   teller++;
-               } catch (DBException ex) {
-                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               
-    }//GEN-LAST:event_makeReReMouseClicked
-
-    private void makePOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makePOMouseClicked
-        this.setVisible(false);
-        MakePurchaseOrder PO;
+        StartschermSiteEngineer SE;
                //try {
-                   PO = new MakePurchaseOrder(); 
-                   PO.setVisible(true);
+                   SE = new StartschermSiteEngineer(); 
+                   SE.setVisible(true);
                //} 
                /*catch (DBException ex) {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                }
                */
-               
-    }//GEN-LAST:event_makePOMouseClicked
+    }//GEN-LAST:event_siteEngineerActionPerformed
 
-    private void adjustReReMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adjustReReMouseClicked
+    private void clerkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clerkActionPerformed
         this.setVisible(false);
-        GiveNumberToAdjustReRe adj;
+        StartschermClerk SE;
                //try {
-                   adj = new GiveNumberToAdjustReRe(); 
-                   adj.setVisible(true);
+                   SE = new StartschermClerk(); 
+                   SE.setVisible(true);
                //} 
                /*catch (DBException ex) {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                }
                */
-    }//GEN-LAST:event_adjustReReMouseClicked
+    }//GEN-LAST:event_clerkActionPerformed
+
+    private void workEngineerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workEngineerActionPerformed
+        this.setVisible(false);
+        StartschermWorkEngineer WO;
+               //try {
+                   WO = new StartschermWorkEngineer(); 
+                   WO.setVisible(true);
+               //} 
+               /*catch (DBException ex) {
+                   Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               */
+    }//GEN-LAST:event_workEngineerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,10 +177,10 @@ public class Startscherm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adjustReRe;
-    private javax.swing.JButton makePO;
-    private javax.swing.JButton makeReRe;
+    private javax.swing.JButton clerk;
+    private javax.swing.JButton showRentalStatus;
+    private javax.swing.JButton siteEngineer;
     private javax.swing.JLabel tekstbuildit;
-    private javax.swing.JLabel tekstchoosetask;
+    private javax.swing.JButton workEngineer;
     // End of variables declaration//GEN-END:variables
 }

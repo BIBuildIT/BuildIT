@@ -272,7 +272,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
-        new Startscherm().setVisible(true);
+        new StartschermSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
  
     
