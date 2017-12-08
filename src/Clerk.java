@@ -9,7 +9,7 @@
  * @author Jhooster
  */
 public class Clerk extends Employee {
-    
+    // 
     public Clerk(int employeeID, String emailAdress, String phoneNumber) {
         super(employeeID, Function.Clerk, emailAdress, phoneNumber);
     }
