@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class GiveNumberToCancelSite extends javax.swing.JFrame {
     private static ArrayList<RentalRequest> cancelRequestAndRefuse = new ArrayList<>();
-
+// in sql tabel zetten moet pas bij clerk daarom arraylist meegeven
     public static ArrayList<RentalRequest> getCancelRequestAndRefuse() {
         return cancelRequestAndRefuse;
     }
