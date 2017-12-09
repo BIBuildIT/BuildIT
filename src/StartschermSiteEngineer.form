@@ -94,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="refuse">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Refuse rental request"/>
+        <Property name="text" type="java.lang.String" value="Inspect material"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refuseActionPerformed"/>
@@ -104,6 +104,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ask for extension or end rental request"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extensionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cancel">
       <Properties>

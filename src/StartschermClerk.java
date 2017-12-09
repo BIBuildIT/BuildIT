@@ -39,7 +39,7 @@ public class StartschermClerk extends javax.swing.JFrame {
         Cancel = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        addDetails = new javax.swing.JButton();
+        showInvoice = new javax.swing.JButton();
         adjustReRe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +72,12 @@ public class StartschermClerk extends javax.swing.JFrame {
             }
         });
 
-        addDetails.setText("Add details to rental request");
+        showInvoice.setText("Show invoice");
+        showInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showInvoiceActionPerformed(evt);
+            }
+        });
 
         adjustReRe.setText("Adjust rental request");
         adjustReRe.addActionListener(new java.awt.event.ActionListener() {
@@ -91,11 +96,12 @@ public class StartschermClerk extends javax.swing.JFrame {
                     .addComponent(Cancel)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(adjustReRe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addDetails, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(showInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(adjustReRe)))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,13 +112,13 @@ public class StartschermClerk extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
                 .addComponent(cancel)
                 .addGap(18, 18, 18)
-                .addComponent(addDetails)
-                .addGap(18, 18, 18)
                 .addComponent(adjustReRe)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(showInvoice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(Cancel)
                 .addContainerGap())
@@ -129,6 +135,9 @@ public class StartschermClerk extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
+        //EERST SCHERM ZETTEN MET "GIVE NUMBER RENTAL REQUEST:" 
+        //DAARDOOR KAN HET NUMMER VAN DE PO VANZELF GEMAAKT WORDEN ZODAT HET HETZELFDE IS ALS DE RR
+        //NA PURCHASE ORDER RENTAL STATUS "ORDERED" (de uitrusting en leverancier zijn geselecteerd)
         MakePurchaseOrder PO;
                //try {
                    PO = new MakePurchaseOrder(); 
@@ -141,6 +150,12 @@ public class StartschermClerk extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void adjustReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustReReActionPerformed
+        // GAAT NU DIRECT NAAR GUI "GIVENUMBERTOADJUSTRERE"
+        //TOON AAN TE PASSEN RENTAL REQUEST
+        // DRUK OP SUBMIT: RENTAL STATUS = "PROCESSED"
+        //VERVOLGENS EEN SCHERM MET "APPROVED BY SUPPLIER?"
+        //MET OPTIES NO(TERUG NAAR RENTAL REQUEST) EN YES(RENTAL STATUS = "READY FOR APPROVAL")
+        
         this.setVisible(false);
         GiveNumberToAdjustReRe adj;
                //try {
@@ -154,8 +169,20 @@ public class StartschermClerk extends javax.swing.JFrame {
     }//GEN-LAST:event_adjustReReActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        CancelRequest.getCancelReq().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void showInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInvoiceActionPerformed
+        // EERST VRAGEN NAAR NUMMER RR
+        //INDIEN RENTAL STATUS submittedForPayment IS KAN MEN DOORGAAN NAAR DE INVOICE (IS AL AANGEMAAKT --> SHOWINVOICE)
+        // INDIEN NIET: MELDING "NO INVOICE IS READY FOR THIS RENTAL REQUEST" (of iets in die aard)
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_showInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,11 +221,11 @@ public class StartschermClerk extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
-    private javax.swing.JButton addDetails;
     private javax.swing.JButton adjustReRe;
     private javax.swing.JButton cancel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton showInvoice;
     // End of variables declaration//GEN-END:variables
 }

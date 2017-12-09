@@ -289,7 +289,7 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_clerkActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
+        // RENTAL STATUS "ORDERED"
     }//GEN-LAST:event_submitActionPerformed
 
     private void ConstructionSiteListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConstructionSiteListActionPerformed

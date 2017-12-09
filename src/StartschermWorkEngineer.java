@@ -37,6 +37,9 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
+        cancelReq = new javax.swing.JButton();
+        adjustReq = new javax.swing.JButton();
+        acceptOrRefuse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +57,27 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
             }
         });
 
+        cancelReq.setText("Cancel rental request");
+        cancelReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelReqActionPerformed(evt);
+            }
+        });
+
+        adjustReq.setText("Adjust rental request");
+        adjustReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adjustReqActionPerformed(evt);
+            }
+        });
+
+        acceptOrRefuse.setText("Accept or refuse rental request");
+        acceptOrRefuse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptOrRefuseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +87,11 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel))
+                    .addComponent(cancel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cancelReq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(acceptOrRefuse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adjustReq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,7 +101,13 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(cancelReq)
+                .addGap(18, 18, 18)
+                .addComponent(adjustReq)
+                .addGap(18, 18, 18)
+                .addComponent(acceptOrRefuse)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(cancel)
                 .addContainerGap())
         );
@@ -86,6 +120,19 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         this.setVisible(false);
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void cancelReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReqActionPerformed
+        //RENTAL STATUS = "CANCELLED"
+    }//GEN-LAST:event_cancelReqActionPerformed
+
+    private void adjustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustReqActionPerformed
+        //RENTAL STATUS = "PROCESSED"
+        //HIERBIJ NAAR HETZELFDE SCHERM GAAN ALS DE ADJUST BIJ CLERK?
+    }//GEN-LAST:event_adjustReqActionPerformed
+
+    private void acceptOrRefuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrRefuseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptOrRefuseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,7 +170,10 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptOrRefuse;
+    private javax.swing.JButton adjustReq;
     private javax.swing.JButton cancel;
+    private javax.swing.JButton cancelReq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

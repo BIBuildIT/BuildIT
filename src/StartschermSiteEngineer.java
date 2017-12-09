@@ -72,7 +72,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
             }
         });
 
-        refuse.setText("Refuse rental request");
+        refuse.setText("Inspect material");
         refuse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refuseActionPerformed(evt);
@@ -80,6 +80,11 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
         });
 
         extension.setText("Ask for extension or end rental request");
+        extension.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extensionActionPerformed(evt);
+            }
+        });
 
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -164,11 +169,34 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelRentalReqActionPerformed
 
     private void refuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refuseActionPerformed
-        this.setVisible(false);
+        //KAN NAAR HET VOLGENDE SCHERM GAAN INDIEN RENTAL STATUS APPROVED IS
+
+        //SCHERM MET GIVE NUMBER REQUEST
+        //VERVOLGENS NAAR HET SCHERM SITEENGINEERREFUSE? 
+        //EQUIPMENT NEEDED?
+        //NO: SEND TO CLERK TO CANCEL
+        //YES: VOLGEND SCHERM
+
+        
+        //VOLGEND SCHERM
+        //EQUIPMENT OK?
+        //NO: RENTAL STATUS = REFUSED
+        //YES: RENTAL STATUS = ACCEPTED
+        
+        // TERUG GAAN NAAR STARTSCHERM
+        
+        
+        
+        /*this.setVisible(false);
         SiteEngineerRefuse refuse;
         refuse = new SiteEngineerRefuse();
         refuse.setVisible(true);
+        */
     }//GEN-LAST:event_refuseActionPerformed
+
+    private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extensionActionPerformed
 
     /**
      * @param args the command line arguments

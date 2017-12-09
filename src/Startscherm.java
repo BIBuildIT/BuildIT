@@ -176,7 +176,7 @@ public class Startscherm extends javax.swing.JFrame {
     }//GEN-LAST:event_showRentalStatusActionPerformed
 
     private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
-        // TODO add your handling code here:
+        // TOON EEN LIJST MET ALLE AANGEMAAKTE RR'S
     }//GEN-LAST:event_showAllActionPerformed
 
     /**
