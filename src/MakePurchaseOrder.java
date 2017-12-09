@@ -281,7 +281,7 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         this.setVisible(false);
-        new Startscherm().setVisible(true);
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelMouseClicked
 
     private void clerkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clerkActionPerformed

@@ -8,12 +8,12 @@
  *
  * @author lmoentje
  */
-public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
+public class GiveNumberToShowReRe extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdjustReRe
+     * Creates new form GiveNumberToShowReRe
      */
-    public GiveNumberToAdjustReRe() {
+    public GiveNumberToShowReRe() {
         initComponents();
     }
 
@@ -27,37 +27,32 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        numberReRe = new javax.swing.JTextField();
+        submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        submitnumber = new javax.swing.JButton();
+        numberReRe = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Please give the number of the rental request you want to adjust");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel1.setText("Please give the number of the rental request.");
 
-        numberReRe.addActionListener(new java.awt.event.ActionListener() {
+        submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberReReActionPerformed(evt);
+                submitActionPerformed(evt);
             }
         });
 
         cancel.setText("Cancel");
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
-            }
-        });
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
 
-        submitnumber.setText("Submit");
-        submitnumber.addActionListener(new java.awt.event.ActionListener() {
+        numberReRe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitnumberActionPerformed(evt);
+                numberReReActionPerformed(evt);
             }
         });
 
@@ -66,53 +61,47 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cancel)
-                    .addComponent(jLabel1)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(numberReRe, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(submitnumber)))
+                        .addComponent(numberReRe, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numberReRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitnumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(cancel)
-                .addContainerGap())
+                    .addComponent(jLabel1)
+                    .addComponent(numberReRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submit)
+                    .addComponent(cancel))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void numberReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberReReActionPerformed
-        // TODO add your handling code here:
+     //opvragen uit tabel &  zie constructor met enkel parameter requsetnumber in klasse rentalrequest
     }//GEN-LAST:event_numberReReActionPerformed
 
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
         Startscherm.getB().setVisible(true);
-    }//GEN-LAST:event_cancelMouseClicked
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
 
-    private void submitnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitnumberActionPerformed
-        this.setVisible(false);
-        //hier terug naar eerste rental request gaan of nieuwe maken en daarin de gegevens die we al hadden
-        //vanzelf zetten met extra opties om toe te voegen?
-    }//GEN-LAST:event_submitnumberActionPerformed
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,21 +120,20 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToAdjustReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiveNumberToShowReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToAdjustReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiveNumberToShowReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToAdjustReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiveNumberToShowReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToAdjustReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiveNumberToShowReRe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GiveNumberToAdjustReRe().setVisible(true);
+                new GiveNumberToShowReRe().setVisible(true);
             }
         });
     }
@@ -154,6 +142,6 @@ public class GiveNumberToAdjustReRe extends javax.swing.JFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField numberReRe;
-    private javax.swing.JButton submitnumber;
+    private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
 }

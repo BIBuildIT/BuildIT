@@ -17,6 +17,14 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static StartschermWorkEngineer startWorkEngineer = new StartschermWorkEngineer();
+
+    public static void setStartWorkEngineer(StartschermWorkEngineer startWorkEngineer) {
+        StartschermWorkEngineer.startWorkEngineer = startWorkEngineer;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +84,7 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
-        new Startscherm().setVisible(true);
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
     /**

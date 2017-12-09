@@ -25,14 +25,21 @@ import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 public class Main {
     
     private HashMap<Integer, Equipment> equipments;
+    
 
+   
+    
+    
 	public Main() {
 		equipments = new HashMap<Integer, Equipment>();
 	}
     
     public static void main(String[] args) throws Exception {
-        Startscherm begin = new Startscherm();
-        begin.setVisible(true);
+        //Startscherm begin = new Startscherm();
+        //begin.setVisible(true);
+        Startscherm.getB().setVisible(true);
+// nu gaan we steeds naar hetzelfde startscherm zonder elke keer opieuw te beginnen
+        
        // DBBuildIt.createTables();
     /*   JFrame f = new JFrame("Wat wil u doen?");
     f.setVisible(true);

@@ -1,5 +1,6 @@
 
 //import java.sql.Date;
+
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +28,16 @@ public class RentalRequestForm extends javax.swing.JFrame {
     
     ArrayList<ConstructionSite> sites;
     ArrayList<Equipment> types;
+    static int tellerReRe =1; // handiger dan tabelnummer op te vragen want handiger bij extra constructor rentalrequest
+
+    public static int getTellerReRe() {
+        return tellerReRe;
+    }
+
+    public static void setTellerReRe(int tellerReRe) {
+        RentalRequestForm.tellerReRe = tellerReRe;
+    }
+    
      /**
      * @param args the command line arguments
      */
@@ -102,7 +113,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
         SubmitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,8 +170,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Er moet vanzelf nog een nummer toegevoegd worden?");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,11 +200,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                     .addComponent(endRentalPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                                     .addComponent(startRentalPeriod)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Titel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Titel)
                                     .addComponent(giveEmployeeID)
                                     .addComponent(giveConstructionSite))
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -206,10 +211,8 @@ public class RentalRequestForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Titel)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Titel)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveEmployeeID)
                     .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,14 +254,26 @@ public class RentalRequestForm extends javax.swing.JFrame {
             String selectedEquipmentString =  String.join(",",selectedEquipment);
             String selectedCS = ConstructionSiteList.getSelectedItem();
             RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
-            System.out.println("op deze datum is de request aangemaakt: "+java.sql.Date.valueOf(req.getRequestDate()));
-            JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS);
-            Save.saveRR(req);
-        } catch (ParseException ex) {
+            req.setRequestNumber(tellerReRe);
+            System.out.println("op deze datum is de request met nummer "+ req.getRequestNumber() + " aangemaakt: "+java.sql.Date.valueOf(req.getRequestDate()));
+            JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS + ". \n"
+            + "On this date you made a request (number "+ tellerReRe+" ) : "+java.sql.Date.valueOf(req.getRequestDate()));
+           RentalRequest.saveRR(req);
+            
+            
+        } 
+        catch (ParseException ex) 
+        {
             Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DBException ex) {
+        } 
+        catch (DBException ex) 
+        {
             Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+           tellerReRe++;
+           this.dispose();
+           Startscherm ST = new Startscherm();
+           ST.setVisible(true);
         
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
@@ -272,7 +287,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
-        new StartschermSiteEngineer().setVisible(true);
+        StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
  
     
@@ -292,7 +307,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
     private javax.swing.JLabel giveEndofRentalPeriod;
     private javax.swing.JLabel giveStartRentalPeriod;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField startRentalPeriod;
     // End of variables declaration//GEN-END:variables
@@ -345,4 +359,5 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
     return date;
     }
+
 }

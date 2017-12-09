@@ -16,6 +16,12 @@ public class Startscherm extends javax.swing.JFrame {
     public Startscherm() {
         initComponents();
     }
+    public static Startscherm b = new Startscherm();
+
+    public static Startscherm getB() {
+        return b;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,14 +37,22 @@ public class Startscherm extends javax.swing.JFrame {
         siteEngineer = new javax.swing.JButton();
         clerk = new javax.swing.JButton();
         workEngineer = new javax.swing.JButton();
+        showAll = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 204));
+        setForeground(java.awt.Color.pink);
 
         tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         tekstbuildit.setForeground(new java.awt.Color(51, 51, 255));
         tekstbuildit.setText("BuildIt");
 
         showRentalStatus.setText("Show rental status");
+        showRentalStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showRentalStatusActionPerformed(evt);
+            }
+        });
 
         siteEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         siteEngineer.setText("I'm a site engineer");
@@ -64,6 +78,13 @@ public class Startscherm extends javax.swing.JFrame {
             }
         });
 
+        showAll.setText("Show all rental requests");
+        showAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,31 +92,40 @@ public class Startscherm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tekstbuildit)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(siteEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(clerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(workEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(46, 46, 46)
-                        .addComponent(showRentalStatus)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(tekstbuildit)
+                        .addContainerGap(433, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(workEngineer)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(siteEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addComponent(clerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showAll, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(showRentalStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(108, 108, 108))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(showRentalStatus)
+                    .addComponent(showAll)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tekstbuildit)
-                        .addGap(32, 32, 32)
-                        .addComponent(siteEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(clerk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tekstbuildit)
+                                .addGap(32, 32, 32)
+                                .addComponent(siteEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107))
+                            .addComponent(clerk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(showRentalStatus)
+                        .addGap(15, 15, 15)
                         .addComponent(workEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +171,14 @@ public class Startscherm extends javax.swing.JFrame {
                */
     }//GEN-LAST:event_workEngineerActionPerformed
 
+    private void showRentalStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRentalStatusActionPerformed
+        
+    }//GEN-LAST:event_showRentalStatusActionPerformed
+
+    private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showAllActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -178,6 +216,7 @@ public class Startscherm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clerk;
+    private javax.swing.JButton showAll;
     private javax.swing.JButton showRentalStatus;
     private javax.swing.JButton siteEngineer;
     private javax.swing.JLabel tekstbuildit;

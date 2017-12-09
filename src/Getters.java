@@ -256,7 +256,7 @@ public class Getters {
             
         }
         
-        public static RentalRequest getRentalRequest(int reqnr) throws DBException{//moet aangepast worden aan constructor
+        /*public static RentalRequest getRentalRequest(int reqnr) throws DBException{//moet aangepast worden aan constructor
             Connection con= null; 
         try {
             
@@ -304,7 +304,7 @@ public class Getters {
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
                 }
-        }
+        }*/
     
         public static ArrayList<Equipment> getEquipments() throws DBException {
         Connection con= null;

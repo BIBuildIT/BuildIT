@@ -228,6 +228,7 @@ public class Save {
     
                                 
     
+    /*STAAT NU IN KLASSE RENTALREQUEST
     public static void saveRR(RentalRequest e) throws DBException{
         Connection con = null;
 		try {
@@ -290,7 +291,7 @@ public class Save {
 			throw new DBException(ex);
 		}
         
-    }
+    }*/
     
     /*public static void saveRRL(RentalRequestLine r) throws DBException{//moet nog juist zijn
         Connection con = null;

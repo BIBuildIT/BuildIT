@@ -1,4 +1,7 @@
 //import java.sql.Date;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.Instant;
 import java.util.Date;
 import java.time.LocalDate;
@@ -34,7 +37,7 @@ public class RentalRequest {
 
         
         this.equipmentType = equipmentType;
-        this.requestNumber = requestNumber;//hoe moet dit??
+        //this.requestNumber = requestNumber;//hoe moet dit??
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
 
@@ -51,6 +54,11 @@ public class RentalRequest {
         this.dailyRentalPrice = 0.0;//vanaf rentalstatus processed
         
     }
+
+    public RentalRequest(int requestNumber) {
+        this.requestNumber = requestNumber;
+    }
+    // voor de handigheid bij opvragen
     
     public int getRequestNumber() {
         return requestNumber;
@@ -156,6 +164,117 @@ public class RentalRequest {
         this.selectedEquipment = selectedEquipment;
     }
 
-   
+    public static void saveRR(RentalRequest e) throws DBException{
+        Connection con = null;
+		try {
+                    
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT requestNumber "
+					+ "FROM RentalRequest "
+                                        +"WHERE requestNumber = " 
+                                        +e.getRequestNumber();
+					
+                        
+                        //java.sql.Date sqlDate = new java.sql.Date(e.getRequestDate().getYear(),e.getRequestDate().getMonthValue(),e.getRequestDate().getDayOfYear());
+			ResultSet srs = stmt.executeQuery(sql);
+			if (srs.next()) {
+				// UPDATE
+				sql = "UPDATE RentalRequest "
+						+ "SET requestDate = "+e.getRequestDate()+"" 
+                                                +", rentalPeriodStart = "+ java.sql.Date.valueOf(e.getRentalPeriodStart())+""
+                                                +", rentalPeriodEnd = "+java.sql.Date.valueOf(e.getRentalPeriodStart())+""
+                                                +", rentalStatus = '"+e.getCurrentStatus()+"'"
+                                                +", reasonFOrCancellationOrRefusal = '"+e.getReasonForCancelationOrRefusal()+"'"
+                                                +", employeeID = '"+e.getEmployeeID()+"'"
+                                                +", constructionSite = "+e.getConstructionSite()
+                                                +", equipmentType = '"+e.getEquipmentType()+"'"
+                                               +", selectedEquipment = '"+e.getSelectedEquipment()+"'"
+                                                +", selectedSupplier = '"+e.getSelectedSupplier()+"'"
+                                                +", dailyRentalPrice = "+e.getDailyRentalPrice()
+                                                
+                                               
+                                                +" WHERE requestNumber = "+ e.getRequestNumber();
+				stmt.executeUpdate(sql);
+                                 
+			} else {
+				// INSERT
+				sql = "INSERT into RentalRequest "
+						+ "(requestDate, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonFOrCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID) "
+						+ "VALUES (" +java.sql.Date.valueOf(e.getRequestDate())
+                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodStart())
+                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodEnd())
+                                                +", '"+e.getCurrentStatus()+"'"
+                                                +", '"+e.getReasonForCancelationOrRefusal()+"'"
+                                                +", '"+e.getConstructionSite()+"'"
+                                                +", '"+e.getEquipmentType()+"'"
+                                                +", '"+e.getSelectedEquipment()+"'"
+                                                +", '"+e.getSelectedSupplier()+"'"
+                                                +", "+e.getDailyRentalPrice()
+                                                +", "+e.getEmployeeID()
+                                        + ")";
+						
+				stmt.executeUpdate(sql);
+			}
+			
+			
+			DBConnector.closeConnection(con);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+        
+    }
+    public static RentalRequest getRentalRequest(int reqnr) throws DBException{//moet aangepast worden aan constructor
+            Connection con= null; 
+        try {
+            
+                con= DBConnector.getConnection();
+                Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+                String sql = "SELECT requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType, selectedEquipment "
+					+ "FROM RentalRequest "
+					+ "WHERE requestNumber = " + reqnr;
+                ResultSet srs = stmt.executeQuery(sql);
+     
+                
+                int requestNumber;
+                LocalDate rentalPeriodStart;
+                LocalDate rentalPeriodEnd;
+                int employeeID;
+                String constructionSite;
+                //String equipmentType;
+                String equipmentType;
+                
+            
+                if (srs.next()){
+                    //requestNumber = srs.getInt("requestNumber");
+                    
+                    java.sql.Date rentalStart = srs.getDate("rentalPeriodStart");
+                    rentalPeriodStart= rentalStart.toLocalDate();
+                    rentalPeriodEnd = srs.getDate("rentalPeriodEnd").toLocalDate();
+                    employeeID = srs.getInt("employeeID");
+                    constructionSite = srs.getString("constructionSite");
+                    equipmentType= srs.getString("equipmentTypes");
+                    
+            
+                } else {
+                    DBConnector.closeConnection(con);
+                    return null;
+                }
+            
+            RentalRequest rentalrequest = new RentalRequest( rentalPeriodStart, rentalPeriodEnd, employeeID, constructionSite, equipmentType);
+            
+            DBConnector.closeConnection(con);
+            return rentalrequest;
+        }
+            catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+                }
+        }
     
 }

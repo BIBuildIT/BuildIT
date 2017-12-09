@@ -16,6 +16,14 @@ public class StartschermClerk extends javax.swing.JFrame {
     public StartschermClerk() {
         initComponents();
     }
+    
+    public static StartschermClerk startClerk = new StartschermClerk();
+
+    public static StartschermClerk getStartClerk() {
+        return startClerk;
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,7 +124,7 @@ public class StartschermClerk extends javax.swing.JFrame {
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         this.setVisible(false);
-        new Startscherm().setVisible(true);
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

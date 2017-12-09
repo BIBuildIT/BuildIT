@@ -62,7 +62,7 @@ public class DBBuildIt {
 			stmt.executeUpdate(sql);
                         
                         sql = "CREATE TABLE RentalRequest ("
-                                + "requestNumber int(15) NOT NULL AUTO_INCREMENT,"//ook auto increment??
+                                + "requestNumber int(15) NOT NULL," //AUTO_INCREMENT," ook auto increment??
                                 + "requestDate DATE NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"

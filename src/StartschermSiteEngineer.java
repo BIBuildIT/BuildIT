@@ -21,6 +21,13 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
         initComponents();
     }
    static int teller =0;
+   public static StartschermSiteEngineer startSiteEngineer = new StartschermSiteEngineer();
+
+    public static StartschermSiteEngineer getStartSiteEngineer() {
+        return startSiteEngineer;
+    }
+   
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,13 +152,15 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
-        new Startscherm().setVisible(true);
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
         this.setVisible(false);
         GiveNumberToCancelSite can = new GiveNumberToCancelSite();
         can.setVisible(true);
+        
+        
     }//GEN-LAST:event_cancelRentalReqActionPerformed
 
     private void refuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refuseActionPerformed
