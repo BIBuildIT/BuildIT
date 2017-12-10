@@ -178,9 +178,9 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     private void inspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectActionPerformed
         
         
-        JFrame f = new JFrame("Rental request number");
+        JFrame f = new JFrame("Enter rental request number");
     f.setVisible(true);
-    f.setSize(500, 500);
+    f.setSize(500, 100);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLayout(new FlowLayout());
                 JButton cancel = new JButton("Cancel");
@@ -208,12 +208,16 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
        
     submit.addActionListener(new ActionListener() {
             @Override
+            
             public void actionPerformed(ActionEvent e) {
-                String numberReRe = numberRR.toString();
-                int numberRR = Integer.parseInt(numberReRe);
-                RentalRequest a = new RentalRequest(numberRR);
                 
-                if(a.getCurrentStatus().equals("approved")){
+                
+                String numberReRe = numberRR.toString();
+                int numberRR = Integer.parseInt(numberReRe); // hier nog problemen met wat er gebeurt als we een nummer ingeven
+                RentalRequest a;
+                try {
+                    a = RentalRequest.getRentalRequest(numberRR);
+                    if(a.getCurrentStatus().equals("approved")){
                     f.setVisible(false);
 
                     //IS MATERIAL OK?
@@ -238,13 +242,66 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                     JButton ok = new JButton("OK");
                     
                 }
+                } catch (DBException ex) {
+                    Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
                 }
         });
     
     }//GEN-LAST:event_inspectActionPerformed
 
     private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed
-        // TODO add your handling code here:
+        
+        JFrame f = new JFrame("Enter rental request number");
+    f.setVisible(true);
+    f.setSize(500, 100);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setLayout(new FlowLayout());
+                JLabel giveNr = new JLabel("Please enter the number of the rental request you want to extend or end");
+                JButton cancel = new JButton("Cancel");
+                JButton submit = new JButton("Submit");
+                JTextField numberRR = new JTextField("            ");
+                
+                
+    f.add(cancel);
+    f.add(submit);
+    f.add(numberRR);
+    f.add(giveNr);
+    cancel.setBounds(10,10,20,20);
+    submit.setBounds(10,50,20,20);
+    giveNr.setBounds(50,500, 100,30);
+    numberRR.setBounds(50,150, 100,30);  
+    
+    cancel.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+                StartschermSiteEngineer.getStartSiteEngineer().setVisible(false);
+                f.setVisible(false);
+                Startscherm.getB().setVisible(true);
+           }
+       });
+       
+    submit.addActionListener(new ActionListener() {
+            @Override
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                
+                String numberReRe = numberRR.toString();
+                int numberRR = Integer.parseInt(numberReRe); // hier nog problemen met wat er gebeurt als we een nummer ingeven
+                RentalRequest a;
+                try {
+                    a = RentalRequest.getRentalRequest(numberRR);
+                    
+                } catch (DBException ex) {
+                    Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                }
+        });
     }//GEN-LAST:event_extensionActionPerformed
 
     /**

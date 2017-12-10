@@ -48,7 +48,7 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         jLabel1.setText("BuildIt");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jLabel2.setText("Choose your task as a work engineer");
+        jLabel2.setText("Choose your task as a works engineer");
 
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {

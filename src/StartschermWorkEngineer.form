@@ -76,7 +76,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Choose your task as a work engineer"/>
+        <Property name="text" type="java.lang.String" value="Choose your task as a works engineer"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="cancel">

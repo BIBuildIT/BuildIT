@@ -205,6 +205,8 @@ public class Getters {
 
 			Equipment equipment = new Equipment(code, type, description, price, supplier);
 			//hier nog iets???
+                        
+                        
 			
 
 			DBConnector.closeConnection(con);

@@ -135,6 +135,9 @@ public class StartschermClerk extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
+        
+        
+        
         //EERST SCHERM ZETTEN MET "GIVE NUMBER RENTAL REQUEST:" 
         //DAARDOOR KAN HET NUMMER VAN DE PO VANZELF GEMAAKT WORDEN ZODAT HET HETZELFDE IS ALS DE RR
         //NA PURCHASE ORDER RENTAL STATUS "ORDERED" (de uitrusting en leverancier zijn geselecteerd)

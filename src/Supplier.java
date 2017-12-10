@@ -14,7 +14,7 @@ public class Supplier {
     private String phoneNumber;
 
     public Supplier(String name, String email, String phoneNumber) {
-        if(name.isEmpty()  || email.isEmpty() || phoneNumber.isEmpty()){
+        if(name.isEmpty()  || email.isEmpty() || phoneNumber.isEmpty()|| (phoneNumber.length())!=10){
             System.out.println("Error: wrong syntax.");
         }
         else{
