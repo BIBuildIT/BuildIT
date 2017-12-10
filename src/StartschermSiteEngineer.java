@@ -1,6 +1,13 @@
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,7 +48,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
         tekstchoosetask = new javax.swing.JLabel();
         makeReRe = new javax.swing.JButton();
         cancelRentalReq = new javax.swing.JButton();
-        refuse = new javax.swing.JButton();
+        inspect = new javax.swing.JButton();
         extension = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -72,10 +79,10 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
             }
         });
 
-        refuse.setText("Inspect material");
-        refuse.addActionListener(new java.awt.event.ActionListener() {
+        inspect.setText("Inspect material");
+        inspect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refuseActionPerformed(evt);
+                inspectActionPerformed(evt);
             }
         });
 
@@ -108,7 +115,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                     .addComponent(cancel)
                     .addComponent(tekstchoosetask, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(extension, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refuse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inspect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cancelRentalReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(makeReRe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(129, Short.MAX_VALUE))
@@ -125,7 +132,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cancelRentalReq)
                 .addGap(18, 18, 18)
-                .addComponent(refuse)
+                .addComponent(inspect)
                 .addGap(18, 18, 18)
                 .addComponent(extension)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
@@ -168,31 +175,73 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelRentalReqActionPerformed
 
-    private void refuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refuseActionPerformed
-        //KAN NAAR HET VOLGENDE SCHERM GAAN INDIEN RENTAL STATUS APPROVED IS
+    private void inspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectActionPerformed
+        
+        
+        JFrame f = new JFrame("Rental request number");
+    f.setVisible(true);
+    f.setSize(500, 500);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setLayout(new FlowLayout());
+                JButton cancel = new JButton("Cancel");
+                JButton submit = new JButton("Submit");
+                JTextField numberRR = new JTextField("            ");
+                JLabel giveNr = new JLabel("Please give the number of the rental request.");
+                
+    f.add(cancel);
+    f.add(submit);
+    f.add(numberRR);
+    f.add(giveNr);
+    cancel.setBounds(10,10,20,20);
+    submit.setBounds(10,50,20,20);
+    giveNr.setBounds(50,500, 100,30);
+    numberRR.setBounds(50,150, 100,30);  
+    
+    cancel.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+                StartschermSiteEngineer.getStartSiteEngineer().setVisible(false);
+                f.setVisible(false);
+                Startscherm.getB().setVisible(true);
+           }
+       });
+       
+    submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String numberReRe = numberRR.toString();
+                int numberRR = Integer.parseInt(numberReRe);
+                RentalRequest a = new RentalRequest(numberRR);
+                
+                if(a.getCurrentStatus().equals("approved")){
+                    f.setVisible(false);
 
-        //SCHERM MET GIVE NUMBER REQUEST
-        //VERVOLGENS NAAR HET SCHERM SITEENGINEERREFUSE? 
-        //EQUIPMENT NEEDED?
-        //NO: SEND TO CLERK TO CANCEL
-        //YES: VOLGEND SCHERM
-
-        
-        //VOLGEND SCHERM
-        //EQUIPMENT OK?
-        //NO: RENTAL STATUS = REFUSED
-        //YES: RENTAL STATUS = ACCEPTED
-        
-        // TERUG GAAN NAAR STARTSCHERM
-        
-        
-        
-        /*this.setVisible(false);
-        SiteEngineerRefuse refuse;
-        refuse = new SiteEngineerRefuse();
-        refuse.setVisible(true);
-        */
-    }//GEN-LAST:event_refuseActionPerformed
+                    //IS MATERIAL OK?
+                    //NO: RENT STAT "REFUSED"
+                    //a.setCurrentStatus(RentalStatus.refused);
+                    //-> optie geven om nieuwe request aan te maken?
+                    
+                    //YES: RENT STAT "ACCEPTED"
+                    //a.setCurrentStatus(RentalStatus.accepted);
+                    
+                    Startscherm.getB().setVisible(true);
+                        // -> VERVOLGENS TERUG NAAR STARTSCHERM
+                }
+                else{
+                    f.setVisible(false);
+                    JFrame g = new JFrame("No approval");
+                    g.setVisible(true);
+                    g.setSize(500, 500);
+                    g.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    g.setLayout(new FlowLayout());
+                    JLabel text = new JLabel("Sorry, the rental request hasn't been approved.");
+                    JButton ok = new JButton("OK");
+                    
+                }
+                }
+        });
+    
+    }//GEN-LAST:event_inspectActionPerformed
 
     private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed
         // TODO add your handling code here:
@@ -238,9 +287,9 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JButton cancelRentalReq;
     private javax.swing.JButton extension;
+    private javax.swing.JButton inspect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton makeReRe;
-    private javax.swing.JButton refuse;
     private javax.swing.JLabel tekstchoosetask;
     // End of variables declaration//GEN-END:variables
 }

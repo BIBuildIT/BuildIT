@@ -41,7 +41,7 @@ public class Main {
 // nu gaan we steeds naar hetzelfde startscherm zonder elke keer opieuw te beginnen
         
        // DBBuildIt.createTables();
-    /*   JFrame f = new JFrame("Wat wil u doen?");
+       /*JFrame f = new JFrame("Wat wil u doen?");
     f.setVisible(true);
     f.setSize(500, 500);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,8 +88,8 @@ public class Main {
            }
         
     });
-    
     */
+    
                 
 		
 		/*for(int i=0; i<3; i++){
