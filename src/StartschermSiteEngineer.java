@@ -169,7 +169,12 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
 
     private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
         this.setVisible(false);
-        GiveNumberToCancelSite can = new GiveNumberToCancelSite();
+        CancelRequest can = null;
+        try {
+            can = new CancelRequest();
+        } catch (DBException ex) {
+            Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         can.setVisible(true);
         
         

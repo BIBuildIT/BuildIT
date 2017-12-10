@@ -30,23 +30,23 @@ public class RentalRequest {
     
 
 
-    public RentalRequest(LocalDate rentalPeriodStart, LocalDate rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) {
+    public RentalRequest(LocalDate rentalPeriodStart, LocalDate rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) throws DBException {
+        ArrayList<RentalRequest> reRe= Getters.getRentalRequests();
+        int reqNumber=1;//1 geeft hij niet goed weer!!!!
         
-       
-       this.requestDate = LocalDate.now();
-
+        for(int i=0;i<reRe.size();i++){
+            reqNumber=reRe.get(i).getRequestNumber();
+        }
+        this.requestNumber=reqNumber+10;//moet nog aanpassen, want nu uit lucht gegrepen
         
-        this.equipmentType = equipmentType;
-        //this.requestNumber = requestNumber;//hoe moet dit??
+        this.requestDate = LocalDate.now();
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
-
         this.currentStatus= RentalStatus.requested;
         this.reasonForCancelationOrRefusal = null;
-
         this.employeeID = employeeID;
         this.constructionSite = constructionSite;
-        
+        this.equipmentType = equipmentType;
 
 
         this.selectedEquipment = null;//vanaf rentalstatus processed
@@ -54,11 +54,12 @@ public class RentalRequest {
         this.dailyRentalPrice = 0.0;//vanaf rentalstatus processed
         
     }
+   
 
     public RentalRequest(int requestNumber) {
         this.requestNumber = requestNumber;
     }
-    // voor de handigheid bij opvragen
+    // voor de handigheid bij opvragen= getrentalrequest
     
     public int getRequestNumber() {
         return requestNumber;
@@ -177,24 +178,22 @@ public class RentalRequest {
                                         +e.getRequestNumber();
 					
                         
-                        //java.sql.Date sqlDate = new java.sql.Date(e.getRequestDate().getYear(),e.getRequestDate().getMonthValue(),e.getRequestDate().getDayOfYear());
+                        
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE RentalRequest "
-						+ "SET requestDate = "+e.getRequestDate()+"" 
-                                                +", rentalPeriodStart = "+ java.sql.Date.valueOf(e.getRentalPeriodStart())+""
-                                                +", rentalPeriodEnd = "+java.sql.Date.valueOf(e.getRentalPeriodStart())+""
+						+ "SET requestDate = '"+e.getRequestDate().toString()+"'" 
+                                                +", rentalPeriodStart = '"+ e.getRentalPeriodStart().toString()+"'"
+                                                +", rentalPeriodEnd = '"+e.getRentalPeriodStart().toString()+"'"
                                                 +", rentalStatus = '"+e.getCurrentStatus()+"'"
                                                 +", reasonFOrCancellationOrRefusal = '"+e.getReasonForCancelationOrRefusal()+"'"
-                                                +", employeeID = '"+e.getEmployeeID()+"'"
-                                                +", constructionSite = "+e.getConstructionSite()
+                                                +", employeeID = "+e.getEmployeeID()+""
+                                                +", constructionSite = '"+e.getConstructionSite()+"'"
                                                 +", equipmentType = '"+e.getEquipmentType()+"'"
-                                               +", selectedEquipment = '"+e.getSelectedEquipment()+"'"
+                                                +", selectedEquipment = '"+e.getSelectedEquipment()+"'"
                                                 +", selectedSupplier = '"+e.getSelectedSupplier()+"'"
                                                 +", dailyRentalPrice = "+e.getDailyRentalPrice()
-                                                
-                                               
                                                 +" WHERE requestNumber = "+ e.getRequestNumber();
 				stmt.executeUpdate(sql);
                                  
@@ -202,9 +201,9 @@ public class RentalRequest {
 				// INSERT
 				sql = "INSERT into RentalRequest "
 						+ "(requestDate, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonFOrCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID) "
-						+ "VALUES (" +java.sql.Date.valueOf(e.getRequestDate())
-                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodStart())
-                                                +", "+java.sql.Date.valueOf(e.getRentalPeriodEnd())
+						+ "VALUES ('" +e.getRequestDate().toString()+"'"
+                                                +", '"+e.getRentalPeriodStart().toString()+"'"
+                                                +", '" +e.getRentalPeriodEnd().toString()+"'"
                                                 +", '"+e.getCurrentStatus()+"'"
                                                 +", '"+e.getReasonForCancelationOrRefusal()+"'"
                                                 +", '"+e.getConstructionSite()+"'"
@@ -234,30 +233,38 @@ public class RentalRequest {
                 con= DBConnector.getConnection();
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT requestNumber, rentalPeriodStart, rentalPeriodEnd, requestor, constructionSite, equipmentType, selectedEquipment "
+                String sql = "SELECT requestNumber, requestDate, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonForCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID "
 					+ "FROM RentalRequest "
 					+ "WHERE requestNumber = " + reqnr;
                 ResultSet srs = stmt.executeQuery(sql);
      
                 
                 int requestNumber;
-                LocalDate rentalPeriodStart;
+                LocalDate rentalPeriodStart, requestDate;
                 LocalDate rentalPeriodEnd;
                 int employeeID;
                 String constructionSite;
+                String rentalStatus, reasonForCancellationOrRefusal;
                 //String equipmentType;
-                String equipmentType;
+                String equipmentType, selectedSupplier, selectedEquipment;
+                double dailyRentalPrice;
                 
             
                 if (srs.next()){
                     //requestNumber = srs.getInt("requestNumber");
+                    requestDate=srs.getDate("requestDate").toLocalDate();
                     
-                    java.sql.Date rentalStart = srs.getDate("rentalPeriodStart");
-                    rentalPeriodStart= rentalStart.toLocalDate();
+                    rentalPeriodStart= srs.getDate("rentalPeriodStart").toLocalDate();
                     rentalPeriodEnd = srs.getDate("rentalPeriodEnd").toLocalDate();
-                    employeeID = srs.getInt("employeeID");
+                    rentalStatus=srs.getString("rentalStatus");
+                    reasonForCancellationOrRefusal=srs.getString("reasonForCancellationOrRefusal");
+                             
                     constructionSite = srs.getString("constructionSite");
-                    equipmentType= srs.getString("equipmentTypes");
+                    equipmentType= srs.getString("equipmentType");
+                    selectedEquipment=srs.getString("selectedEquipment");
+                    selectedSupplier=srs.getString("selectedSupplier");
+                    dailyRentalPrice=srs.getDouble("dailyRentalPrice");
+                    employeeID = srs.getInt("employeeID");
                     
             
                 } else {

@@ -366,5 +366,34 @@ public class Getters {
             throw new DBException(ex);
         }
     }
-
+    
+    
+        public static ArrayList<RentalRequest> getRentalRequests() throws DBException {
+        Connection con= null;
+        try {
+            con= DBConnector.getConnection();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String sql= "SELECT requestNumber "
+                       +"FROM RentalRequest";
+            ResultSet srs= stmt.executeQuery(sql);
+            
+            ArrayList<RentalRequest> rentalRequests = new ArrayList<>();
+            while(srs.next())
+                rentalRequests.add(new RentalRequest(srs.getInt("requestNumber")));
+            
+            DBConnector.closeConnection(con);
+            return rentalRequests;
+        }
+        catch (DBException dbe){
+            dbe.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw dbe;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw new DBException(ex);
+        }
+    }
 }

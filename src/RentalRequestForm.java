@@ -26,11 +26,34 @@ public class RentalRequestForm extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     
-    ArrayList<ConstructionSite> sites;
-    ArrayList<Equipment> types;
-    static int tellerReRe =1; // handiger dan tabelnummer op te vragen want handiger bij extra constructor rentalrequest
+    private ArrayList<ConstructionSite> sites;
+    private ArrayList<Equipment> types;
+    private static int tellerReRe ; // handiger dan tabelnummer op te vragen want handiger bij extra constructor rentalrequest
 
+      public RentalRequestForm() throws DBException{
+        initComponents();
+        
+        types = Getters.getEquipments();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(Equipment type : types){
+            model.addElement(type.getType());
+        }
+        
+        EquipmentList.setModel(model);
+        
+        sites = Getters.getConstructionSites();
+       
+        for(ConstructionSite site : sites){
+            ConstructionSiteList.add(site.getAdress());
+        }
+    }
+    
+    
     public static int getTellerReRe() {
+        
+        
         return tellerReRe;
     }
 
@@ -68,27 +91,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         /* Create and display the form */
     }
-    public RentalRequestForm() throws DBException{
-        initComponents();
-        
-        types = Getters.getEquipments();
-        
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        for(Equipment type : types){
-            model.addElement(type.getType());
-        }
-        
-        EquipmentList.setModel(model);
-        
-        sites = Getters.getConstructionSites();
-       
-        for(ConstructionSite site : sites){
-            ConstructionSiteList.add(site.getAdress());
-        }
-    }
-    
-    
+  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,6 +124,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEmployeeID.setText("EmployeeID:");
 
+        employeeID.setText("5");
         employeeID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 employeeIDActionPerformed(evt);
@@ -254,10 +258,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
             String selectedEquipmentString =  String.join(",",selectedEquipment);
             String selectedCS = ConstructionSiteList.getSelectedItem();
             RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
-            req.setRequestNumber(tellerReRe);
-            System.out.println("op deze datum is de request met nummer "+ req.getRequestNumber() + " aangemaakt: "+java.sql.Date.valueOf(req.getRequestDate()));
+            System.out.println("op deze datum is de request met nummer "+ req.getRequestNumber() + " aangemaakt: "+req.getRequestDate().toString());//geeft de foute nummer terug
             JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS + ". \n"
-            + "On this date you made a request (number "+ tellerReRe+" ) : "+java.sql.Date.valueOf(req.getRequestDate()));
+            + "On this date you made a request (number "+ req.getRequestNumber()+" ) : "+(req.getRequestDate().toString()));
            RentalRequest.saveRR(req);
             
             
@@ -322,40 +325,13 @@ public class RentalRequestForm extends javax.swing.JFrame {
  public LocalDate getStartRentalRequest() throws ParseException
     {
      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    // LocalDate localDate = LocalDate.parse(startRentalPeriod.toString().trim(), formatter);
-        //System.out.println(startRentalPeriod.getText());
    LocalDate date = LocalDate.parse(startRentalPeriod.getText(), formatter);
-   
-       /* SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-        
-       Date date=null;
-        try {
-
-             date = formatter.parse(startRentalPeriod.toString().trim());
-            
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
-
     return date;
     }
  public LocalDate getEndRentalRequest() throws ParseException
     {
      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-     //LocalDate localDate = LocalDate.parse(endRentalPeriod.toString().trim(), formatter);
-       // System.out.println(startRentalPeriod.getText());
     LocalDate date = LocalDate.parse(endRentalPeriod.getText(), formatter);
-     //return localDate;
-        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-        Date date=null;
-        try {
-            date = formatter.parse(endRentalPeriod.toString().trim());
-            
-        } 
-        catch (ParseException e) {
-            e.printStackTrace();
-        }*/
 
     return date;
     }
