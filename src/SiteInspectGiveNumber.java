@@ -1,6 +1,8 @@
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -14,12 +16,22 @@ import javax.swing.JOptionPane;
  * @author lmoentje
  */
 public class SiteInspectGiveNumber extends javax.swing.JFrame {
-
+     private ArrayList<RentalRequest> requests;
     /**
      * Creates new form SiteInspectGiveNumber
      */
-    public SiteInspectGiveNumber() {
+    public SiteInspectGiveNumber() throws DBException {
         initComponents();
+        
+        requests = Getters.getRentalRequests();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(RentalRequest request : requests){
+            model.addElement(Integer.toString(request.getRequestNumber()));
+        }
+        
+        RequestList.setModel(model);
     }
 
     /**
@@ -32,20 +44,15 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        numberRR = new javax.swing.JTextField();
         Submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        RequestList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Please give number rental request");
-
-        numberRR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberRRActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Please choose your rental request ");
 
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
@@ -61,21 +68,28 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             }
         });
 
+        RequestList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(RequestList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(numberRR, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cancel)
-                            .addGap(168, 168, 168)
-                            .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(105, 105, 105)
+                        .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,24 +97,20 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(numberRR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Submit)
-                    .addComponent(cancel))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(cancel)
+                    .addComponent(Submit))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numberRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberRRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numberRRActionPerformed
-
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         //2 opties: approved of niet?
-        String number= numberRR.getText();
+        /*String number= numberRR.getText();
             int selectedRequestNumber = Integer.valueOf(number);
             RentalRequest req;
         try {
@@ -118,7 +128,8 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             
         } catch (DBException ex) {
             Logger.getLogger(SiteInspectGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        
             
     }//GEN-LAST:event_SubmitActionPerformed
 
@@ -157,15 +168,20 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SiteInspectGiveNumber().setVisible(true);
+                try {
+                    new SiteInspectGiveNumber().setVisible(true);
+                } catch (DBException ex) {
+                    Logger.getLogger(SiteInspectGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> RequestList;
     private javax.swing.JButton Submit;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField numberRR;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -181,80 +181,88 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelRentalReqActionPerformed
 
     private void inspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectActionPerformed
-/*        
-        
-        JFrame f = new JFrame("Enter rental request number");
-    f.setVisible(true);
-    f.setSize(500, 100);
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setLayout(new FlowLayout());
-                JButton cancel = new JButton("Cancel");
-                JButton submit = new JButton("Submit");
-                JTextField numberRR = new JTextField("            ");
-                JLabel giveNr = new JLabel("Please give the number of the rental request.");
-                
-    f.add(cancel);
-    f.add(submit);
-    f.add(numberRR);
-    f.add(giveNr);
-    cancel.setBounds(10,10,20,20);
-    submit.setBounds(10,50,20,20);
-    giveNr.setBounds(50,500, 100,30);
-    numberRR.setBounds(50,150, 100,30);  
-    
-    cancel.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-                StartschermSiteEngineer.getStartSiteEngineer().setVisible(false);
-                f.setVisible(false);
-                Startscherm.getB().setVisible(true);
-           }
-       });
-       
-    submit.addActionListener(new ActionListener() {
+
+        try {
+            SiteInspectGiveNumber s = new SiteInspectGiveNumber();
+            s.setVisible(true);
+            /*
+            
+            JFrame f = new JFrame("Enter rental request number");
+            f.setVisible(true);
+            f.setSize(500, 100);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            f.setLayout(new FlowLayout());
+            JButton cancel = new JButton("Cancel");
+            JButton submit = new JButton("Submit");
+            JTextField numberRR = new JTextField("            ");
+            JLabel giveNr = new JLabel("Please give the number of the rental request.");
+            
+            f.add(cancel);
+            f.add(submit);
+            f.add(numberRR);
+            f.add(giveNr);
+            cancel.setBounds(10,10,20,20);
+            submit.setBounds(10,50,20,20);
+            giveNr.setBounds(50,500, 100,30);
+            numberRR.setBounds(50,150, 100,30);
+            
+            cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            StartschermSiteEngineer.getStartSiteEngineer().setVisible(false);
+            f.setVisible(false);
+            Startscherm.getB().setVisible(true);
+            }
+            });
+            
+            submit.addActionListener(new ActionListener() {
             @Override
             
             public void actionPerformed(ActionEvent e) {
-                
-                
-                String numberReRe = numberRR.toString();
-                int numberRR = Integer.parseInt(numberReRe); // hier nog problemen met wat er gebeurt als we een nummer ingeven
-                RentalRequest a;
-                try {
-                    a = RentalRequest.getRentalRequest(numberRR);
-                    if(a.getCurrentStatus().equals("approved")){
-                    f.setVisible(false);
+            
+            
+            String numberReRe = numberRR.toString();
+            int numberRR = Integer.parseInt(numberReRe); // hier nog problemen met wat er gebeurt als we een nummer ingeven
+            RentalRequest a;
+            try {
+            a = RentalRequest.getRentalRequest(numberRR);
+            if(a.getCurrentStatus().equals("approved")){
+            f.setVisible(false);
+            
+            //IS MATERIAL OK?
+            //NO: RENT STAT "REFUSED"
+            //a.setCurrentStatus(RentalStatus.refused);
+            //-> optie geven om nieuwe request aan te maken?
+            
+            //YES: RENT STAT "ACCEPTED"
+            //a.setCurrentStatus(RentalStatus.accepted);
+            
+            Startscherm.getB().setVisible(true);
+            // -> VERVOLGENS TERUG NAAR STARTSCHERM
+            }
+            else{
+            f.setVisible(false);
+            JFrame g = new JFrame("No approval");
+            g.setVisible(true);
+            g.setSize(500, 500);
+            g.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            g.setLayout(new FlowLayout());
+            JLabel text = new JLabel("Sorry, the rental request hasn't been approved.");
+            JButton ok = new JButton("OK");
+            
+            }
+            } catch (DBException ex) {
+            Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            }
+            });
+        */  } catch (DBException ex) {
+            Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-                    //IS MATERIAL OK?
-                    //NO: RENT STAT "REFUSED"
-                    //a.setCurrentStatus(RentalStatus.refused);
-                    //-> optie geven om nieuwe request aan te maken?
-                    
-                    //YES: RENT STAT "ACCEPTED"
-                    //a.setCurrentStatus(RentalStatus.accepted);
-                    
-                    Startscherm.getB().setVisible(true);
-                        // -> VERVOLGENS TERUG NAAR STARTSCHERM
-                }
-                else{
-                    f.setVisible(false);
-                    JFrame g = new JFrame("No approval");
-                    g.setVisible(true);
-                    g.setSize(500, 500);
-                    g.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    g.setLayout(new FlowLayout());
-                    JLabel text = new JLabel("Sorry, the rental request hasn't been approved.");
-                    JButton ok = new JButton("OK");
-                    
-                }
-                } catch (DBException ex) {
-                    Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                
-                }
-        });
-    */
+
     }//GEN-LAST:event_inspectActionPerformed
 
     private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed

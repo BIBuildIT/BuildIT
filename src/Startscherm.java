@@ -36,7 +36,7 @@ public class Startscherm extends javax.swing.JFrame {
         showRentalStatus = new javax.swing.JButton();
         siteEngineer = new javax.swing.JButton();
         clerk = new javax.swing.JButton();
-        workEngineer = new javax.swing.JButton();
+        worksEngineer = new javax.swing.JButton();
         showAll = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,11 +70,11 @@ public class Startscherm extends javax.swing.JFrame {
             }
         });
 
-        workEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        workEngineer.setText("I'm a work engineer");
-        workEngineer.addActionListener(new java.awt.event.ActionListener() {
+        worksEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        worksEngineer.setText("I'm a works engineer");
+        worksEngineer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workEngineerActionPerformed(evt);
+                worksEngineerActionPerformed(evt);
             }
         });
 
@@ -97,7 +97,7 @@ public class Startscherm extends javax.swing.JFrame {
                         .addContainerGap(433, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(workEngineer)
+                            .addComponent(worksEngineer)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(siteEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                                 .addComponent(clerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -124,7 +124,7 @@ public class Startscherm extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(showRentalStatus)
                         .addGap(15, 15, 15)
-                        .addComponent(workEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(worksEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
 
@@ -158,7 +158,7 @@ public class Startscherm extends javax.swing.JFrame {
                */
     }//GEN-LAST:event_clerkActionPerformed
 
-    private void workEngineerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workEngineerActionPerformed
+    private void worksEngineerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_worksEngineerActionPerformed
         this.setVisible(false);
         StartschermWorkEngineer WO;
                //try {
@@ -169,7 +169,7 @@ public class Startscherm extends javax.swing.JFrame {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                }
                */
-    }//GEN-LAST:event_workEngineerActionPerformed
+    }//GEN-LAST:event_worksEngineerActionPerformed
 
     private void showRentalStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRentalStatusActionPerformed
         
@@ -220,6 +220,6 @@ public class Startscherm extends javax.swing.JFrame {
     private javax.swing.JButton showRentalStatus;
     private javax.swing.JButton siteEngineer;
     private javax.swing.JLabel tekstbuildit;
-    private javax.swing.JButton workEngineer;
+    private javax.swing.JButton worksEngineer;
     // End of variables declaration//GEN-END:variables
 }
