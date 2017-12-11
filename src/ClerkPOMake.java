@@ -12,12 +12,12 @@ import javax.swing.DefaultListModel;
  *
  * @author lmoentje
  */
-public class MakePurchaseOrder extends javax.swing.JFrame {
+public class ClerkPOMake extends javax.swing.JFrame {
 
     /**
      * Creates new form MakePurchaseOrder
      */
-    public MakePurchaseOrder() {
+    public ClerkPOMake() {
         initComponents();
     }
     ArrayList<ConstructionSite> sites;
@@ -313,20 +313,21 @@ public class MakePurchaseOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOMake.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOMake.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOMake.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MakePurchaseOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOMake.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MakePurchaseOrder().setVisible(true);
+                new ClerkPOMake().setVisible(true);
             }
         });
     }

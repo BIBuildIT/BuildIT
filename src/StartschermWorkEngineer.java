@@ -19,9 +19,10 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
 
     public static StartschermWorkEngineer startWorkEngineer = new StartschermWorkEngineer();
 
-    public static void setStartWorkEngineer(StartschermWorkEngineer startWorkEngineer) {
-        StartschermWorkEngineer.startWorkEngineer = startWorkEngineer;
+    public static StartschermWorkEngineer getStartWorkEngineer() {
+        return startWorkEngineer;
     }
+    
     
     
     

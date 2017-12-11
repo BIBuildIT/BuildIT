@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Lynn
  */
-public class GiveNumberToCancelSite extends javax.swing.JFrame {
+public class SiteCancelGiveNumber extends javax.swing.JFrame {
     private static ArrayList<RentalRequest> cancelRequestAndRefuse = new ArrayList<>();
 // in sql tabel zetten moet pas bij clerk daarom arraylist meegeven
     public static ArrayList<RentalRequest> getCancelRequestAndRefuse() {
@@ -21,12 +21,12 @@ public class GiveNumberToCancelSite extends javax.swing.JFrame {
     }
 
     public static void setCancelRequestAndRefuse(ArrayList<RentalRequest> cancelRequestAndRefuse) {
-        GiveNumberToCancelSite.cancelRequestAndRefuse = cancelRequestAndRefuse;
+        SiteCancelGiveNumber.cancelRequestAndRefuse = cancelRequestAndRefuse;
     }
     
     
  
-    public GiveNumberToCancelSite() {
+    public SiteCancelGiveNumber() {
         initComponents();
     }
 
@@ -75,27 +75,28 @@ public class GiveNumberToCancelSite extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cancel)
-                            .addComponent(jLabel2))
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EnterNumber)
-                            .addComponent(submit, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))))
+                        .addComponent(cancel)
+                        .addGap(120, 120, 120)
+                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EnterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(EnterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit)
                     .addComponent(cancel))
@@ -116,7 +117,7 @@ public class GiveNumberToCancelSite extends javax.swing.JFrame {
             this.dispose();
             
         } catch (DBException ex) {
-            Logger.getLogger(GiveNumberToCancelSite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_EnterNumberActionPerformed
 
@@ -127,7 +128,7 @@ public class GiveNumberToCancelSite extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         this.setVisible(false);
-        new SiteEngineerCancel().setVisible(true);
+        new SiteCancelOK().setVisible(true);
     }//GEN-LAST:event_submitActionPerformed
 
     /**
@@ -147,20 +148,21 @@ public class GiveNumberToCancelSite extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToCancelSite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToCancelSite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToCancelSite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiveNumberToCancelSite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GiveNumberToCancelSite().setVisible(true);
+                new SiteCancelGiveNumber().setVisible(true);
             }
         });
     }

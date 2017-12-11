@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -141,9 +145,9 @@ public class StartschermClerk extends javax.swing.JFrame {
         //EERST SCHERM ZETTEN MET "GIVE NUMBER RENTAL REQUEST:" 
         //DAARDOOR KAN HET NUMMER VAN DE PO VANZELF GEMAAKT WORDEN ZODAT HET HETZELFDE IS ALS DE RR
         //NA PURCHASE ORDER RENTAL STATUS "ORDERED" (de uitrusting en leverancier zijn geselecteerd)
-        MakePurchaseOrder PO;
+        ClerkPOMake PO;
                //try {
-                   PO = new MakePurchaseOrder(); 
+                   PO = new ClerkPOMake(); 
                    PO.setVisible(true);
                //} 
                /*catch (DBException ex) {
@@ -160,9 +164,9 @@ public class StartschermClerk extends javax.swing.JFrame {
         //MET OPTIES NO(TERUG NAAR RENTAL REQUEST) EN YES(RENTAL STATUS = "READY FOR APPROVAL")
         
         this.setVisible(false);
-        GiveNumberToAdjustReRe adj;
+        ClerkAdjustGiveNumber adj;
                //try {
-                   adj = new GiveNumberToAdjustReRe(); 
+                   adj = new ClerkAdjustGiveNumber(); 
                    adj.setVisible(true);
                //} 
                /*catch (DBException ex) {
@@ -172,8 +176,15 @@ public class StartschermClerk extends javax.swing.JFrame {
     }//GEN-LAST:event_adjustReReActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        
         this.setVisible(false);
-        CancelRequest.getCancelReq().setVisible(true);
+        
+        try {
+            ClerkCancelRR.getCancelReq().setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(StartschermClerk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_cancelActionPerformed
 
     private void showInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInvoiceActionPerformed

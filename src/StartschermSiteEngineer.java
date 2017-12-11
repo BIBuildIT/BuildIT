@@ -169,9 +169,9 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
 
     private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
         this.setVisible(false);
-        CancelRequest can = null;
+        ClerkCancelRR can = null;
         try {
-            can = new CancelRequest();
+            can = new ClerkCancelRR();
         } catch (DBException ex) {
             Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -181,7 +181,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelRentalReqActionPerformed
 
     private void inspectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectActionPerformed
-        
+/*        
         
         JFrame f = new JFrame("Enter rental request number");
     f.setVisible(true);
@@ -254,11 +254,11 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                 
                 }
         });
-    
+    */
     }//GEN-LAST:event_inspectActionPerformed
 
     private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed
-        
+/*        
         JFrame f = new JFrame("Enter rental request number");
     f.setVisible(true);
     f.setSize(500, 100);
@@ -307,6 +307,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
                 
                 }
         });
+        */
     }//GEN-LAST:event_extensionActionPerformed
 
     /**

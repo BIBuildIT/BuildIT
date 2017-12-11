@@ -15,17 +15,26 @@ import javax.swing.SpinnerModel;
  *
  * @author lmoentje
  */
-public class CancelRequest extends javax.swing.JFrame {
+public class ClerkCancelRR extends javax.swing.JFrame {
 
     /**
-     * Creates new form CancelRequest
+     * Creates new form ClerkCancelRR
      */
     private ArrayList<RentalRequest> requests;
-    public CancelRequest() throws DBException{
+    
+    
+    
+    
+    //MOET EEN CANCELREQ AANMAKEN?
+            
+    
+    
+    
+    public ClerkCancelRR() throws DBException{
         initComponents();
         
-        requests = Getters.getRentalRequests();
-        
+        //requests = Getters.getRentalRequests();
+        requests = SiteCancelGiveNumber.getCancelRequestAndRefuse();
         DefaultListModel<String> model = new DefaultListModel<>();
         
         for(RentalRequest request : requests){
@@ -38,11 +47,12 @@ public class CancelRequest extends javax.swing.JFrame {
         
         
     }
-    //public static CancelRequest cancelReq = new CancelRequest();
+    
 
-    /*public static CancelRequest getCancelReq() {
+    public static ClerkCancelRR getCancelReq() throws DBException {
+        ClerkCancelRR cancelReq = new ClerkCancelRR();
         return cancelReq;
-    }*/
+    }
     
     
 
@@ -65,6 +75,7 @@ public class CancelRequest extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        Return = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,12 +94,17 @@ public class CancelRequest extends javax.swing.JFrame {
 
         jLabel3.setText("Reason for Cancellation:");
 
-        ReasonForCancellationTextField.setText("Pieter deed dom");
-
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitActionPerformed(evt);
+            }
+        });
+
+        Return.setText("Return");
+        Return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnActionPerformed(evt);
             }
         });
 
@@ -99,24 +115,22 @@ public class CancelRequest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(ReasonForCancellationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Submit)
-                        .addGap(18, 18, 18)
+                        .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(148, 148, 148))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(60, 60, 60)))
-                    .addComponent(jLabel3))
-                .addContainerGap(292, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Return)
+                        .addGap(205, 205, 205)
+                        .addComponent(Submit)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,9 +152,11 @@ public class CancelRequest extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ReasonForCancellationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(Submit)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Submit)
+                    .addComponent(Return))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -159,9 +175,14 @@ public class CancelRequest extends javax.swing.JFrame {
             System.out.println("de reden voor annulatie is: "+req.getReasonForCancelationOrRefusal());
             RentalRequest.saveRR(req);
                     } catch (DBException ex) {
-            Logger.getLogger(CancelRequest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SubmitActionPerformed
+
+    private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
+        this.setVisible(false);
+        StartschermClerk.getStartClerk().setVisible(true);
+    }//GEN-LAST:event_ReturnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,23 +201,24 @@ public class CancelRequest extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelRequest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkCancelRR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelRequest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkCancelRR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelRequest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkCancelRR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelRequest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkCancelRR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new CancelRequest().setVisible(true);
+                    new ClerkCancelRR().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(CancelRequest.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -204,6 +226,7 @@ public class CancelRequest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ReasonForCancellationTextField;
+    private javax.swing.JButton Return;
     private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
