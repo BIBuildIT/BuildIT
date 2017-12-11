@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.Logger; 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -33,7 +33,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
       public RentalRequestForm() throws DBException{
         initComponents();
         
-        types = Getters.getEquipments();
+        types = Equipment.getEquipments(); 
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
@@ -43,7 +43,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
         
         EquipmentList.setModel(model);
         
-        sites = Getters.getConstructionSites();
+        sites = ConstructionSite.getConstructionSites();
        
         for(ConstructionSite site : sites){
             ConstructionSiteList.add(site.getAdress());

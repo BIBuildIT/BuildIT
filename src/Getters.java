@@ -169,7 +169,7 @@ public class Getters {
 			throw new DBException(ex);
 		}
 	}
-        public static Equipment getEquipment(int coEq) throws DBException {
+        /*public static Equipment getEquipment(int coEq) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
@@ -216,7 +216,7 @@ public class Getters {
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
 		}
-	}
+	}*/
         
         
         public static Employee getEmployee(int eID) throws DBException {
@@ -308,7 +308,7 @@ public class Getters {
                 }
         }*/
     
-        public static ArrayList<Equipment> getEquipments() throws DBException {
+        /*public static ArrayList<Equipment> getEquipments() throws DBException {
         Connection con= null;
         try {
             con= DBConnector.getConnection();
@@ -320,7 +320,7 @@ public class Getters {
             
             ArrayList<Equipment> equipments= new ArrayList<>();
             while(srs.next())
-                equipments.add(getEquipment(srs.getInt("code")));
+                equipments.add(Equipment.getEquipment(srs.getInt("code")));
             
             DBConnector.closeConnection(con);
             return equipments;
@@ -335,10 +335,10 @@ public class Getters {
             DBConnector.closeConnection(con);
             throw new DBException(ex);
         }
-    }
+    }*/
     
     
-    public static ArrayList<ConstructionSite> getConstructionSites() throws DBException {
+   /* public static ArrayList<ConstructionSite> getConstructionSites() throws DBException {
         Connection con= null;
         try {
             con= DBConnector.getConnection();
@@ -365,7 +365,7 @@ public class Getters {
             DBConnector.closeConnection(con);
             throw new DBException(ex);
         }
-    }
+    }*/
     
     
         public static ArrayList<RentalRequest> getRentalRequests() throws DBException {

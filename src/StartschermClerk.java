@@ -146,9 +146,14 @@ public class StartschermClerk extends javax.swing.JFrame {
         //DAARDOOR KAN HET NUMMER VAN DE PO VANZELF GEMAAKT WORDEN ZODAT HET HETZELFDE IS ALS DE RR
         //NA PURCHASE ORDER RENTAL STATUS "ORDERED" (de uitrusting en leverancier zijn geselecteerd)
         ClerkPOMake PO;
-               //try {
-                   PO = new ClerkPOMake(); 
-                   PO.setVisible(true);
+        try {
+            //try {
+            PO = new ClerkPOMake();
+            PO.setVisible(true); 
+        } catch (DBException ex) {
+            Logger.getLogger(StartschermClerk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                   
                //} 
                /*catch (DBException ex) {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

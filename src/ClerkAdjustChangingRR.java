@@ -9,7 +9,7 @@
  * @author Jhooster
  */
 public class ClerkAdjustChangingRR extends javax.swing.JFrame {
-
+//wat doet deze gui?
     /**
      * Creates new form ChangingRentalRequestForm
      */
