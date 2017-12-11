@@ -108,12 +108,12 @@ public class SiteEngineerRefuse extends javax.swing.JFrame {
         int nrReRe = Integer.parseInt(nrRR);
         try {
             //OPROEPEN RR UIT TABEL MYSQL
-            SiteCancelGiveNumber.getCancelRequestAndRefuse().add(RentalRequest.getRentalRequest(nrReRe));
+            SiteCancelChoose.getCancelRequestAndRefuse().add(RentalRequest.getRentalRequest(nrReRe));
             // toevoegen zodat clerk een lijst krijgt met de requests die moeten gecancelled worden
             this.dispose();
             
         } catch (DBException ex) {
-            Logger.getLogger(SiteCancelGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SiteCancelChoose.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_numberReReActionPerformed
 

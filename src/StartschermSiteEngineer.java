@@ -169,9 +169,9 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
 
     private void cancelRentalReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRentalReqActionPerformed
         this.setVisible(false);
-        ClerkCancelRR can = null;
+        SiteCancelChoose can = null;
         try {
-            can = new ClerkCancelRR();
+            can = new SiteCancelChoose();
         } catch (DBException ex) {
             Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
         }

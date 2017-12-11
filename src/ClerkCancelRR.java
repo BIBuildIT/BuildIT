@@ -34,7 +34,10 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         initComponents();
         
         //requests = Getters.getRentalRequests();
-        requests = SiteCancelGiveNumber.getCancelRequestAndRefuse();
+        requests = SiteCancelChoose.getCancelRequestAndRefuse();
+        for(RentalRequest r: requests){
+            System.out.println(r.getReasonForCancelationOrRefusal());
+        }
         DefaultListModel<String> model = new DefaultListModel<>();
         
         for(RentalRequest request : requests){
@@ -69,13 +72,12 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         requestList = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        ReasonForCancellationTextField = new javax.swing.JTextField();
         Submit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Return = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,8 +93,6 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(requestList);
-
-        jLabel3.setText("Reason for Cancellation:");
 
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
@@ -115,21 +115,20 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(ReasonForCancellationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addComponent(jLabel7)
+                        .addGap(230, 230, 230)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Return)
                         .addGap(205, 205, 205)
-                        .addComponent(Submit)))
+                        .addComponent(Submit))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,18 +140,16 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReasonForCancellationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel7))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel6)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Submit)
                     .addComponent(Return))
@@ -168,11 +165,17 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             int selectedRequestNumber = Integer.valueOf(selectedRequest);
             RentalRequest req= RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
-            System.out.println("je selecteerde deze site " +req.getConstructionSite()+"request number: "+req.getRequestNumber());
+            for(RentalRequest r: requests){
+                if(r.getRequestNumber()==selectedRequestNumber){
+                    req.setReasonForCancelationOrRefusal(r.getReasonForCancelationOrRefusal());
+                }
+            
+        }
+            //req.setReasonForCancelationOrRefusal(req.getReasonForCancelationOrRefusal());
+            System.out.println("request number: "+req.getRequestNumber()+  req.getReasonForCancelationOrRefusal());
             req.setCurrentStatus(RentalStatus.cancelled);
-            String reason=ReasonForCancellationTextField.getText();
-            req.setReasonForCancelationOrRefusal(reason);
-            System.out.println("de reden voor annulatie is: "+req.getReasonForCancelationOrRefusal());
+            //String cancel = SiteCancelChoose.
+            //req.setReasonForCancelationOrRefusal();
             RentalRequest.saveRR(req);
                     } catch (DBException ex) {
             Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
@@ -225,15 +228,14 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ReasonForCancellationTextField;
     private javax.swing.JButton Return;
     private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> requestList;
     // End of variables declaration//GEN-END:variables
