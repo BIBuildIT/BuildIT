@@ -50,6 +50,11 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         });
 
         submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +96,12 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         this.setVisible(false);
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        this.setVisible(false);
+        SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();
+        a.setVisible(true);
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments

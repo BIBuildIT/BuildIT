@@ -17,21 +17,56 @@ import javax.swing.JOptionPane;
  */
 public class SiteInspectGiveNumber extends javax.swing.JFrame {
      private ArrayList<RentalRequest> requests;
+     private ArrayList<RentalRequest> requests2;
+     
+     private static RentalRequest rental;
+
+    public static RentalRequest getRental() {
+        return rental;
+    }
+
+    public static void setRental(RentalRequest rental) {
+        SiteInspectGiveNumber.rental = rental;
+    }
+     
+     
     /**
      * Creates new form SiteInspectGiveNumber
      */
     public SiteInspectGiveNumber() throws DBException {
         initComponents();
+        System.out.println("1");
         
         requests = Getters.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
+        System.out.println("2");
+        
         for(RentalRequest request : requests){
+            System.out.println("3");
+            System.out.println(request.getRequestNumber());
+            RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            req.setRequestNumber(request.getRequestNumber());
+            System.out.println(req.getRequestNumber());
+            //requests2.add(req);
+            System.out.println(req.getCurrentStatus());
+            if(req.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
+                model.addElement(Integer.toString(req.getRequestNumber()));
+        //    System.out.println(request.getEmployeeID());
+            /*if(request.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
+                System.out.println("4");
+                requests2.add(request.getRequestNumber());
+                System.out.println("5");
+             */   
+            //model.addElement(Integer.toString(request.getRequestNumber()));
+        }
+        /*for(RentalRequest request : requests){
             model.addElement(Integer.toString(request.getRequestNumber()));
         }
-        
+        */
         RequestList.setModel(model);
+        
     }
 
     /**
@@ -109,14 +144,19 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        //2 opties: approved of niet?
-        /*String number= numberRR.getText();
+        this.setVisible(false);
+        String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
             RentalRequest req;
         try {
             req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
-            if(req.getCurrentStatus().equals("approved")){
+            System.out.println(req.getRequestNumber());
+            System.out.println(req.getCurrentStatus().toString());
+            rental = req;
+            SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
+            ok.setVisible(true);
+            /*if(req.getCurrentStatus().equals("approved")){
                 this.setVisible(false);
                 //show SiteInspectMaterialOK
             }
@@ -124,13 +164,15 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sorry, the rental request hasn't been approved");
            
             }
-            
+            */
             
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
+            System.out.println("Error in submit SiteInspectGiveNumber.");
+            Startscherm.getB().setVisible(true);
+        }
         
-            
+          
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed

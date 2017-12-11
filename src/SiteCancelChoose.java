@@ -49,6 +49,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
         requestList.setModel(model);
         
         
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -162,8 +163,10 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println("request number: "+req.getRequestNumber());
+            System.out.println(req.getCurrentStatus().toString());
             //req.setCurrentStatus(RentalStatus.cancelled);
             String reason =ReasonForCancellationTextField.getText();
+            System.out.println(req.getCurrentStatus().toString());
             req.setReasonForCancelationOrRefusal(reason);
             
             

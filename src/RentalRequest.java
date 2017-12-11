@@ -47,6 +47,7 @@ public class RentalRequest {
         this.employeeID = employeeID;
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
+        
 
 
         this.selectedEquipment = null;//vanaf rentalstatus processed

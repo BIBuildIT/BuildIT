@@ -260,6 +260,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
             });
         */  } catch (DBException ex) {
             Logger.getLogger(StartschermSiteEngineer.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error!");
         }
 
 

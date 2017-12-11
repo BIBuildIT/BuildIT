@@ -172,8 +172,10 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             
         }
             //req.setReasonForCancelationOrRefusal(req.getReasonForCancelationOrRefusal());
+            System.out.println(req.getCurrentStatus().toString());
             System.out.println("request number: "+req.getRequestNumber()+  req.getReasonForCancelationOrRefusal());
             req.setCurrentStatus(RentalStatus.cancelled);
+            System.out.println(req.getCurrentStatus().toString());
             //String cancel = SiteCancelChoose.
             //req.setReasonForCancelationOrRefusal();
             RentalRequest.saveRR(req);

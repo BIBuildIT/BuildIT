@@ -257,11 +257,13 @@ public class RentalRequestForm extends javax.swing.JFrame {
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
             String selectedEquipmentString =  String.join(",",selectedEquipment);
             String selectedCS = ConstructionSiteList.getSelectedItem();
+            
             RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
             System.out.println("op deze datum is de request met nummer "+ req.getRequestNumber() + " aangemaakt: "+req.getRequestDate().toString());//geeft de foute nummer terug
             JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS + ". \n"
             + "On this date you made a request (number "+ req.getRequestNumber()+" ) : "+(req.getRequestDate().toString()));
            RentalRequest.saveRR(req);
+           
             
             
         } 

@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,8 +33,6 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         materialNotOK = new javax.swing.JButton();
         materialOK = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,13 +47,11 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         });
 
         materialOK.setText("Yes");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        materialOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialOKActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,27 +59,25 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(materialNotOK, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                        .addComponent(materialOK, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(jLabel1)
+                .addContainerGap(121, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(materialNotOK, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(materialOK, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(materialNotOK)
                     .addComponent(materialOK))
-                .addContainerGap())
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -87,8 +85,31 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
 
     private void materialNotOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialNotOKActionPerformed
         this.setVisible(false);
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        try {
+            RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+        } catch (DBException ex) {
+            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //OPTIE GEVEN OM NIEUWE RENTAL REQUEST AAN TE MAKEN?
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_materialNotOKActionPerformed
+
+    private void materialOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialOKActionPerformed
+        this.setVisible(false);
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        try {
+            RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+        } catch (DBException ex) {
+            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Startscherm.getB().setVisible(true);
+    }//GEN-LAST:event_materialOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,8 +148,6 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton materialNotOK;
     private javax.swing.JButton materialOK;
     // End of variables declaration//GEN-END:variables
