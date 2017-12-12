@@ -140,7 +140,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
         
         
         this.setVisible(false);
-        new SiteCancelOK().setVisible(true);
+        new ClerkInvoiceShow().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 
     /**

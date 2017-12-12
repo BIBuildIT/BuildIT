@@ -43,7 +43,7 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
             System.out.println(req.getRequestNumber());
-            if(req.getCurrentStatus().toString().equals(RentalStatus.accepted.toString()))
+            //if(req.getCurrentStatus().toString().equals(RentalStatus.accepted.toString()))
                 model.addElement(Integer.toString(req.getRequestNumber()));
         
         }
@@ -147,7 +147,7 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             System.out.println(req.getRequestNumber());
             System.out.println(req.getCurrentStatus().toString());
             rentalExtend = req;
-            SiteExtendNewDate ok = new SiteExtendNewDate();
+            SiteExtendQuestion ok = new SiteExtendQuestion();
             ok.setVisible(true);
             
             
