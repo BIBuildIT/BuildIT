@@ -176,9 +176,14 @@ public class StartschermClerk extends javax.swing.JFrame {
         
         this.setVisible(false);
         ClerkAdjustGiveNumber adj;
-               //try {
-                   adj = new ClerkAdjustGiveNumber(); 
-                   adj.setVisible(true);
+        try {
+            //try {
+            adj = new ClerkAdjustGiveNumber();
+            adj.setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(StartschermClerk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                   
                //} 
                /*catch (DBException ex) {
                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

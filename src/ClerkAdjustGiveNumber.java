@@ -1,3 +1,9 @@
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +16,43 @@
  */
 public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
 
+    
+    private ArrayList<RentalRequest> requests;
+    public static RentalRequest rentalAdjust;
+
+    public static RentalRequest getRentalAdjust() {
+        return rentalAdjust;
+    }
+    
+    
     /**
      * Creates new form AdjustReRe
      */
-    public ClerkAdjustGiveNumber() {
+    public ClerkAdjustGiveNumber() throws DBException {
         initComponents();
+        
+        requests = RentalRequest.getRentalRequests();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        System.out.println("2");
+        
+        for(RentalRequest request : requests){
+            System.out.println("3");
+            
+            System.out.println(request.getRequestNumber());
+            //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            //req.setRequestNumber(request.getRequestNumber());
+            //System.out.println(req.getRequestNumber());
+            if(request.getCurrentStatus().equals(RentalStatus.requested))
+                model.addElement(Integer.toString(request.getRequestNumber()));
+        
+        }
+        if(model.isEmpty()){
+            model.addElement("No rental requests are requested.");
+            
+        }
+        RequestList.setModel(model);
     }
 
     /**
@@ -30,7 +68,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
         submitnumber = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        RequestList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +96,12 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        RequestList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(RequestList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,9 +151,30 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void submitnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitnumberActionPerformed
-        this.setVisible(false);
+        /*this.setVisible(false);
         ClerkAdjustChangingRR chan = new ClerkAdjustChangingRR();
         chan.setVisible(true);
+        */
+        
+        this.setVisible(false);
+        String number= RequestList.getSelectedValue();
+            int selectedRequestNumber = Integer.valueOf(number);
+            RentalRequest req;
+        try {
+            req = RentalRequest.getRentalRequest(selectedRequestNumber);
+            req.setRequestNumber(selectedRequestNumber);
+            System.out.println(req.getRequestNumber());
+            System.out.println(req.getCurrentStatus());
+            rentalAdjust = req;
+            ClerkAdjustChangingRR ok = new ClerkAdjustChangingRR();
+            ok.setVisible(true);
+            
+            
+        } catch (DBException ex) {
+            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
+            System.out.println("Error in submit SiteInspectGiveNumber.");
+            Startscherm.getB().setVisible(true);
+        }
         //SCHERM MET APPROVED BY SUPPLIER --> DAAR VAN PROCESSED NAAR READY FOR APPROVAL
         //hier terug naar eerste rental request gaan of nieuwe maken en daarin de gegevens die we al hadden
         //vanzelf zetten met extra opties om toe te voegen?
@@ -154,15 +213,19 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClerkAdjustGiveNumber().setVisible(true);
+                try {
+                    new ClerkAdjustGiveNumber().setVisible(true);
+                } catch (DBException ex) {
+                    Logger.getLogger(ClerkAdjustGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> RequestList;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton submitnumber;
     // End of variables declaration//GEN-END:variables

@@ -48,16 +48,16 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             System.out.println(request.getRequestNumber());
             System.out.println(request.getCurrentStatus());
             System.out.println(request.getConstructionSite());
-            RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
-            req.setRequestNumber(request.getRequestNumber());
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
-         //   if(request.getCurrentStatus().toString().equals(RentalStatus.ordered.toString()))
+            //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            //req.setRequestNumber(request.getRequestNumber());
+            //System.out.println(req.getRequestNumber());
+            //System.out.println(req.getCurrentStatus());
+          if(request.getCurrentStatus().equals(RentalStatus.ordered))
                model.addElement(Integer.toString(request.getRequestNumber()));
         
         }
         if(model.isEmpty()){
-            model.addElement("No rental requests are approved.");
+            model.addElement("No rental requests are ordered.");
         }
         
         RequestList.setModel(model);
@@ -149,7 +149,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             rental = req;
             SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
             ok.setVisible(true);

@@ -102,6 +102,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
 
     private void yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesActionPerformed
         this.setVisible(false);
+        SiteExtendGiveNumber.getRentalExtend().setRentalPeriodEnd(SiteExtendNewDate.getDatum());
         //AANPASSEN RENTAL REQUEST
         JOptionPane.showMessageDialog(null, "The rental request has been changed!");
         

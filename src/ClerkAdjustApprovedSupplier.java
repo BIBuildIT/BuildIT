@@ -1,3 +1,8 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,7 +33,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         No = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        YES = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,12 +42,17 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
 
         No.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         No.setText("No");
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Yes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        No.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                NoActionPerformed(evt);
+            }
+        });
+
+        YES.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        YES.setText("Yes");
+        YES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YESActionPerformed(evt);
             }
         });
 
@@ -59,7 +69,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(No, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(YES, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +80,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(No)
-                    .addComponent(jButton1))
+                    .addComponent(YES))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -78,9 +88,28 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // rental stat ready for approval
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void YESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YESActionPerformed
+        this.setVisible(false);
+        ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.readyForApproval);
+        try {
+            RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
+        } catch (DBException ex) {
+            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Startscherm.getB().setVisible(true);
+    }//GEN-LAST:event_YESActionPerformed
+
+    private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
+        this.setVisible(false);
+        ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.requested);
+        JOptionPane.showMessageDialog(null, "Please adjust the rental request again.");
+        //NU MOET DE CLERK TERUG IETS AANVRAGEN
+        try {
+            RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+        } catch (DBException ex) {
+            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_NoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,7 +148,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton No;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton YES;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

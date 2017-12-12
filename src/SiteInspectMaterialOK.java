@@ -88,9 +88,9 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
 
     private void materialNotOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialNotOKActionPerformed
         this.setVisible(false);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {
@@ -102,9 +102,9 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
 
     private void materialOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialOKActionPerformed
         this.setVisible(false);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.accepted);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
+        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {

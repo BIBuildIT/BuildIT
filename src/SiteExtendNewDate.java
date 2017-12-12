@@ -1,3 +1,11 @@
+
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +24,20 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
     public SiteExtendNewDate() {
         initComponents();
     }
+     
+    public static LocalDate datum;
 
+    public static LocalDate getDatum() {
+        return datum;
+    }
+    
+    
+     public LocalDate getNewDate() throws ParseException
+    {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(newDate.getText(), formatter);
+    return date;
+    }   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +114,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newDateActionPerformed
-        // TODO add your handling code here:
+     // TODO add your handling code here:
     }//GEN-LAST:event_newDateActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
@@ -103,7 +124,16 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         this.setVisible(false);
+        
+        try {
+            datum = getNewDate();
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(SiteExtendNewDate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();
+        JOptionPane.showMessageDialog(null,"You gave " + newDate+ " as new end date.");
         a.setVisible(true);
     }//GEN-LAST:event_submitActionPerformed
 
