@@ -97,6 +97,16 @@ public class RentalRequest {
     public void setCurrentStatus(RentalStatus currentStatus) {
         this.currentStatus = currentStatus;
     }
+    public void setCurrentStatus(String currentStatus) {
+        RentalStatus rS= RentalStatus.valueOf(currentStatus);
+        this.currentStatus= rS;
+        
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
+    
 
     public String getReasonForCancelationOrRefusal() {
         return reasonForCancelationOrRefusal;
@@ -121,18 +131,6 @@ public class RentalRequest {
     public void setConstructionSite(String constructionSite) {
         this.constructionSite = constructionSite;
     }
-
-    
-
-
-    /*  public String getEquipmentType() {
-    return equipmentType;
-    }
-    public void setEquipmentType(String equipmentType) {
-    this.equipmentType = equipmentType;
-    }
-     */
-   
 
     public Supplier getSelectedSupplier() {
         return selectedSupplier;
@@ -166,6 +164,7 @@ public class RentalRequest {
         this.selectedEquipment = selectedEquipment;
     }
 
+    
     public static void saveRR(RentalRequest e) throws DBException{
         Connection con = null;
 		try {
@@ -252,7 +251,7 @@ public class RentalRequest {
                 
             
                 if (srs.next()){
-                    //requestNumber = srs.getInt("requestNumber");
+                    requestNumber = srs.getInt("requestNumber");
                     requestDate=srs.getDate("requestDate").toLocalDate();
                     
                     rentalPeriodStart= srs.getDate("rentalPeriodStart").toLocalDate();
