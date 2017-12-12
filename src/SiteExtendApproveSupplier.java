@@ -1,4 +1,6 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -103,6 +105,11 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
     private void yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesActionPerformed
         this.setVisible(false);
         SiteExtendGiveNumber.getRentalExtend().setRentalPeriodEnd(SiteExtendNewDate.getDatum());
+        try {
+            RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());
+        } catch (DBException ex) {
+            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //AANPASSEN RENTAL REQUEST
         JOptionPane.showMessageDialog(null, "The rental request has been changed!");
         
