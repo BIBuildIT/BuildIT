@@ -36,12 +36,14 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Enter new end date");
 
+        newDate.setText("yyyy/mm/dd");
         newDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newDateActionPerformed(evt);
             }
         });
 
+        cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +51,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
             }
         });
 
+        submit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         submit.setText("Submit");
         submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,10 +85,11 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(submit))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void newDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newDateActionPerformed

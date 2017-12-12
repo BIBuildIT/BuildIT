@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author Lynn
  */
-public class SiteEngineerRefuse extends javax.swing.JFrame {
+public class ASiteEngineerRefuse extends javax.swing.JFrame {
 
     /**
      * Creates new form SiteEngineerRefuse
      */
-    public SiteEngineerRefuse() {
+    public ASiteEngineerRefuse() {
         initComponents();
     }
 
@@ -134,20 +134,21 @@ public class SiteEngineerRefuse extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ASiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ASiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ASiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ASiteEngineerRefuse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SiteEngineerRefuse().setVisible(true);
+                new ASiteEngineerRefuse().setVisible(true);
             }
         });
     }

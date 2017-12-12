@@ -37,8 +37,9 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Is equipment OK?");
+        jLabel1.setText("Is the equipment OK?");
 
+        materialNotOK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         materialNotOK.setText("No");
         materialNotOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +47,7 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
             }
         });
 
+        materialOK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         materialOK.setText("Yes");
         materialOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +62,7 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(materialNotOK, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,10 +79,11 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(materialNotOK)
                     .addComponent(materialOK))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void materialNotOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialNotOKActionPerformed
