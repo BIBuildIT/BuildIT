@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,13 @@
  */
 public class SiteExtendQuestion extends javax.swing.JFrame {
 
+    private static ArrayList<RentalRequest> readyToReceiveTheInvoice = new ArrayList<>();
+
+    public static ArrayList<RentalRequest> getReadyToReceiveTheInvoice() {
+        return readyToReceiveTheInvoice;
+    }
+    
+    
     /**
      * Creates new form SiteExtendQuestion
      */
@@ -79,6 +89,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
 
     private void endActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endActionPerformed
         this.setVisible(false);
+        readyToReceiveTheInvoice.add(SiteExtendGiveNumber.getRentalExtend());
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_endActionPerformed
 

@@ -18,10 +18,10 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
 
     private ArrayList<RentalRequest> requests;
     private ArrayList<RentalRequest> requests2;
-    private static RentalRequest rental;
+    private static RentalRequest rentalExtend;
 
-    public static RentalRequest getRental() {
-        return rental;
+    public static RentalRequest getRentalExtend() {
+        return rentalExtend;
     }
     
     /**
@@ -45,7 +45,7 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             System.out.println(req.getRequestNumber());
             
             System.out.println(req.getCurrentStatus());
-            if(req.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
+            if(req.getCurrentStatus().toString().equals(RentalStatus.accepted.toString()))
                 model.addElement(Integer.toString(req.getRequestNumber()));
         
         }
@@ -142,18 +142,10 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             req.setRequestNumber(selectedRequestNumber);
             System.out.println(req.getRequestNumber());
             System.out.println(req.getCurrentStatus().toString());
-            rental = req;
-            SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
+            rentalExtend = req;
+            SiteExtendNewDate ok = new SiteExtendNewDate();
             ok.setVisible(true);
-            /*if(req.getCurrentStatus().equals("approved")){
-                this.setVisible(false);
-                //show SiteInspectMaterialOK
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Sorry, the rental request hasn't been approved");
-           
-            }
-            */
+            
             
         } catch (DBException ex) {
             //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
