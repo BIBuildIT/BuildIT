@@ -128,7 +128,7 @@ public class Getters {
 		}
 	}
     
-    public Supplier getSupplier(String supplierName) throws DBException {
+        /*public Supplier getSupplier(String supplierName) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
