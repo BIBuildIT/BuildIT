@@ -10,6 +10,10 @@
  */
 public class ClerkInvoiceShow extends javax.swing.JFrame {
 
+    //SHOW THE INVOICE DIE GEKOZEN IS BIJ ClerkInvoiceGiveNumber
+    //--> DE STATIC RENTAL REQUEST DIE GEMAAKT IS IN DIE GUI
+    //ClerkInvoiceGiveNumber.getRentalInvoice()
+    
     /**
      * Creates new form ShowInvoice
      */
@@ -68,6 +72,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.setVisible(false);
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
+        
     }//GEN-LAST:event_cancelActionPerformed
 
     /**

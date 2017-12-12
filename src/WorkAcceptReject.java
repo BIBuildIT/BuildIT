@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author lmoentje
  */
-public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
+public class WorkAcceptReject extends javax.swing.JFrame {
 
     /**
-     * Creates new form WorkAcceptAdjustOrCancel
+     * Creates new form WorkAcceptReject
      */
-    public WorkAcceptAdjustOrCancel() {
+    public WorkAcceptReject() {
         initComponents();
     }
 
@@ -30,33 +30,32 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        Cancel = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Do you want to cancel or adjust the rental request?");
+        jLabel1.setText("Do you want to accept or reject the rental request?");
 
-        jButton1.setText("Return");
+        Cancel.setText("Cancel");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Accept");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel rental request");
+        jButton2.setText("Reject");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Adjust rental request");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -65,48 +64,49 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Cancel)
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton1)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton2))
                     .addComponent(jLabel1))
-                .addContainerGap())
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cancel)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jButton2))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.cancelled);
-        JOptionPane.showMessageDialog(null, "Rental request has been cancelled.");
+        WorkAcceptAdjustOrCancel wo = new WorkAcceptAdjustOrCancel();
+        wo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //HIER FORMULIER OP RR AAN TE PASSEN TE TONEN (NIEUWE GUI VOOR AANMAKEN OF NIET?)
-        //VERVOLGENS INDIEN DAAR OP SUBMIT WORDT GEDRUKT --> RENTAL STAT = PROCESSED
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.approved);
+        JOptionPane.showMessageDialog(null, "Rental request has been approved.");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+        this.setVisible(false);
+        StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,28 +125,28 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkAcceptReject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkAcceptReject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkAcceptReject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkAcceptReject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WorkAcceptAdjustOrCancel().setVisible(true);
+                new WorkAcceptReject().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

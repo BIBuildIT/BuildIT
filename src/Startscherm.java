@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -112,7 +116,10 @@ public class Startscherm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(showAll)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(showRentalStatus)
+                        .addGap(18, 18, 18)
+                        .addComponent(showAll))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -121,9 +128,7 @@ public class Startscherm extends javax.swing.JFrame {
                                 .addComponent(siteEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(107, 107, 107))
                             .addComponent(clerk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(showRentalStatus)
-                        .addGap(15, 15, 15)
+                        .addGap(58, 58, 58)
                         .addComponent(worksEngineer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
@@ -177,6 +182,16 @@ public class Startscherm extends javax.swing.JFrame {
 
     private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
         // TOON EEN LIJST MET ALLE AANGEMAAKTE RR'S
+        this.setVisible(false);
+        StartSchermShowRentalRequests show;
+        try {
+            show = new StartSchermShowRentalRequests();
+            show.setVisible(true);
+        } catch (DBException ex) {
+            System.out.println("Error bij StartSchermShowRentalRequests");
+        }
+        
+        //StartSchermShowRentalRequests.getStartschermShow().setVisible(true);
     }//GEN-LAST:event_showAllActionPerformed
 
     /**

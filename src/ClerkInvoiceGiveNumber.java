@@ -1,3 +1,9 @@
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +16,30 @@
  */
 public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
 
+    ArrayList<RentalRequest> requests;
+    
+    private static RentalRequest rentalInvoice;
+
+    public static RentalRequest getRentalInvoice() {
+        return rentalInvoice;
+    }
+    
     /**
      * Creates new form ClerkInvoiceGiveNumber
      */
     public ClerkInvoiceGiveNumber() {
         initComponents();
+        requests = SiteExtendQuestion.getReadyToReceiveTheInvoice();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(RentalRequest request : requests){
+            
+            model.addElement(Integer.toString(request.getRequestNumber()));
+        }
+        
+        requestList.setModel(model);
+        
     }
 
     /**
@@ -27,16 +52,22 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Submit = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        requestList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Please give the number of the rental request");
 
-        jButton1.setText("Submit");
+        Submit.setText("Submit");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -45,6 +76,13 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
             }
         });
 
+        requestList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(requestList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,26 +90,29 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(223, 223, 223)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(231, 231, 231)
+                        .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Submit)
                     .addComponent(Cancel))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
         );
 
         pack();
@@ -81,6 +122,26 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         StartschermClerk.getStartClerk().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
+
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+       try {
+            String selectedRequest= requestList.getSelectedValue();
+            int selectedRequestNumber = Integer.valueOf(selectedRequest);
+            RentalRequest req = RentalRequest.getRentalRequest(selectedRequestNumber);
+            req.setRequestNumber(selectedRequestNumber);
+            System.out.println("request number: "+req.getRequestNumber());
+            System.out.println(req.getCurrentStatus().toString());
+            
+            rentalInvoice = req;
+                    } 
+       catch (DBException ex) {
+            Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        this.setVisible(false);
+        new SiteCancelOK().setVisible(true);
+    }//GEN-LAST:event_SubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,8 +180,9 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> requestList;
     // End of variables declaration//GEN-END:variables
 }

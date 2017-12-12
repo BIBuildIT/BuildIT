@@ -267,7 +267,17 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
     }//GEN-LAST:event_inspectActionPerformed
 
     private void extensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extensionActionPerformed
-/*        
+        this.setVisible(false);
+        SiteExtendGiveNumber give;
+        try {
+            give = new SiteExtendGiveNumber();
+            give.setVisible(true);
+        } catch (DBException ex) {
+            System.out.println("Fout bij openen extension.");
+        }
+        
+        
+        /*        
         JFrame f = new JFrame("Enter rental request number");
     f.setVisible(true);
     f.setSize(500, 100);

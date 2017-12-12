@@ -100,7 +100,7 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
     private void materialOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialOKActionPerformed
         this.setVisible(false);
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
-        SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
+        SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.accepted);
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus().toString());
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());

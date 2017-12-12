@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -123,16 +127,23 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void cancelReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReqActionPerformed
-        //RENTAL STATUS = "CANCELLED"
+        //NIETS
     }//GEN-LAST:event_cancelReqActionPerformed
 
     private void adjustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustReqActionPerformed
-        //RENTAL STATUS = "PROCESSED"
-        //HIERBIJ NAAR HETZELFDE SCHERM GAAN ALS DE ADJUST BIJ CLERK?
+        //NIETS
     }//GEN-LAST:event_adjustReqActionPerformed
 
     private void acceptOrRefuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrRefuseActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        WorkAcceptGiveNumber wo;
+        try {
+            wo = new WorkAcceptGiveNumber();
+            wo.setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(StartschermWorkEngineer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_acceptOrRefuseActionPerformed
 
     /**

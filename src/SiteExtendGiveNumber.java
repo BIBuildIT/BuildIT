@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -43,13 +44,14 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
             System.out.println(req.getRequestNumber());
-            
-            System.out.println(req.getCurrentStatus());
             if(req.getCurrentStatus().toString().equals(RentalStatus.accepted.toString()))
                 model.addElement(Integer.toString(req.getRequestNumber()));
         
         }
-        
+        if(model.isEmpty()){
+            model.addElement("No rental requests are accepted.");
+            
+        }
         RequestList.setModel(model);
     }
 
@@ -201,4 +203,8 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
+
+    private void JOptionPane(Object object, String no_rental_requests_are_accepted) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

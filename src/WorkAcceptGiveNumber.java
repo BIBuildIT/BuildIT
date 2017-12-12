@@ -1,3 +1,9 @@
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +16,47 @@
  */
 public class WorkAcceptGiveNumber extends javax.swing.JFrame {
 
+    private ArrayList<RentalRequest> requests;
+     
+     
+     private static RentalRequest rentalWork;
+
+    public static RentalRequest getRentalWork() {
+        return rentalWork;
+    }
+
+    
+    
     /**
      * Creates new form WorkAcceptGiveNumber
      */
-    public WorkAcceptGiveNumber() {
+    public WorkAcceptGiveNumber() throws DBException {
         initComponents();
+        
+        System.out.println("1");
+        
+        requests = Getters.getRentalRequests();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        System.out.println("2");
+        
+        for(RentalRequest request : requests){
+            System.out.println("3");
+            System.out.println(request.getRequestNumber());
+            RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            req.setRequestNumber(request.getRequestNumber());
+            System.out.println(req.getRequestNumber());
+            if(req.getCurrentStatus().toString().equals(RentalStatus.readyForApproval.toString()))
+                model.addElement(Integer.toString(req.getRequestNumber()));
+        
+        }
+        if(model.isEmpty()){
+            model.addElement("No rental requests are ready for approval.");
+        }
+        
+        RequestList.setModel(model);
+        
     }
 
     /**
@@ -27,22 +69,22 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        NumberReRe = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Submit = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        RequestList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Please give the number of the rental request");
 
-        NumberReRe.addActionListener(new java.awt.event.ActionListener() {
+        Submit.setText("Submit");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberReReActionPerformed(evt);
+                SubmitActionPerformed(evt);
             }
         });
-
-        jButton1.setText("Submit");
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -50,6 +92,13 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
                 CancelActionPerformed(evt);
             }
         });
+
+        RequestList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(RequestList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,27 +108,27 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(Cancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NumberReRe)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
+                    .addComponent(Cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NumberReRe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(Cancel))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(Cancel)
+                    .addComponent(Submit))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -90,9 +139,27 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
-    private void NumberReReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberReReActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumberReReActionPerformed
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+        this.setVisible(false);
+        String number= RequestList.getSelectedValue();
+            int selectedRequestNumber = Integer.valueOf(number);
+            RentalRequest req;
+        try {
+            req = RentalRequest.getRentalRequest(selectedRequestNumber);
+            req.setRequestNumber(selectedRequestNumber);
+            System.out.println(req.getRequestNumber());
+            System.out.println(req.getCurrentStatus().toString());
+            rentalWork = req;
+            SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
+            ok.setVisible(true);
+            
+            
+        } catch (DBException ex) {
+            System.out.println("Error in submit WorkAcceptGiveNumber.");
+            Startscherm.getB().setVisible(true);
+        }
+        
+    }//GEN-LAST:event_SubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,15 +191,20 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WorkAcceptGiveNumber().setVisible(true);
+                try {
+                    new WorkAcceptGiveNumber().setVisible(true);
+                } catch (DBException ex) {
+                    System.out.println("Error in WorkAcceptGiveNumber.");
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
-    private javax.swing.JTextField NumberReRe;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JList<String> RequestList;
+    private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

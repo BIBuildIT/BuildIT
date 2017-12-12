@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class SiteInspectGiveNumber extends javax.swing.JFrame {
      private ArrayList<RentalRequest> requests;
-     private ArrayList<RentalRequest> requests2;
+     
      
      private static RentalRequest rental;
 
@@ -49,22 +49,14 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
             System.out.println(req.getRequestNumber());
-            //requests2.add(req);
-            System.out.println(req.getCurrentStatus());
             if(req.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
                 model.addElement(Integer.toString(req.getRequestNumber()));
-        //    System.out.println(request.getEmployeeID());
-            /*if(request.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
-                System.out.println("4");
-                requests2.add(request.getRequestNumber());
-                System.out.println("5");
-             */   
-            //model.addElement(Integer.toString(request.getRequestNumber()));
+        
         }
-        /*for(RentalRequest request : requests){
-            model.addElement(Integer.toString(request.getRequestNumber()));
+        if(model.isEmpty()){
+            model.addElement("No rental requests are approved.");
         }
-        */
+        
         RequestList.setModel(model);
         
     }
@@ -156,15 +148,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             rental = req;
             SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
             ok.setVisible(true);
-            /*if(req.getCurrentStatus().equals("approved")){
-                this.setVisible(false);
-                //show SiteInspectMaterialOK
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Sorry, the rental request hasn't been approved");
-           
-            }
-            */
+            
             
         } catch (DBException ex) {
             //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
