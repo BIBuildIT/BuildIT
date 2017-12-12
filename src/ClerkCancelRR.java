@@ -41,7 +41,8 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         
         for(RentalRequest request : requests){
-            
+            System.out.println(request.getConstructionSite());
+            System.out.println(request.getCurrentStatus());
             model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
             
         }

@@ -42,8 +42,8 @@ public class RentalRequest {
         this.requestDate = LocalDate.now();
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
-        this.currentStatus= RentalStatus.requested;
-        this.reasonForCancelationOrRefusal = null;
+       // this.currentStatus= RentalStatus.requested;
+        //this.reasonForCancelationOrRefusal = null;
         this.employeeID = employeeID;
         this.constructionSite = constructionSite;
         this.equipmentType = equipmentType;
@@ -205,8 +205,8 @@ public class RentalRequest {
 						+ "VALUES ('" +e.getRequestDate().toString()+"'"
                                                 +", '"+e.getRentalPeriodStart().toString()+"'"
                                                 +", '" +e.getRentalPeriodEnd().toString()+"'"
-                                                +", '"+e.getCurrentStatus()+"'"
-                                                +", '"+e.getReasonForCancelationOrRefusal()+"'"
+                                                +", '"+RentalStatus.requested+"'"
+                                                +", '"+""+"'"
                                                 +", '"+e.getConstructionSite()+"'"
                                                 +", '"+e.getEquipmentType()+"'"
                                                 +", '"+e.getSelectedEquipment()+"'"

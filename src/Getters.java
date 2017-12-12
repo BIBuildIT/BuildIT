@@ -128,7 +128,7 @@ public class Getters {
 		}
 	}
     
-        /*public Supplier getSupplier(String supplierName) throws DBException {
+        public Supplier getSupplier(String supplierName) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
@@ -378,10 +378,20 @@ public class Getters {
                        +"FROM RentalRequest";
             ResultSet srs= stmt.executeQuery(sql);
             
-            ArrayList<RentalRequest> rentalRequests = new ArrayList<>();
-            while(srs.next())
-                rentalRequests.add(new RentalRequest(srs.getInt("requestNumber")));
+            int requestNumber;
+                LocalDate rentalPeriodStart;
+                LocalDate rentalPeriodEnd;
+                int employeeID;
+                String constructionSite;
+                //String equipmentType;
+                String equipmentType;
             
+            ArrayList<RentalRequest> rentalRequests = new ArrayList<>();
+            while(srs.next()){
+                
+                
+                rentalRequests.add(RentalRequest.getRentalRequest(srs.getInt("requestNumber")));
+            }
             DBConnector.closeConnection(con);
             return rentalRequests;
         }

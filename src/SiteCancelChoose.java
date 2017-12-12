@@ -163,10 +163,10 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println("request number: "+req.getRequestNumber());
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             //req.setCurrentStatus(RentalStatus.cancelled);
             String reason =ReasonForCancellationTextField.getText();
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             req.setReasonForCancelationOrRefusal(reason);
             
             

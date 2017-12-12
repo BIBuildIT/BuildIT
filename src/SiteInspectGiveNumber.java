@@ -46,11 +46,14 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
         for(RentalRequest request : requests){
             System.out.println("3");
             System.out.println(request.getRequestNumber());
+            System.out.println(request.getCurrentStatus());
+            System.out.println(request.getConstructionSite());
             RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
             System.out.println(req.getRequestNumber());
-            if(req.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
-                model.addElement(Integer.toString(req.getRequestNumber()));
+            System.out.println(req.getCurrentStatus());
+         //   if(request.getCurrentStatus().toString().equals(RentalStatus.ordered.toString()))
+               model.addElement(Integer.toString(request.getRequestNumber()));
         
         }
         if(model.isEmpty()){
