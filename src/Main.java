@@ -35,8 +35,6 @@ public class Main {
 	}*/
     
     public static void main(String[] args) throws Exception {
-        //Startscherm begin = new Startscherm();
-        //begin.setVisible(true);
         Startscherm.getB().setVisible(true);
 // nu gaan we steeds naar hetzelfde startscherm zonder elke keer opieuw te beginnen
         

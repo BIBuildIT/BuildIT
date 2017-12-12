@@ -36,6 +36,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         //requests = Getters.getRentalRequests();
         requests = SiteCancelChoose.getCancelRequestAndRefuse();
         for(RentalRequest r: requests){
+            
             System.out.println(r.getReasonForCancelationOrRefusal());
         }
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -43,8 +44,9 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         for(RentalRequest request : requests){
             System.out.println(request.getConstructionSite());
             System.out.println(request.getCurrentStatus());
+            if(request.getCurrentStatus().equals(RentalStatus.readyToCancel)){
             model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
-            
+            }
         }
         
         requestList.setModel(model);

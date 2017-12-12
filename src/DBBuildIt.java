@@ -59,17 +59,17 @@ public class DBBuildIt {
                         sql = "CREATE TABLE ConstructionSite ("
                                 + "adress VARCHAR(50) NOT NULL,"
                                 + "PRIMARY KEY(adress)"+")";
-			stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql); 
                         
                         sql = "CREATE TABLE RentalRequest ("
                                 + "requestNumber int(15) NOT NULL AUTO_INCREMENT,"  //AUTO_INCREMENT," ook auto increment??
                                 + "requestDate DATE NOT NULL,"
                                 + "rentalPeriodStart DATE NOT NULL,"
                                 + "rentalPeriodEnd DATE NOT NULL,"
-                                + "rentalStatus ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment') NOT NULL,"
+                                + "rentalStatus ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment', 'readyToCancel') NOT NULL,"
                                 + "reasonForCancellationOrRefusal VARCHAR(50) NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
-                                + "equipmentType VARCHAR(50) NOT NULL,"
+                                + "equipmentType VARCHAR(10000) NOT NULL,"
                                 + "selectedEquipment VARCHAR(50) NULL,"
                                 + "selectedSupplier VARCHAR(50) NULL,"
                                 + "dailyRentalPrice int(15) NULL,"
@@ -108,10 +108,10 @@ public class DBBuildIt {
                                 + "date DATE NOT NULL,"
                                 + "handlingClerk int(15) NOT NULL,"
                                 + "supplier VARCHAR(50) NOT NULL,"
-                                + "sequenceCode int(15) NOT NULL,"
+                                + "supplierEquipCode int(15) NOT NULL,"
                                 + "dailyRentalPrice int(15) NOT NULL,"
-                                + "rentStartDate DATE NOT NULL,"
-                                + "endDate DATE NOT NULL,"
+                                + "rentalStartDate DATE NOT NULL,"
+                                + "rentalEndDate DATE NOT NULL,"
                                 + "totalPrice int(15) NOT NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
