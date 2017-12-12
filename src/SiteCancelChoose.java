@@ -36,7 +36,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
         initComponents();
         
         
-        requests = Getters.getRentalRequests();
+        requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         

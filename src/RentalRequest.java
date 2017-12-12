@@ -31,7 +31,7 @@ public class RentalRequest {
 
 
     public RentalRequest(LocalDate rentalPeriodStart, LocalDate rentalPeriodEnd, int employeeID, String constructionSite, String equipmentType) throws DBException {
-        ArrayList<RentalRequest> reRe= Getters.getRentalRequests();
+        ArrayList<RentalRequest> reRe= getRentalRequests();
         int reqNumber=1;//1 geeft hij niet goed weer!!!!
         
         for(int i=0;i<reRe.size();i++){
@@ -283,5 +283,72 @@ public class RentalRequest {
 			throw new DBException(ex);
                 }
         }
-    
+     public static ArrayList<RentalRequest> getRentalRequests() throws DBException {
+        Connection con= null;
+        try {
+            con= DBConnector.getConnection();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String sql = "SELECT ALL requestNumber, requestDate, rentalPeriodStart, rentalPeriodEnd, rentalStatus, reasonForCancellationOrRefusal, constructionSite, equipmentType, selectedEquipment, selectedSupplier, dailyRentalPrice, employeeID "
+                       +"FROM RentalRequest";
+            ResultSet srs= stmt.executeQuery(sql);
+            
+            
+                int requestNumber;
+                LocalDate rentalPeriodStart, requestDate;
+                LocalDate rentalPeriodEnd;
+                int employeeID;
+                String constructionSite;
+                String rentalStatus, reasonForCancellationOrRefusal;
+                //String equipmentType;
+                String equipmentType, selectedSupplier, selectedEquipment;
+                double dailyRentalPrice;
+                
+            ArrayList<RentalRequest> rentalRequests = new ArrayList<>();
+            while(srs.next()){
+                requestNumber = srs.getInt("requestNumber");
+                    requestDate=srs.getDate("requestDate").toLocalDate();
+                    
+                    rentalPeriodStart= srs.getDate("rentalPeriodStart").toLocalDate();
+                    rentalPeriodEnd = srs.getDate("rentalPeriodEnd").toLocalDate();
+                    rentalStatus=srs.getString("rentalStatus");
+                    reasonForCancellationOrRefusal=srs.getString("reasonForCancellationOrRefusal");
+                             
+                    constructionSite = srs.getString("constructionSite");
+                    equipmentType= srs.getString("equipmentType");
+                    selectedEquipment=srs.getString("selectedEquipment");
+                    selectedSupplier=srs.getString("selectedSupplier");
+                    dailyRentalPrice=srs.getDouble("dailyRentalPrice");
+                    employeeID = srs.getInt("employeeID");
+                RentalRequest re= new RentalRequest(srs.getInt("requestNumber"));
+                re.setConstructionSite(constructionSite);
+                re.setCurrentStatus(rentalStatus);
+                re.setDailyRentalPrice(dailyRentalPrice);
+                re.setEmployeeID(employeeID);
+                re.setEquipmentType(equipmentType);
+                re.setReasonForCancelationOrRefusal(reasonForCancellationOrRefusal);
+                re.setRentalPeriodEnd(rentalPeriodEnd);
+                re.setRequestDate(requestDate);
+                re.setRentalPeriodStart(rentalPeriodStart);
+                //re.setSelectedEquipment(selectedEquipment);
+                //re.setSelectedSupplier(selectedSupplier);
+                
+                rentalRequests.add(re);
+                   
+            }
+           
+            DBConnector.closeConnection(con);
+            return rentalRequests;
+        }
+        catch (DBException dbe){
+            dbe.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw dbe;
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            DBConnector.closeConnection(con);
+            throw new DBException(ex);
+        }
+    }
 }

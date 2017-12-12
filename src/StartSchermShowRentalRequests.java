@@ -32,7 +32,7 @@ public class StartSchermShowRentalRequests extends javax.swing.JFrame {
     public StartSchermShowRentalRequests() throws DBException {
         initComponents();
         
-        requests = Getters.getRentalRequests();
+        requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         

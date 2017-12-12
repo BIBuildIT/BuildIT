@@ -35,7 +35,7 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         
         System.out.println("1");
         
-        requests = Getters.getRentalRequests();
+        requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
