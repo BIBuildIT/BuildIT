@@ -37,7 +37,6 @@ public class Startscherm extends javax.swing.JFrame {
     private void initComponents() {
 
         tekstbuildit = new javax.swing.JLabel();
-        showRentalStatus = new javax.swing.JButton();
         siteEngineer = new javax.swing.JButton();
         clerk = new javax.swing.JButton();
         worksEngineer = new javax.swing.JButton();
@@ -50,13 +49,6 @@ public class Startscherm extends javax.swing.JFrame {
         tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         tekstbuildit.setForeground(new java.awt.Color(51, 51, 255));
         tekstbuildit.setText("BuildIt");
-
-        showRentalStatus.setText("Show rental status");
-        showRentalStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showRentalStatusActionPerformed(evt);
-            }
-        });
 
         siteEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         siteEngineer.setText("I'm a site engineer");
@@ -106,20 +98,15 @@ public class Startscherm extends javax.swing.JFrame {
                                 .addComponent(siteEngineer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                                 .addComponent(clerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(showAll, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(showRentalStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(108, 108, 108))))
+                        .addComponent(showAll, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(showRentalStatus)
-                        .addGap(18, 18, 18)
-                        .addComponent(showAll))
+                    .addComponent(showAll)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -176,10 +163,6 @@ public class Startscherm extends javax.swing.JFrame {
                */
     }//GEN-LAST:event_worksEngineerActionPerformed
 
-    private void showRentalStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRentalStatusActionPerformed
-        
-    }//GEN-LAST:event_showRentalStatusActionPerformed
-
     private void showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllActionPerformed
         // TOON EEN LIJST MET ALLE AANGEMAAKTE RR'S
         this.setVisible(false);
@@ -232,7 +215,6 @@ public class Startscherm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clerk;
     private javax.swing.JButton showAll;
-    private javax.swing.JButton showRentalStatus;
     private javax.swing.JButton siteEngineer;
     private javax.swing.JLabel tekstbuildit;
     private javax.swing.JButton worksEngineer;

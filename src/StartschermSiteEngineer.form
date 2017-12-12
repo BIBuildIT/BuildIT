@@ -30,17 +30,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="cancel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="makeReRe" alignment="1" max="32767" attributes="0"/>
+                      <Component id="cancelRentalReq" alignment="1" max="32767" attributes="0"/>
+                      <Component id="inspect" alignment="1" max="32767" attributes="0"/>
+                      <Component id="extension" alignment="1" pref="244" max="32767" attributes="0"/>
+                  </Group>
                   <Component id="tekstchoosetask" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
-                  <Component id="extension" alignment="0" max="32767" attributes="0"/>
-                  <Component id="inspect" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cancelRentalReq" alignment="0" max="32767" attributes="0"/>
-                  <Component id="makeReRe" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
+              <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

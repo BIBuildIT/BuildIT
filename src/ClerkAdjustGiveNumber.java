@@ -35,7 +35,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Please give the number of the rental request you want to adjust");
+        jLabel1.setText("Please choose the number of the rental request you want to adjust");
 
         cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -72,13 +72,13 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,6 +116,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         ClerkAdjustChangingRR chan = new ClerkAdjustChangingRR();
         chan.setVisible(true);
+        //SCHERM MET APPROVED BY SUPPLIER --> DAAR VAN PROCESSED NAAR READY FOR APPROVAL
         //hier terug naar eerste rental request gaan of nieuwe maken en daarin de gegevens die we al hadden
         //vanzelf zetten met extra opties om toe te voegen?
     }//GEN-LAST:event_submitnumberActionPerformed
