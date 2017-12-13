@@ -36,12 +36,10 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        System.out.println("2");
+       
         
         for(RentalRequest request : requests){
-            System.out.println("3");
             
-            System.out.println(request.getRequestNumber());
             //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             //req.setRequestNumber(request.getRequestNumber());
             //System.out.println(req.getRequestNumber());
@@ -166,8 +164,6 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         try {
             req = RentalRequest.getRentalRequest(numberToAdjust);
             req.setRequestNumber(numberToAdjust);
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
             rentalAdjust = req;
             ClerkAdjustChangingRR ok = new ClerkAdjustChangingRR();
             ok.setVisible(true);

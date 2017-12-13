@@ -48,7 +48,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         for(Equipment type : types){
             for(int i=0; i<eqType.length-1;i++){
                 if(type.getType().equals(eqType[i])){
-                    model.addElement(type.getCode()+"   ,Type: "+type.getType()+"   Description: "+type.getDescription()+"   Supplier: "+type.getSupplier()+"   Price: "+type.getPrice());
+                    model.addElement(type.getCode()+","+"   Type: "+type.getType()+"   Description: "+type.getDescription()+"   Supplier: "+type.getSupplier()+"   Price: "+type.getPrice());
                 }
             }
             
@@ -82,8 +82,6 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         Requestor = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         descriptionRentalRequest = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -130,10 +128,6 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
 
         descriptionRentalRequest.setText("jLabel6");
 
-        jLabel6.setText("Restriction: chose al equipments from the same supplier");
-
-        jLabel7.setText("Als we tijd hebben kunnen we dit nog veranderen door te splitsen per rentalrequest");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,12 +144,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                             .addComponent(Submit))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(descriptionRentalRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(144, 144, 144)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)))
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -164,19 +153,15 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Requestor)
                             .addComponent(address))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -220,14 +205,17 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                 codeEquipments.add(selectedEquipmentSplit[0].trim());
                 
             }
+            for(String e:codeEquipments){
+                System.out.println(e);
+            }
             String coEq=String.join(",", codeEquipments);
-            codesEq = coEq;
-            String[]code = codeEquipments.toString().split(",");
+            //codesEq = coEq;
+            //System.out.println(codesEq);
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();
             for(int i=0; i <codeEquipments.size(); i++){
                 try {
-                    Equipment eq = Equipment.getEquipment(Integer.parseInt(code[i]));
+                    Equipment eq = Equipment.getEquipment(Integer.parseInt(codeEquipments.get(i)));
                     supplierEquipment.add(eq.getSupplier());
                     String equi = Double.toString(eq.getPrice());
                     priceEquipment.add(equi);
@@ -244,12 +232,12 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             
             req.setSelectedSupplier(suEq);
             req.setDailyRentalPrice(prEq);
-            
+            req.setCurrentStatus(RentalStatus.processed);
             
             RentalRequest.saveRR(req);
             
             this.setVisible(false);
-            ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.processed);
+            
             // try {
             //RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
             //} catch (DBException ex) {
@@ -316,8 +304,6 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

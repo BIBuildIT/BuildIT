@@ -31,7 +31,7 @@
                   <Component id="jLabel2" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="showInvoice" alignment="0" max="32767" attributes="0"/>
-                      <Component id="adjustReRe" alignment="0" pref="174" max="32767" attributes="0"/>
+                      <Component id="adjustReRe" alignment="0" max="32767" attributes="0"/>
                       <Component id="cancel" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -116,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="adjustReRe">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Adjust rental request"/>
+        <Property name="text" type="java.lang.String" value="Add details to the rental request"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adjustReReActionPerformed"/>

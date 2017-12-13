@@ -70,9 +70,9 @@ public class DBBuildIt {
                                 + "reasonForCancellationOrRefusal VARCHAR(50) NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "equipmentType VARCHAR(10000) NOT NULL,"
-                                + "selectedEquipment VARCHAR(50) NULL,"
-                                + "selectedSupplier VARCHAR(50) NULL,"
-                                + "dailyRentalPrice int(15) NULL,"
+                                + "selectedEquipment VARCHAR(1000) NULL,"
+                                + "selectedSupplier VARCHAR(1000) NULL,"
+                                + "dailyRentalPrice VARCHAR(1000) NULL,"
                                 + "employeeID int(15) NOT NULL,"
                                 + "PRIMARY KEY(requestNumber)"+")";
                                 

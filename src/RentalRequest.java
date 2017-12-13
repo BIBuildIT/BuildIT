@@ -193,7 +193,7 @@ public class RentalRequest {
                                                 +", equipmentType = '"+e.getEquipmentType()+"'"
                                                 +", selectedEquipment = '"+e.getSelectedEquipment()+"'"
                                                 +", selectedSupplier = '"+e.getSelectedSupplier()+"'"
-                                                +", dailyRentalPrice = "+e.getDailyRentalPrice()
+                                                +", dailyRentalPrice = '"+e.getDailyRentalPrice()+"'"
                                                 +" WHERE requestNumber = "+ e.getRequestNumber();
 				stmt.executeUpdate(sql);
                                  
@@ -210,7 +210,7 @@ public class RentalRequest {
                                                 +", '"+e.getEquipmentType()+"'"
                                                 +", '"+e.getSelectedEquipment()+"'"
                                                 +", '"+e.getSelectedSupplier()+"'"
-                                                +", "+e.getDailyRentalPrice()
+                                                +", '"+e.getDailyRentalPrice()+"'"
                                                 +", "+e.getEmployeeID()
                                         + ")";
 						
@@ -247,7 +247,7 @@ public class RentalRequest {
                 String rentalStatus, reasonForCancellationOrRefusal;
                 //String equipmentType;
                 String equipmentType, selectedSupplier, selectedEquipment;
-                double dailyRentalPrice;
+                String dailyRentalPrice;
                 
             
                 if (srs.next()){
@@ -263,7 +263,7 @@ public class RentalRequest {
                     equipmentType= srs.getString("equipmentType");
                     selectedEquipment=srs.getString("selectedEquipment");
                     selectedSupplier=srs.getString("selectedSupplier");
-                    dailyRentalPrice=srs.getDouble("dailyRentalPrice");
+                    dailyRentalPrice=srs.getString("dailyRentalPrice");
                     employeeID = srs.getInt("employeeID");
                     
             

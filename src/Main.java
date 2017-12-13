@@ -35,7 +35,7 @@ public class Main {
 	}*/
     
     public static void main(String[] args) throws Exception {
-        Startscherm.getB().setVisible(true);
+       Startscherm.getB().setVisible(true);
 // nu gaan we steeds naar hetzelfde startscherm zonder elke keer opieuw te beginnen
         
         //DBBuildIt.createTables();

@@ -110,7 +110,7 @@ public class Equipment {
                                 price = srs.getDouble("price");
                                 supplier = srs.getString("supplier");
                                 //s = g.getSupplier(supplier);
-				
+                                				
 			} else {// we verwachten slechts 1 rij...
 				DBConnector.closeConnection(con);
 				return null;

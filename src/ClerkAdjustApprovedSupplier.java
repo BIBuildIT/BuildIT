@@ -100,14 +100,15 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_YESActionPerformed
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
-        this.setVisible(false);
-        ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.requested);
-        JOptionPane.showMessageDialog(null, "Please adjust the rental request again.");
-        //NU MOET DE CLERK TERUG IETS AANVRAGEN
-        try {
-            RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+        try {                                   
+            this.setVisible(false);
+            ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.requested);
+            JOptionPane.showMessageDialog(null, "Please adjust the rental request again.");
+            ClerkAdjustChangingRR i = new ClerkAdjustChangingRR();
+            i.setVisible(true);
+            
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClerkAdjustApprovedSupplier.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_NoActionPerformed
 
