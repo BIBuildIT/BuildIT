@@ -88,9 +88,11 @@ public class WorkAdjustApprovedSupplier extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
+        System.out.println(WorkAcceptGiveNumber.getRentalWork().getCurrentStatus());
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.readyForApproval);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+            System.out.println(WorkAcceptGiveNumber.getRentalWork().getCurrentStatus());
         } catch (DBException ex) {
             Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
         }
