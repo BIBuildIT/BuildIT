@@ -57,7 +57,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Enter new end date");
 
-        newDate.setText("yyyy/mm/dd");
+        newDate.setText("yyyy-mm-dd");
         newDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newDateActionPerformed(evt);
@@ -133,7 +133,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         }
         
         SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();
-        JOptionPane.showMessageDialog(null,"You gave " + newDate+ " as new end date.");
+        JOptionPane.showMessageDialog(null,"You gave " + datum+ " as new end date.");
         a.setVisible(true);
     }//GEN-LAST:event_submitActionPerformed
 

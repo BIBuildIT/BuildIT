@@ -34,11 +34,22 @@ public class StartSchermShowRentalRequests extends javax.swing.JFrame {
         
         requests = RentalRequest.getRentalRequests();
         
-        DefaultListModel<String> model = new DefaultListModel<>();
+        System.out.println("2");
         
+        DefaultListModel<String> model = new DefaultListModel<>();
         for(RentalRequest request : requests){
-            
-            model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
+            System.out.println("3");
+            System.out.println(request.getRequestNumber());
+            //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            //req.setRequestNumber(request.getRequestNumber());
+            //System.out.println(req.getRequestNumber());
+            String tomodel = request.getRequestNumber()+", "+request.getConstructionSite()+", "+request.getCurrentStatus();
+            //model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
+            model.addElement(tomodel);
+        
+        }
+        if(model.isEmpty()){
+            model.addElement("No rental requests.");
             
         }
         
