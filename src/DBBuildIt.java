@@ -108,7 +108,7 @@ public class DBBuildIt {
                                 + "date DATE NOT NULL,"
                                 + "handlingClerk int(15) NOT NULL,"
                                 + "supplier VARCHAR(50) NOT NULL,"
-                                + "supplierEquipCode int(15) NOT NULL,"
+                                + "supplierEquipCode VARCHAR(100) NOT NULL,"
                                 + "dailyRentalPrice int(15) NOT NULL,"
                                 + "rentalStartDate DATE NOT NULL,"
                                 + "rentalEndDate DATE NOT NULL,"

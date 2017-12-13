@@ -19,15 +19,15 @@ import java.time.LocalDate;
 public class PurchaseOrder {
     
     private int orderNr;
-    private Date date;
+    private LocalDate date;
     private int handlingClerk;
     //identificatieCode
     private String supplier;
-    private int seqCode;
+    private String equipmentCode;
     //--> wat is dat?
     private double dailyRentalPrice;
-    private Date rentStartDate;
-    private Date endDate;
+    private LocalDate rentStartDate;
+    private LocalDate endDate;
     private double totalPrice;
     private ConstructionSite constructionSite;
     private String phoneSiteEngineer;
@@ -35,12 +35,12 @@ public class PurchaseOrder {
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, Date date, int handlingClerk, String supplier, int seqCode, double dailyRentalPrice, Date rentStartDate, Date endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String supplier, String equipmentCode, double dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
-        this.date = date;
+        this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;
         this.supplier = supplier;
-        this.seqCode = seqCode;
+        this.equipmentCode =equipmentCode;
         this.dailyRentalPrice = dailyRentalPrice;
         this.rentStartDate = rentStartDate;
         this.endDate = endDate;
@@ -52,6 +52,11 @@ public class PurchaseOrder {
         this.employeeID = employeeID;
     }
 
+    public PurchaseOrder(int orderNr) {
+        this.orderNr = orderNr;
+    }
+
+    
     public int getOrderNr() {
         return orderNr;
     }
@@ -60,15 +65,39 @@ public class PurchaseOrder {
         this.orderNr = orderNr;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    
-
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public String getEquipmentCode() {
+        return equipmentCode;
+    }
+
+    public void setEquipmentCode(String equipmentCode) {
+        this.equipmentCode = equipmentCode;
+    }
+
+    public LocalDate getRentStartDate() {
+        return rentStartDate;
+    }
+
+    public void setRentStartDate(LocalDate rentStartDate) {
+        this.rentStartDate = rentStartDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+   
 
     public int getHandlingClerk() {
         return handlingClerk;
@@ -86,13 +115,7 @@ public class PurchaseOrder {
         this.supplier = supplier;
     }
 
-    public int getSeqCode() {
-        return seqCode;
-    }
-
-    public void setSeqCode(int seqCode) {
-        this.seqCode = seqCode;
-    }
+  
 
     public double getDailyRentalPrice() {
         return dailyRentalPrice;
@@ -102,22 +125,7 @@ public class PurchaseOrder {
         this.dailyRentalPrice = dailyRentalPrice;
     }
 
-    public Date getRentStartDate() {
-        return rentStartDate;
-    }
-
-    public void setRentStartDate(Date rentStartDate) {
-        this.rentStartDate = rentStartDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
+   
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -208,11 +216,11 @@ public class PurchaseOrder {
 				return null;
 			}
 
-			PurchaseOrder purchaseorder = new PurchaseOrder(orderNr, date, handlingClerk, supplier, seqCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionsite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID);
-			
-
+			PurchaseOrder purchaseOrder = new PurchaseOrder(srs.getInt("orderNr"));
+                        
+                        
 			DBConnector.closeConnection(con);
-			return purchaseorder;
+			return purchaseOrder;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			DBConnector.closeConnection(con);

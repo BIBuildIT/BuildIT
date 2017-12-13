@@ -43,17 +43,20 @@ public class ClerkPOMake extends javax.swing.JFrame {
         String[] code = ClerkPOGiveNumber.getRentalPO().getSelectedEquipment().split(",");
         String a="";
         for(int i=0; i<code.length; i++){
+            if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(suppliersPO.getSelectedSupplier())){
             a=equipmentCodes.getText();
             a+=code[i];
-            equipmentCodes.setText(a + ", \n");
+            equipmentCodes.setText(a + ", ");
         }
-       
+        }
         String[] price = ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
         String z;
         for(int i=0; i<price.length; i++){
+             if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(suppliersPO.getSelectedSupplier())){
             z=rentalPrice.getText();
             z+=price[i];
             rentalPrice.setText(z + ", \n");
+        }
         }
         Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
       int days = diff.getDays();
@@ -68,8 +71,10 @@ public class ClerkPOMake extends javax.swing.JFrame {
         double totPrice= totalDailyPrice*daysdouble;
         
         totalPrice.setText(Double.toString(totPrice));
+        PurchaseOrder pO= new PurchaseOrder(ERROR, date, HAND_CURSOR, employee, ERROR, totPrice, rentStartDate, endDate, totPrice, constructionSite, ordernr, PROPERTIES, employee, PROPERTIES)
       
-        
+        PurchaseOrder(int orderNr, Date date, int handlingClerk, String supplier, int seqCode, double dailyRentalPrice, Date rentStartDate, Date endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+       
         /* KLOPT ONGEVEER --> KRIJGEN NULLPOINTEREXEPTION MAAR VOOR DE REST MOET DE CODE KLOPPEN
         int bedragDagelijks = 0;
         if(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().indexOf(",")>=0)

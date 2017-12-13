@@ -40,7 +40,9 @@ public class suppliersPO extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         for(int i=0; i<supplier.length;i++){
             if(!model.contains(supplier[i].toString())){
+                if(!supplier[i].toString().equals("BuildIT")){
                 model.addElement(supplier[i]);
+            }
             }
         }
         supplierList.setModel(model);
