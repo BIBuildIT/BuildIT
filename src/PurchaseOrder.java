@@ -24,7 +24,7 @@ public class PurchaseOrder {
     //identificatieCode
     private String equipmentCode;
     //--> wat is dat?
-    private double dailyRentalPrice;
+    private String dailyRentalPrice;
     private LocalDate rentStartDate;
     private LocalDate endDate;
     private double totalPrice;
@@ -34,7 +34,7 @@ public class PurchaseOrder {
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, double dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;
@@ -107,11 +107,11 @@ public class PurchaseOrder {
 
   
 
-    public double getDailyRentalPrice() {
+    public String getDailyRentalPrice() {
         return dailyRentalPrice;
     }
 
-    public void setDailyRentalPrice(double dailyRentalPrice) {
+    public void setDailyRentalPrice(String dailyRentalPrice) {
         this.dailyRentalPrice = dailyRentalPrice;
     }
 
@@ -177,10 +177,10 @@ public class PurchaseOrder {
 			
 			ResultSet srs = stmt.executeQuery(sql);
 			
-                        String  phoneSiteEngineer, nameSupplier, supplierEquipCode;
+                        String  phoneSiteEngineer, nameSupplier, supplierEquipCode,dailyRentalPrice;
                         int orderNr, handlingClerk, numberInvoice, employeeID;
                         LocalDate date, rentStartDate, endDate;  
-                        double dailyRentalPrice, totalPrice ;  
+                        double totalPrice ;  
                         ConstructionSite constructionsite;
                         
 			
@@ -196,7 +196,7 @@ public class PurchaseOrder {
                                 date = srs.getDate("Date").toLocalDate();
                                 rentStartDate = srs.getDate("rentStartDate").toLocalDate();
                                 endDate = srs.getDate("endDate").toLocalDate();
-                                dailyRentalPrice = srs.getDouble("dailyRentalPrice");
+                                dailyRentalPrice = srs.getString("dailyRentalPrice");
                                 totalPrice = srs.getDouble("price");
                                 constructionsite = new ConstructionSite(srs.getString("constructionSite"));
 				

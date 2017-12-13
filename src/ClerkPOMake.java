@@ -204,7 +204,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         jLabel14.setText("Total price");
 
         totalPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        totalPrice.setText("(zelf uitrekenen?)");
+        totalPrice.setText("total price");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Employee ID of clerk:");
@@ -457,6 +457,12 @@ public class ClerkPOMake extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    public int getInvoiceNumber(){
+        return Integer.parseInt(orderNr.getText().trim());
+    }
+    public int getHandlingClerk(){
+        return Integer.parseInt(idClerk.getText().trim());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -109,7 +109,7 @@ public class DBBuildIt {
                                 + "handlingClerk int(15) NOT NULL,"
                                 + "supplier VARCHAR(50) NOT NULL,"
                                 + "supplierEquipCode VARCHAR(100) NOT NULL,"
-                                + "dailyRentalPrice int(15) NOT NULL,"
+                                + "dailyRentalPrice VARCHAR(100) NOT NULL,"
                                 + "rentalStartDate DATE NOT NULL,"
                                 + "rentalEndDate DATE NOT NULL,"
                                 + "totalPrice int(15) NOT NULL,"
