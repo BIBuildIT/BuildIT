@@ -37,7 +37,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         
         address.setText(req.getConstructionSite());
         Employee e= Employee.getEmployee(req.getEmployeeID());
-        Requestor.setText(" e-mail: " + e.getEmailAdress() + " phonenumber: " + e.getPhoneNumber());
+        Requestor.setText(" e-mail: " + e.getEmailAdress() + "   &    Phone number: " + e.getPhoneNumber());
         String[] eqType=req.getEquipmentType().split(",");
         descriptionRentalRequest.setText(eqType[eqType.length-1]);
         
@@ -124,7 +124,8 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
 
         Requestor.setText("jLabel6");
 
-        jLabel5.setText("description of the rental request: ");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Description of the rental request: ");
 
         descriptionRentalRequest.setText("jLabel6");
 

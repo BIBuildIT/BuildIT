@@ -180,7 +180,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="description of the rental request: "/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Description of the rental request: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="descriptionRentalRequest">

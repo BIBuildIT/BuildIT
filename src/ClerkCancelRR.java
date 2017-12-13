@@ -186,6 +186,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                     } catch (DBException ex) {
             Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed

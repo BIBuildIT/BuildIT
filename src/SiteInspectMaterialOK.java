@@ -1,6 +1,7 @@
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -91,6 +92,7 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
+        JOptionPane.showMessageDialog(null , "You refused the equipment, if you still need equipment start over.");
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {
