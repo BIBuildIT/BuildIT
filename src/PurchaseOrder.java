@@ -34,7 +34,7 @@ public class PurchaseOrder {
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;

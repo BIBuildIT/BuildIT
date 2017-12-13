@@ -130,7 +130,15 @@ public class DBBuildIt {
                                 +" ON DELETE RESTRICT ON UPDATE RESTRICT";
                         stmt.executeUpdate(sql); 
                         
-                        
+                        sql = "CREATE TABLE Event ("  
+                                + "rental VARCHAR(50) NOT NULL,"
+                                + "initiatorID int(15) NOT NULL,"
+                                + "date DATE NOT NULL,"
+                                + "time TIME NOT NULL,"
+                                + "status ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment', 'readyToCancel', 'readyForInvoice') NOT NULL,"
+                                + "outcome VARCHAR(50),"
+                                + ")";
+                        stmt.executeUpdate(sql);
                         
 			DBConnector.closeConnection(con);
 		} catch (SQLException e) {
