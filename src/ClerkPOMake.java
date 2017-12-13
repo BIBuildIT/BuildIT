@@ -155,7 +155,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         datum.setText("datum");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Supplier(s)");
+        jLabel6.setText("Supplier");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Rental request requested by:");

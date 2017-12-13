@@ -32,7 +32,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     
     public ClerkCancelRR() throws DBException{
         initComponents();
-        System.out.println("hvfazevfrazrf");
+        
         //requests = Getters.getRentalRequests();
         requests = RentalRequest.getRentalRequests();
         DefaultListModel<String> model = new DefaultListModel<>();
