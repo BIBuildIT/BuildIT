@@ -22,6 +22,13 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
 //wat doet deze gui?
     private RentalRequest req = ClerkAdjustGiveNumber.getRentalAdjust();
     private ArrayList<Equipment> types;
+    private static String codesEq;
+
+    public static String getCodesEq() {
+        return codesEq;
+    }
+    
+    
     /**
      * Creates new form ChangingRentalRequestForm
      */
@@ -206,6 +213,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         try {
            
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
+            
             ArrayList<String> codeEquipments= new ArrayList<>();
             for(int i=0;i<selectedEquipment.size(); i++){
                 String[] selectedEquipmentSplit=selectedEquipment.get(i).split(",");
@@ -213,6 +221,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                 
             }
             String coEq=String.join(",", codeEquipments);
+            codesEq = coEq;
             String[]code = codeEquipments.toString().split(",");
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();

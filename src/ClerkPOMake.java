@@ -50,8 +50,12 @@ public class ClerkPOMake extends javax.swing.JFrame {
         System.out.println("2");
         rentalEnd.setText(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd().toString());
         construction.setText(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
+        equipmentCodes.setText(ClerkAdjustChangingRR.getCodesEq());
         
-        /* int bedragDagelijks = 0;
+      
+        
+        /* KLOPT ONGEVEER --> KRIJGEN NULLPOINTEREXEPTION MAAR VOOR DE REST MOET DE CODE KLOPPEN
+        int bedragDagelijks = 0;
         if(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().indexOf(",")>=0)
         {
         String[] daily= ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
