@@ -35,10 +35,10 @@ public class Main {
 	}*/
     
     public static void main(String[] args) throws Exception {
-       Startscherm.getB().setVisible(true);
+       //Startscherm.getB().setVisible(true);
 // nu gaan we steeds naar hetzelfde startscherm zonder elke keer opieuw te beginnen
         
-        //DBBuildIt.createTables();
+        DBBuildIt.createTables();
        /*JFrame f = new JFrame("Wat wil u doen?");
     f.setVisible(true);
     f.setSize(500, 500);

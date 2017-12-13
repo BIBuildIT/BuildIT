@@ -1,3 +1,3 @@
 public enum RentalStatus {
-	requested, processed, readyForApproval, approved, cancelled, ordered, refused, accepted, submittedForPayment,readyToCancel
+	requested, processed, readyForApproval, approved, cancelled, ordered, refused, accepted, submittedForPayment,readyToCancel, readyForInvoice
 }

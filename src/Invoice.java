@@ -14,8 +14,8 @@ import java.time.LocalDate;
  * @author lmoentje
  */
 public class Invoice {
-    private int number;
-    private int supplierInvoiceNumber;
+    private int number;//uniek nummer voor invoice
+    private int supplierInvoiceNumber;//code voor leverancier
     private Date date;
     private String supplier;
     private String purchaseOrder;
