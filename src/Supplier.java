@@ -56,19 +56,19 @@ public class Supplier {
     }
     
  // methode getsupplier bestaat nog niet? 
-   /* public static ArrayList<Supplier> getSuppliers() throws DBException {
+    public static ArrayList<Supplier> getSuppliers() throws DBException {
         Connection con= null;
         try {
             con= DBConnector.getConnection();
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-            String sql= "SELECT bame "
+            String sql= "SELECT name "
                        +"FROM Supplier";
             ResultSet srs= stmt.executeQuery(sql);
             
             ArrayList<Supplier> suppliers= new ArrayList<>();
             while(srs.next())
-                suppliers.add(Supplier.getSupplier(srs.getInt("name")));
+                suppliers.add(Supplier.getSupplier(srs.getString("name")));
             
             DBConnector.closeConnection(con);
             return suppliers;
@@ -84,7 +84,7 @@ public class Supplier {
             throw new DBException(ex);
         }
     }
-    */ 
+    
     
      public static Supplier getSupplier(String supplierName) throws DBException {
 		Connection con = null;

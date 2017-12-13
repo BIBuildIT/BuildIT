@@ -40,11 +40,11 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
         for(RentalRequest request : requests){
             System.out.println("3");
             System.out.println(request.getRequestNumber());
-            RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
+            /*RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
-            System.out.println(req.getRequestNumber());
-            if(req.getCurrentStatus().toString().equals(RentalStatus.approved.toString()))
-                model.addElement(Integer.toString(req.getRequestNumber()));
+            System.out.println(req.getRequestNumber());*/
+            if(request.getCurrentStatus().equals(RentalStatus.approved))
+                model.addElement(Integer.toString(request.getRequestNumber()));
         
         }
         if(model.isEmpty()){
@@ -149,13 +149,13 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
             req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             rentalPO = req;
             ClerkPOMake po = new ClerkPOMake();
-            po.setVisible(true);
-            
-            
-        } catch (DBException ex) {
+            po.setVisible(true); 
+        } 
+        catch (DBException ex) 
+        {
             //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
             System.out.println("Error in submit ClerkPOGiveNumber");
             StartschermClerk.getStartClerk().setVisible(true);
@@ -194,7 +194,9 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ClerkPOGiveNumber().setVisible(true);
-                } catch (DBException ex) {
+                } 
+                catch (DBException ex) 
+                {
                     Logger.getLogger(ClerkPOGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
