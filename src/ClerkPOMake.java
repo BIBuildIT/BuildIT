@@ -47,12 +47,18 @@ public class ClerkPOMake extends javax.swing.JFrame {
         for(int i=0; i<code.length; i++){
             a=equipmentCodes.getText();
             a+=code[i];
-            equipmentCodes.setText(a + " \n");
+            equipmentCodes.setText(a + ", \n");
         }
        
+        String[] price = ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
+        String z;
+        for(int i=0; i<code.length; i++){
+            z=rentalPrice.getText();
+            z+=code[i];
+            rentalPrice.setText(z + ", \n");
+        }
         
-        
-        rentalPrice.setText(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice());
+       
         
         
       
@@ -131,6 +137,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         daysRented = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 153));
@@ -228,6 +237,14 @@ public class ClerkPOMake extends javax.swing.JFrame {
 
         daysRented.setText("jLabel12");
 
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,7 +261,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel3))
                                 .addGap(67, 67, 67)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(telefoonSiteEngineer)
                                     .addComponent(requestor)
                                     .addComponent(construction, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,17 +272,15 @@ public class ClerkPOMake extends javax.swing.JFrame {
                                         .addGap(103, 103, 103)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(daysRented)
-                                            .addComponent(jLabel11))
-                                        .addGap(87, 87, 87)
-                                        .addComponent(jLabel14)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jLabel15))
+                                            .addComponent(jLabel11)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(equipmentCodes, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(idClerk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(rentalPrice)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rentalPrice)
+                                        .addComponent(jLabel15))))
                             .addComponent(cancel))
-                        .addGap(26, 26, Short.MAX_VALUE)
+                        .addGap(325, 325, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(submit)
@@ -281,6 +296,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
                             .addComponent(jLabel13)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
@@ -331,11 +347,11 @@ public class ClerkPOMake extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(rentalPrice))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(rentalStart, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +365,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(idClerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(submit))
@@ -452,6 +468,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel orderNr;
     private javax.swing.JLabel rentalEnd;
     private javax.swing.JLabel rentalPrice;
