@@ -162,6 +162,8 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+        this.setVisible(false);
+        Startscherm.getB().setVisible(true);
         try {
             String selectedRequest= requestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(selectedRequest);

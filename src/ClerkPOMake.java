@@ -95,8 +95,8 @@ public class ClerkPOMake extends javax.swing.JFrame {
       
       Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
       int days = diff.getDays();
-      String z = Integer.toString(days);
-      daysRented.setText(z);
+      //String z = Integer.toString(days);
+      //daysRented.setText(z);
     }
     
     /**

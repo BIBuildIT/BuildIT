@@ -42,8 +42,6 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
-        cancelReq = new javax.swing.JButton();
-        adjustReq = new javax.swing.JButton();
         acceptOrRefuse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,20 +60,7 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
             }
         });
 
-        cancelReq.setText("Cancel rental request");
-        cancelReq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelReqActionPerformed(evt);
-            }
-        });
-
-        adjustReq.setText("Adjust rental request");
-        adjustReq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adjustReqActionPerformed(evt);
-            }
-        });
-
+        acceptOrRefuse.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         acceptOrRefuse.setText("Accept or refuse rental request");
         acceptOrRefuse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,20 +73,13 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(adjustReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cancel)
-                            .addComponent(cancelReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(acceptOrRefuse, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(cancel)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptOrRefuse, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,15 +88,11 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(28, 28, 28)
-                .addComponent(cancelReq)
-                .addGap(18, 18, 18)
-                .addComponent(adjustReq)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(acceptOrRefuse)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(cancel)
-                .addGap(19, 19, 19))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,14 +103,6 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
         this.setVisible(false);
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
-
-    private void cancelReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReqActionPerformed
-        //NIETS
-    }//GEN-LAST:event_cancelReqActionPerformed
-
-    private void adjustReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustReqActionPerformed
-        //NIETS
-    }//GEN-LAST:event_adjustReqActionPerformed
 
     private void acceptOrRefuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrRefuseActionPerformed
         this.setVisible(false);
@@ -187,9 +153,7 @@ public class StartschermWorkEngineer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptOrRefuse;
-    private javax.swing.JButton adjustReq;
     private javax.swing.JButton cancel;
-    private javax.swing.JButton cancelReq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

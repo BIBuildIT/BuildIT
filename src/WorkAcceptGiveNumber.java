@@ -155,7 +155,7 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
             System.out.println(req.getRequestNumber());
             System.out.println(req.getCurrentStatus());
             rentalWork = req;
-            SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
+            WorkAcceptReject ok = new WorkAcceptReject();
             ok.setVisible(true);
             
             

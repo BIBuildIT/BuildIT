@@ -24,6 +24,10 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
     public static RentalRequest getRentalAdjust() {
         return rentalAdjust;
     }
+
+    public static void setRentalAdjust(RentalRequest rentalAdjust) {
+        ClerkAdjustGiveNumber.rentalAdjust = rentalAdjust;
+    }
     
    
     /**
