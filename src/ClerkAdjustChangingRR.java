@@ -208,9 +208,11 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             for(String e:codeEquipments){
                 System.out.println(e);
             }
+            
             String coEq=String.join(",", codeEquipments);
             codesEq = coEq;
-            System.out.println(codesEq);
+            System.out.println(codesEq);//is wel juist
+            System.out.println(ClerkAdjustChangingRR.getCodesEq());
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();
             for(int i=0; i <codeEquipments.size(); i++){
