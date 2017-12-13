@@ -1,5 +1,10 @@
 
+
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -58,6 +63,8 @@ public class PurchaseOrder {
     public Date getDate() {
         return date;
     }
+
+    
 
     public void setDate(Date date) {
         this.date = date;
@@ -159,7 +166,59 @@ public class PurchaseOrder {
         this.employeeID = employeeID;
     }
     
-    
+    public static PurchaseOrder getPurchaseOrder(int nr) throws DBException {
+		Connection con = null;
+		try {
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT  orderNr, date, handlingClerk, supplier, seqCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID "
+					+ "FROM PurchaseOrder "
+                                        + "WHERE orderNr = " + nr;
+					
+			
+			ResultSet srs = stmt.executeQuery(sql);
+			
+                        String supplier, phoneSiteEngineer, nameSupplier;
+                        int orderNr, handlingClerk, seqCode, numberInvoice, employeeID;
+                        Date date, rentStartDate, endDate;  
+                        double dailyRentalPrice, totalPrice ;  
+                        ConstructionSite constructionsite;
+                        
+			
+
+			if (srs.next()) {
+				orderNr = srs.getInt("orderNr");
+				handlingClerk = srs.getInt("handlingClerk");
+				seqCode = srs.getInt("seqCode");
+                                numberInvoice = srs.getInt("numberInvoice");
+                                employeeID = srs.getInt("employeeID");
+                                supplier = srs.getString("supplier");
+                                phoneSiteEngineer = srs.getString("phoneSiteEngineer");
+                                nameSupplier = srs.getString("nameSupplier");
+                                date = srs.getDate("Date");
+                                rentStartDate = srs.getDate("rentStartDate");
+                                endDate = srs.getDate("endDate");
+                                dailyRentalPrice = srs.getDouble("dailyRentalPrice");
+                                totalPrice = srs.getDouble("price");
+                                constructionsite = new ConstructionSite(srs.getString("constructionSite"));
+				
+			} else {
+				DBConnector.closeConnection(con);
+				return null;
+			}
+
+			PurchaseOrder purchaseorder = new PurchaseOrder(orderNr, date, handlingClerk, supplier, seqCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionsite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID);
+			
+
+			DBConnector.closeConnection(con);
+			return purchaseorder;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+	}
     
     
 }

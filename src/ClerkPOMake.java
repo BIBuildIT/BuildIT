@@ -1,10 +1,14 @@
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import static java.util.concurrent.TimeUnit.DAYS;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,6 +29,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
     ArrayList<Supplier> suppliers;
     public ClerkPOMake() throws DBException {
         initComponents();
+        Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+        telefoonSiteEngineer.setText(e.getPhoneNumber());
+        
         // DefaultListModel<String> model = new DefaultListModel<>();
          // ConstructionSiteList.setModel((ComboBoxModel<String>) model);
         /*sites = ConstructionSite.getConstructionSites();
@@ -44,7 +51,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         rentalEnd.setText(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd().toString());
         construction.setText(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
         
-        int bedragDagelijks = 0;
+        /* int bedragDagelijks = 0;
         if(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().indexOf(",")>=0)
         {
         String[] daily= ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
@@ -71,8 +78,12 @@ public class ClerkPOMake extends javax.swing.JFrame {
             String bd = ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice();
             rentalPrice.setText(bd);
         }
-        
-        
+        */
+      
+      Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
+      int days = diff.getDays();
+      String a = Integer.toString(days);
+      daysRented.setText(a);
     }
     
     /**
@@ -111,6 +122,8 @@ public class ClerkPOMake extends javax.swing.JFrame {
         equipmentCodes = new javax.swing.JLabel();
         ListSupplier = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        daysRented = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 153));
@@ -204,6 +217,10 @@ public class ClerkPOMake extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Code(s) of equipment:");
 
+        jLabel11.setText("Total amount of days:");
+
+        daysRented.setText("jLabel12");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,35 +230,33 @@ public class ClerkPOMake extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel3))
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(telefoonSiteEngineer)
+                                    .addComponent(requestor)
+                                    .addComponent(construction, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(equipmentCodes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rentalPrice)
+                                    .addComponent(jLabel15)
+                                    .addComponent(idClerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel7)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel3))
-                                                .addGap(67, 67, 67)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(telefoonSiteEngineer)
-                                                    .addComponent(requestor)
-                                                    .addComponent(construction, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(equipmentCodes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(rentalStart)
-                                                    .addComponent(rentalEnd)
-                                                    .addComponent(rentalPrice)
-                                                    .addComponent(jLabel15)
-                                                    .addComponent(idClerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(0, 75, Short.MAX_VALUE))
-                                    .addComponent(jLabel13))
-                                .addGap(16, 16, 16)
-                                .addComponent(ListSupplier)
-                                .addGap(163, 163, 163))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cancel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(rentalStart)
+                                            .addComponent(rentalEnd))
+                                        .addGap(60, 60, 60)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(daysRented)
+                                            .addComponent(jLabel11)))
+                                    .addComponent(ListSupplier)))
+                            .addComponent(jLabel13)
+                            .addComponent(cancel))
+                        .addGap(163, 252, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(submit)
@@ -284,7 +299,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel10)
                                 .addGap(39, 39, 39)
-                                .addComponent(jLabel6))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(ListSupplier)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,18 +323,14 @@ public class ClerkPOMake extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(rentalStart, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(rentalEnd))
-                                .addGap(76, 76, 76))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ListSupplier)
-                                .addGap(86, 86, 86)))
+                            .addComponent(rentalStart, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(rentalEnd)
+                            .addComponent(daysRented))
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(jLabel15))
@@ -353,7 +366,21 @@ public class ClerkPOMake extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // RENTAL STATUS "ORDERED"
+        this.setVisible(false);
         int clerkID = Integer.parseInt(idClerk.getText().trim());
+        ClerkPOGiveNumber.getRentalPO().setCurrentStatus(RentalStatus.ordered);
+        try {
+            
+            Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+            ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
+            String telNR = e.getPhoneNumber();
+            RentalRequest.saveRR(ClerkPOGiveNumber.getRentalPO());
+            //probleem met local date en gewone date
+            //PurchaseOrder p = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), Date.valueOf(LocalDate.now()), clerkID,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier(), ERROR, 0, ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), 0, adres, telNR, 0,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier() , ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+        } catch (DBException ex) {
+            Logger.getLogger(ClerkPOMake.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Purchase order "+ClerkPOGiveNumber.getRentalPO().getRequestNumber()+" is made.");
         
     }//GEN-LAST:event_submitActionPerformed
 
@@ -402,10 +429,12 @@ public class ClerkPOMake extends javax.swing.JFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JLabel construction;
     private javax.swing.JLabel datum;
+    private javax.swing.JLabel daysRented;
     private javax.swing.JLabel equipmentCodes;
     private javax.swing.JTextField idClerk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

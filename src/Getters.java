@@ -1,10 +1,12 @@
 
 import java.sql.Connection;
 import java.sql.Date;
+//import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Getters {
     }
     
     
-    public static PurchaseOrder getPurchaseOrder(int nr) throws DBException {
+   /* public static PurchaseOrder getPurchaseOrder(int nr) throws DBException {
 		Connection con = null;
 		try {
 			con = DBConnector.getConnection();
@@ -39,7 +41,7 @@ public class Getters {
 			
                         String supplier, phoneSiteEngineer, nameSupplier;
                         int orderNr, handlingClerk, seqCode, numberInvoice, employeeID;
-                        Date date, rentStartDate, endDate;
+                        LocalDate date, rentStartDate, endDate;  
                         double dailyRentalPrice, totalPrice ;  
                         ConstructionSite constructionsite;
                         
@@ -76,7 +78,7 @@ public class Getters {
 			DBConnector.closeConnection(con);
 			throw new DBException(ex);
 		}
-	}
+	}*/
     
     
         public static Invoice getInvoice(int nr) throws DBException {
@@ -107,7 +109,7 @@ public class Getters {
                                 nameSupplier = srs.getString("nameSupplier");
                                 date = srs.getDate("Date");
                                 rentalPeriodStart = srs.getDate("rentalPeriodStart");
-                                rentalPeriodEnd = srs.getDate("rentalPeriodEnd");
+                                rentalPeriodEnd = srs.getDate("rentalPeriodEnd"); 
                                 price = srs.getDouble("price");
                                 
 				
@@ -219,7 +221,7 @@ public class Getters {
 	}*/
         
         
-        public static Employee getEmployee(int eID) throws DBException {
+       /* public static Employee getEmployee(int eID) throws DBException {
         Connection con= null; 
         try {
             
@@ -256,7 +258,7 @@ public class Getters {
 			throw new DBException(ex);
                 }
             
-        }
+        }*/
         
         /*public static RentalRequest getRentalRequest(int reqnr) throws DBException{//moet aangepast worden aan constructor
             Connection con= null; 

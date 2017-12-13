@@ -29,7 +29,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         initComponents();
         
         address.setText(req.getConstructionSite());
-        Employee e= Getters.getEmployee(req.getEmployeeID());
+        Employee e= Employee.getEmployee(req.getEmployeeID());
         Requestor.setText(" e-mail: " + e.getEmailAdress() + " phonenumber: " + e.getPhoneNumber());
         String[] eqType=req.getEquipmentType().split(",");
         descriptionRentalRequest.setText(eqType[eqType.length-1]);
