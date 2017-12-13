@@ -27,22 +27,21 @@ public class suppliersPO extends javax.swing.JFrame {
         requestNumber.setText(Integer.toString(ClerkPOGiveNumber.getRentalPO().getRequestNumber()));
         RentalRequest req ;
         req = RentalRequest.getRentalRequest(ClerkPOGiveNumber.getRentalPO().getRequestNumber());
-        
+        System.out.println(req.getEquipmentType());
+        System.out.println(req.getSelectedEquipment());
         String sup = req.getSelectedSupplier();
+        System.out.println(sup);
         String[] supplier = sup.split(",");
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
         for(int i=0; i<supplier.length;i++){
-            if(!supplierBox.contains(supplier[i].toString())){
+            if(!model.contains(supplier[i].toString())){
                 model.addElement(supplier[i]);
             }
         }
+        supplierList.setModel(model);
         
-        supplierBox = 
-       
-        sites = ConstructionSite.getConstructionSites();
-       
-        for(ConstructionSite site : sites){
-            ConstructionSiteList.add(site.getAdress());
-        }
+        
         
     }
 
@@ -57,9 +56,11 @@ public class suppliersPO extends javax.swing.JFrame {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        supplierBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         requestNumber = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        supplierList = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -67,16 +68,23 @@ public class suppliersPO extends javax.swing.JFrame {
 
         jLabel1.setText("Suppliers of this rental request:");
 
-        supplierBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        supplierBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supplierBoxActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Request number:");
 
         requestNumber.setText("jLabel3");
+
+        supplierList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(supplierList);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,14 +93,18 @@ public class suppliersPO extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(48, 48, 48)
                         .addComponent(jLabel2)
                         .addGap(35, 35, 35)
-                        .addComponent(requestNumber))
-                    .addComponent(supplierBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(requestNumber)))
                 .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,16 +115,25 @@ public class suppliersPO extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(requestNumber))
                 .addGap(18, 18, 18)
-                .addComponent(supplierBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplierBoxActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClerkPOMake po;
+        try {
+            po = new ClerkPOMake();
+            po.setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(suppliersPO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,10 +175,12 @@ public class suppliersPO extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel requestNumber;
-    private javax.swing.JComboBox<String> supplierBox;
+    private javax.swing.JList<String> supplierList;
     // End of variables declaration//GEN-END:variables
 }

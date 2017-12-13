@@ -29,17 +29,17 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
     public ClerkPOGiveNumber() throws DBException {
         initComponents();
         
-        System.out.println("1");
+        
         
         requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        System.out.println("2");
+       
         
         for(RentalRequest request : requests){
-            System.out.println("3");
-            System.out.println(request.getRequestNumber());
+           
+            
             /*RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
             req.setRequestNumber(request.getRequestNumber());
             System.out.println(req.getRequestNumber());*/
@@ -151,8 +151,8 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
             System.out.println(req.getRequestNumber());
             System.out.println(req.getCurrentStatus());
             rentalPO = req;
-            ClerkPOMake po = new ClerkPOMake();
-            po.setVisible(true); 
+            suppliersPO sup = new suppliersPO();
+            sup.setVisible(true);
         } 
         catch (DBException ex) 
         {

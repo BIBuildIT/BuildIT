@@ -272,10 +272,20 @@ public class RentalRequest {
                     return null;
                 }
             
-            RentalRequest rentalrequest = new RentalRequest( rentalPeriodStart, rentalPeriodEnd, employeeID, constructionSite, equipmentType);
-            
+            RentalRequest re= new RentalRequest(srs.getInt("requestNumber"));
+                re.setConstructionSite(constructionSite);
+                re.setCurrentStatus(rentalStatus);
+                re.setDailyRentalPrice(dailyRentalPrice);
+                re.setEmployeeID(employeeID);
+                re.setEquipmentType(equipmentType);
+                re.setReasonForCancelationOrRefusal(reasonForCancellationOrRefusal);
+                re.setRentalPeriodEnd(rentalPeriodEnd);
+                re.setRequestDate(requestDate);
+                re.setRentalPeriodStart(rentalPeriodStart);
+                re.setSelectedEquipment(selectedEquipment);
+                re.setSelectedSupplier(selectedSupplier);
             DBConnector.closeConnection(con);
-            return rentalrequest;
+            return re;
         }
             catch (Exception ex) {
 			ex.printStackTrace();

@@ -209,8 +209,8 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                 System.out.println(e);
             }
             String coEq=String.join(",", codeEquipments);
-            //codesEq = coEq;
-            //System.out.println(codesEq);
+            codesEq = coEq;
+            System.out.println(codesEq);
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();
             for(int i=0; i <codeEquipments.size(); i++){
@@ -229,13 +229,12 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             String suEq=String.join(",", supplierEquipment);
             String prEq=String.join(",", priceEquipment);
             req.setSelectedEquipment(coEq);
-            
             req.setSelectedSupplier(suEq);
             req.setDailyRentalPrice(prEq);
             req.setCurrentStatus(RentalStatus.processed);
             
             RentalRequest.saveRR(req);
-            
+            System.out.println(RentalRequest.getRentalRequest(req.getRequestNumber()).getSelectedSupplier());
             this.setVisible(false);
             
             // try {
