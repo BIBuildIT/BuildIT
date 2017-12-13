@@ -32,13 +32,9 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     
     public ClerkCancelRR() throws DBException{
         initComponents();
-        
+        System.out.println("hvfazevfrazrf");
         //requests = Getters.getRentalRequests();
-        requests = SiteCancelChoose.getCancelRequestAndRefuse();
-        for(RentalRequest r: requests){
-            
-            System.out.println(r.getReasonForCancelationOrRefusal());
-        }
+        requests = RentalRequest.getRentalRequests();
         DefaultListModel<String> model = new DefaultListModel<>();
         
         for(RentalRequest request : requests){
@@ -178,7 +174,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             
         }
             //req.setReasonForCancelationOrRefusal(req.getReasonForCancelationOrRefusal());
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             System.out.println("request number: "+req.getRequestNumber()+  req.getReasonForCancelationOrRefusal());
             req.setCurrentStatus(RentalStatus.cancelled);
             System.out.println(req.getCurrentStatus().toString());

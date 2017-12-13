@@ -178,7 +178,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("More information about equipment:");
+        jLabel2.setText("More information about equipment (don't use any comma's please):");
 
         DescriptionEquipment.setText("twji bwormachienen en nen grwoten alombak vwo een bwormachine in te steekn");
         DescriptionEquipment.addActionListener(new java.awt.event.ActionListener() {
@@ -202,31 +202,27 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                 .addComponent(ConstructionSiteList, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)))
                         .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DescriptionEquipment))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(SubmitButton)
+                                .addComponent(DescriptionEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cancel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SubmitButton))
+                            .addComponent(cancel)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(giveStartRentalPeriod)
                                     .addComponent(giveEndofRentalPeriod))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(endRentalPeriod)
-                                    .addComponent(startRentalPeriod)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Titel)
-                                    .addComponent(giveEmployeeID)
-                                    .addComponent(giveConstructionSite))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(startRentalPeriod)
+                                    .addComponent(endRentalPeriod)))
+                            .addComponent(Titel)
+                            .addComponent(giveEmployeeID)
+                            .addComponent(giveConstructionSite))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

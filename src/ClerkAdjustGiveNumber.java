@@ -19,12 +19,13 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
     
     private ArrayList<RentalRequest> requests;
     public static RentalRequest rentalAdjust;
+    private int numberToAdjust;
 
     public static RentalRequest getRentalAdjust() {
         return rentalAdjust;
     }
     
-    
+   
     /**
      * Creates new form AdjustReRe
      */
@@ -158,11 +159,13 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         
         this.setVisible(false);
         String number= RequestList.getSelectedValue();
-            int selectedRequestNumber = Integer.valueOf(number);
+        
+            numberToAdjust = Integer.valueOf(number);
+            
             RentalRequest req;
         try {
-            req = RentalRequest.getRentalRequest(selectedRequestNumber);
-            req.setRequestNumber(selectedRequestNumber);
+            req = RentalRequest.getRentalRequest(numberToAdjust);
+            req.setRequestNumber(numberToAdjust);
             System.out.println(req.getRequestNumber());
             System.out.println(req.getCurrentStatus());
             rentalAdjust = req;

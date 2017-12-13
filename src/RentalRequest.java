@@ -22,9 +22,9 @@ public class RentalRequest {
     private String constructionSite;
     
    // private ArrayList<Equipment> equipmentNeeded;
-    private Equipment selectedEquipment;//dit String?
-    private Supplier selectedSupplier;
-    private double dailyRentalPrice;
+    private String selectedEquipment;//dit String?
+    private String selectedSupplier;
+    private String dailyRentalPrice;
     private String equipmentType;
     
     
@@ -52,7 +52,7 @@ public class RentalRequest {
 
         this.selectedEquipment = null;//vanaf rentalstatus processed
         this.selectedSupplier = null;//vanaf rentalstatus processed
-        this.dailyRentalPrice = 0.0;//vanaf rentalstatus processed
+        this.dailyRentalPrice = null;//vanaf rentalstatus processed
         
     }
    
@@ -132,19 +132,19 @@ public class RentalRequest {
         this.constructionSite = constructionSite;
     }
 
-    public Supplier getSelectedSupplier() {
+    public String getSelectedSupplier() {
         return selectedSupplier;
     }
 
-    public void setSelectedSupplier(Supplier selectedSupplier) {
+    public void setSelectedSupplier(String selectedSupplier) {
         this.selectedSupplier = selectedSupplier;
     }
 
-    public double getDailyRentalPrice() {
+    public String getDailyRentalPrice() {
         return dailyRentalPrice;
     }
 
-    public void setDailyRentalPrice(double dailyRentalPrice) {
+    public void setDailyRentalPrice(String dailyRentalPrice) {
         this.dailyRentalPrice = dailyRentalPrice;
     }
 
@@ -156,11 +156,11 @@ public class RentalRequest {
         this.equipmentType = equipmentType;
     }
 
-    public Equipment getSelectedEquipment() {
+    public String getSelectedEquipment() {
         return selectedEquipment;
     }
 
-    public void setSelectedEquipment(Equipment selectedEquipment) {
+    public void setSelectedEquipment(String selectedEquipment) {
         this.selectedEquipment = selectedEquipment;
     }
 
@@ -302,7 +302,7 @@ public class RentalRequest {
                 String rentalStatus, reasonForCancellationOrRefusal;
                 //String equipmentType;
                 String equipmentType, selectedSupplier, selectedEquipment;
-                double dailyRentalPrice;
+                String dailyRentalPrice;
                 
             ArrayList<RentalRequest> rentalRequests = new ArrayList<>();
             while(srs.next()){
@@ -318,7 +318,7 @@ public class RentalRequest {
                     equipmentType= srs.getString("equipmentType");
                     selectedEquipment=srs.getString("selectedEquipment");
                     selectedSupplier=srs.getString("selectedSupplier");
-                    dailyRentalPrice=srs.getDouble("dailyRentalPrice");
+                    dailyRentalPrice=srs.getString("dailyRentalPrice");
                     employeeID = srs.getInt("employeeID");
                 RentalRequest re= new RentalRequest(srs.getInt("requestNumber"));
                 re.setConstructionSite(constructionSite);

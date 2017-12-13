@@ -64,6 +64,23 @@ public class Equipment {
         this.description = description;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+    
+
     
      public static Equipment getEquipment(int coEq) throws DBException {
 		Connection con = null;

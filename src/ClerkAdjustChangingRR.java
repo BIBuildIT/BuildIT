@@ -1,6 +1,9 @@
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,12 +17,37 @@ import java.util.logging.Logger;
  */
 public class ClerkAdjustChangingRR extends javax.swing.JFrame {
 //wat doet deze gui?
+    private RentalRequest req = ClerkAdjustGiveNumber.getRentalAdjust();
+    private ArrayList<Equipment> types;
     /**
      * Creates new form ChangingRentalRequestForm
      */
-    public ClerkAdjustChangingRR() {
+    public ClerkAdjustChangingRR() throws DBException {
         initComponents();
+        address.setText(req.getConstructionSite());
+        Employee e= Getters.getEmployee(req.getEmployeeID());
+        Requestor.setText(" e-mail: " + e.getEmailAdress() + " phonenumber: " + e.getPhoneNumber());
+        String[] eqType=req.getEquipmentType().split(",");
+        descriptionRentalRequest.setText(eqType[eqType.length-1]);
+        
+        types = Equipment.getEquipments(); 
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        for(Equipment type : types){
+            for(int i=0; i<eqType.length-1;i++){
+                if(type.getType().equals(eqType[i])){
+                    model.addElement(type.getCode()+"   ,Type: "+type.getType()+"   Description: "+type.getDescription()+"   Supplier: "+type.getSupplier()+"   Price: "+type.getPrice());
+                }
+            }
+            
+        }
+        
+        EquipmentList.setModel(model);
+      
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,11 +64,13 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
         Cancel = new javax.swing.JButton();
         Submit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        EquipmentList = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        address = new javax.swing.JLabel();
+        Requestor = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        descriptionRentalRequest = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -66,12 +96,12 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        EquipmentList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(EquipmentList);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Construction Site:");
@@ -79,9 +109,13 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Requested by:");
 
-        jLabel5.setText("jLabel5");
+        address.setText("jLabel5");
 
-        jLabel6.setText("jLabel6");
+        Requestor.setText("jLabel6");
+
+        jLabel5.setText("description of the rental request: ");
+
+        descriptionRentalRequest.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,27 +124,26 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Cancel)
-                                .addGap(300, 300, 300)
-                                .addComponent(Submit))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Requestor)
+                            .addComponent(address)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(Cancel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Submit))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descriptionRentalRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,17 +152,21 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addGap(11, 11, 11)
+                    .addComponent(address))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(Requestor))
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(descriptionRentalRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cancel)
                     .addComponent(Submit))
@@ -147,16 +184,54 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        this.setVisible(false);
-        ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.processed);
+       
         try {
-            RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+            List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
+            ArrayList<String> codeEquipments= new ArrayList<>();
+            for(int i=0;i<selectedEquipment.size(); i++){
+                String[] selectedEquipmentSplit=selectedEquipment.get(i).split(",");
+                codeEquipments.add(selectedEquipmentSplit[0].trim());
+                
+            }
+            String coEq=String.join(",", codeEquipments);
+            String[]code = codeEquipments.toString().split(",");
+            ArrayList<String> supplierEquipment= new ArrayList<>();
+            ArrayList<String> priceEquipment= new ArrayList<>();
+            for(int i=0; i <codeEquipments.size(); i++){
+                try {
+                    Equipment eq = Equipment.getEquipment(Integer.parseInt(code[i]));
+                    supplierEquipment.add(eq.getSupplier());
+                    String equi = Double.toString(eq.getPrice());
+                    priceEquipment.add(equi);
+                } catch (DBException ex) {
+                    Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+            }
+            String suEq=String.join(",", supplierEquipment);
+            String prEq=String.join(",", priceEquipment);
+            req.setSelectedEquipment(coEq);
+            req.setSelectedSupplier(suEq);
+            req.setDailyRentalPrice(prEq);
+            
+            
+            RentalRequest.saveRR(req);
+            
+            this.setVisible(false);
+            ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.processed);
+            // try {
+            //RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+            //} catch (DBException ex) {
+            // Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            //}
+            //requested lijst ophalen en bijhouden?
+            ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
+            sup.setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //requested lijst ophalen en bijhouden?
-        ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
-        sup.setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 
     /**
@@ -190,22 +265,28 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClerkAdjustChangingRR().setVisible(true);
+                try {
+                    new ClerkAdjustChangingRR().setVisible(true);
+                } catch (DBException ex) {
+                    Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
+    private javax.swing.JList<String> EquipmentList;
+    private javax.swing.JLabel Requestor;
     private javax.swing.JButton Submit;
+    private javax.swing.JLabel address;
+    private javax.swing.JLabel descriptionRentalRequest;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

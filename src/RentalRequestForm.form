@@ -36,40 +36,34 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel2" max="32767" attributes="0"/>
-                          <Component id="DescriptionEquipment" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="391" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="DescriptionEquipment" min="-2" pref="319" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="cancel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="cancel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="giveStartRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="giveEndofRentalPeriod" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="endRentalPeriod" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="startRentalPeriod" max="32767" attributes="0"/>
+                                  <Component id="endRentalPeriod" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Titel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="giveEmployeeID" min="-2" max="-2" attributes="0"/>
-                                  <Component id="giveConstructionSite" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="Titel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="giveEmployeeID" min="-2" max="-2" attributes="0"/>
+                          <Component id="giveConstructionSite" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -222,7 +216,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="More information about equipment:"/>
+        <Property name="text" type="java.lang.String" value="More information about equipment (don&apos;t use any comma&apos;s please):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="DescriptionEquipment">
