@@ -148,13 +148,15 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
-            RentalRequest req;
+           // RentalRequest req;
         try {
-            req = RentalRequest.getRentalRequest(selectedRequestNumber);
-            req.setRequestNumber(selectedRequestNumber);
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
-            rentalWork = req;
+           // req = RentalRequest.getRentalRequest(selectedRequestNumber);
+           // req.setRequestNumber(selectedRequestNumber);
+           // System.out.println(req.getRequestNumber());
+           // System.out.println(req.getCurrentStatus());
+           // rentalWork = req;
+           rentalWork = RentalRequest.getRentalRequest(selectedRequestNumber);
+           System.out.println(rentalWork.getRequestNumber()+ " en "+ rentalWork.getCurrentStatus());
             WorkAcceptReject ok = new WorkAcceptReject();
             ok.setVisible(true);
             

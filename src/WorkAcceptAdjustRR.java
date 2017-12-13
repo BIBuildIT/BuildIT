@@ -233,7 +233,7 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
             // Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
             //}
             //requested lijst ophalen en bijhouden?
-            ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
+            WorkAdjustApprovedSupplier sup = new WorkAdjustApprovedSupplier();
             sup.setVisible(true);
         } catch (DBException ex) {
             Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
