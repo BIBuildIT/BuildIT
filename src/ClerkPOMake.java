@@ -16,6 +16,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
      
     ArrayList<ConstructionSite> sites;
     ArrayList<Supplier> suppliers;
+    double totPrice;
     public ClerkPOMake() throws DBException {
         initComponents();
         Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
@@ -59,20 +60,20 @@ public class ClerkPOMake extends javax.swing.JFrame {
         }
         }
         Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
-      int days = diff.getDays();
-      String y = Integer.toString(days);
-      daysRented.setText(y);
+        int days = diff.getDays();
+        String y = Integer.toString(days);
+        daysRented.setText(y);
         
-       double totalDailyPrice=0.00;
-       for(int i=0; i<price.length;i++){
+        double totalDailyPrice=0.00;
+        for(int i=0; i<price.length;i++){
         totalDailyPrice+=Double.parseDouble(price[i]);
     }
         double daysdouble = (double) days;
-        double totPrice= totalDailyPrice*daysdouble;
+         totPrice= totalDailyPrice*daysdouble;
         
         totalPrice.setText(Double.toString(totPrice));
-      
         
+       
         /* KLOPT ONGEVEER --> KRIJGEN NULLPOINTEREXEPTION MAAR VOOR DE REST MOET DE CODE KLOPPEN
         int bedragDagelijks = 0;
         if(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().indexOf(",")>=0)
@@ -406,11 +407,15 @@ public class ClerkPOMake extends javax.swing.JFrame {
             ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
             String telNR = e.getPhoneNumber();
             RentalRequest.saveRR(ClerkPOGiveNumber.getRentalPO());
+            PurchaseOrder purOrd = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), suppliersPO.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+            System.out.println(purOrd.getDate());
+            PurchaseOrder.savePO(purOrd);
             //probleem met local date en gewone date
             //PurchaseOrder p = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), Date.valueOf(LocalDate.now()), clerkID,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier(), ERROR, 0, ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), 0, adres, telNR, 0,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier() , ClerkPOGiveNumber.getRentalPO().getEmployeeID());
         } catch (DBException ex) {
             Logger.getLogger(ClerkPOMake.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
         JOptionPane.showMessageDialog(null, "Purchase order "+ClerkPOGiveNumber.getRentalPO().getRequestNumber()+" is made.");
         
     }//GEN-LAST:event_submitActionPerformed
@@ -463,6 +468,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
     }
     public int getHandlingClerk(){
         return Integer.parseInt(idClerk.getText().trim());
+    }
+    public double getTotPrice(){
+        return totPrice;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

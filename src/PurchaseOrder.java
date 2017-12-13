@@ -28,13 +28,13 @@ public class PurchaseOrder {
     private LocalDate rentStartDate;
     private LocalDate endDate;
     private double totalPrice;
-    private ConstructionSite constructionSite;
+    private String constructionSite;
     private String phoneSiteEngineer;
     private int numberInvoice;
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, String constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;
@@ -124,11 +124,11 @@ public class PurchaseOrder {
         this.totalPrice = totalPrice;
     }
 
-    public ConstructionSite getConstructionSite() {
+    public String getConstructionSite() {
         return constructionSite;
     }
 
-    public void setConstructionSite(ConstructionSite constructionSite) {
+    public void setConstructionSite(String constructionSite) {
         this.constructionSite = constructionSite;
     }
 
@@ -181,7 +181,7 @@ public class PurchaseOrder {
                         int orderNr, handlingClerk, numberInvoice, employeeID;
                         LocalDate date, rentStartDate, endDate;  
                         double totalPrice ;  
-                        ConstructionSite constructionsite;
+                        String constructionsite;
                         
 			
 
@@ -198,7 +198,7 @@ public class PurchaseOrder {
                                 endDate = srs.getDate("endDate").toLocalDate();
                                 dailyRentalPrice = srs.getString("dailyRentalPrice");
                                 totalPrice = srs.getDouble("price");
-                                constructionsite = new ConstructionSite(srs.getString("constructionSite"));
+                                constructionsite = srs.getString("constructionSite");
 				
 			} else {
 				DBConnector.closeConnection(con);
@@ -237,9 +237,9 @@ public class PurchaseOrder {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT orderNumber "
+			String sql = "SELECT orderNr "
 					+ "FROM PurchaseOrder "
-                                        +"WHERE orderNumber = " 
+                                        +"WHERE orderNr = " 
                                         +e.getOrderNr();
 					
 			ResultSet srs = stmt.executeQuery(sql);
@@ -260,12 +260,12 @@ public class PurchaseOrder {
                                                 +", employeeID = "+e.getEmployeeID()
                                                 
                                                
-                                                +" WHERE orderNumber = "+ e.getOrderNr();
+                                                +" WHERE orderNr = "+ e.getOrderNr();
 				stmt.executeUpdate(sql);
 			} else {
 				// INSERT
 				sql = "INSERT into RentalRequest "
-						+ "(orderNumber , date, handlingClerk, supplier, sequenceCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID) "
+						+ "(orderNr , date, handlingClerk, supplier, sequenceCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID) "
 						+ "VALUES (" + e.getOrderNr()
                                                 +", '"+e.getDate()+ "'"
                                                 +", "+e.getHandlingClerk()
@@ -277,6 +277,7 @@ public class PurchaseOrder {
                                                 +", '"+e.getConstructionSite()+"'"
                                                 +", '"+e.getPhoneSiteEngineer()+"'"
                                                 +", "+e.getNumberInvoice()
+                                                +", '"+e.getPhoneSiteEngineer()+"'"
                                                 +", '"+e.getNameSupplier()+"'"
                                                 +", "+e.getEmployeeID()
                                         + ")";
