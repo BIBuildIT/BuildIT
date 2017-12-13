@@ -185,7 +185,7 @@ public class RentalRequest {
 				sql = "UPDATE RentalRequest "
 						+ "SET requestDate = '"+e.getRequestDate().toString()+"'" 
                                                 +", rentalPeriodStart = '"+ e.getRentalPeriodStart().toString()+"'"
-                                                +", rentalPeriodEnd = '"+e.getRentalPeriodStart().toString()+"'"
+                                                +", rentalPeriodEnd = '"+e.getRentalPeriodEnd().toString()+"'"
                                                 +", rentalStatus = '"+e.getCurrentStatus()+"'"
                                                 +", reasonFOrCancellationOrRefusal = '"+e.getReasonForCancelationOrRefusal()+"'"
                                                 +", employeeID = "+e.getEmployeeID()+""
@@ -279,9 +279,9 @@ public class RentalRequest {
                 re.setEmployeeID(employeeID);
                 re.setEquipmentType(equipmentType);
                 re.setReasonForCancelationOrRefusal(reasonForCancellationOrRefusal);
-                re.setRentalPeriodEnd(rentalPeriodEnd);
                 re.setRequestDate(requestDate);
                 re.setRentalPeriodStart(rentalPeriodStart);
+                re.setRentalPeriodEnd(rentalPeriodEnd);
                 re.setSelectedEquipment(selectedEquipment);
                 re.setSelectedSupplier(selectedSupplier);
             DBConnector.closeConnection(con);

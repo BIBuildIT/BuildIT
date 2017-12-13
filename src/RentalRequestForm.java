@@ -279,8 +279,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
             + "On this date you made a request (number "+ req.getRequestNumber()+" ) : "+(req.getRequestDate().toString()));
            RentalRequest.saveRR(req);
            
-            
-            
         } 
         catch (ParseException ex) 
         {
