@@ -1,4 +1,6 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -108,7 +110,13 @@ public class WorkAcceptReject extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.approved);
+        try {
+            RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+        } catch (DBException ex) {
+            Logger.getLogger(WorkAcceptReject.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, "Rental request has been approved.");
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed

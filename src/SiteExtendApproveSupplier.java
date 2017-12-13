@@ -122,7 +122,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
 
     private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
         this.setVisible(false);
-        SiteExtendQuestion.getReadyToReceiveTheInvoice().add(SiteExtendGiveNumber.getRentalExtend());
+        SiteExtendGiveNumber.getRentalExtend().setCurrentStatus(RentalStatus.readyForInvoice);
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_noActionPerformed
 

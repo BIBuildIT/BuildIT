@@ -94,7 +94,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
 
     private void endActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endActionPerformed
         this.setVisible(false);
-        readyToReceiveTheInvoice.add(SiteExtendGiveNumber.getRentalExtend());
+        SiteExtendGiveNumber.getRentalExtend().setCurrentStatus(RentalStatus.readyForInvoice);
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_endActionPerformed
 

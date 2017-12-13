@@ -1,4 +1,6 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -108,12 +110,26 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.cancelled);
+        try {
+            RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+        } catch (DBException ex) {
+            Logger.getLogger(WorkAcceptReject.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, "Rental request has been cancelled.");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //HIER FORMULIER OP RR AAN TE PASSEN TE TONEN (NIEUWE GUI VOOR AANMAKEN OF NIET?)
         //VERVOLGENS INDIEN DAAR OP SUBMIT WORDT GEDRUKT --> RENTAL STAT = PROCESSED
+        
+        ClerkAdjustChangingRR a;
+        try {
+            a = new ClerkAdjustChangingRR();
+            a.setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

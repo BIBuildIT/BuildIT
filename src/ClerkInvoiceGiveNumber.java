@@ -15,31 +15,43 @@ import javax.swing.DefaultListModel;
  * @author lmoentje
  */
 public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
-
+ 
     ArrayList<RentalRequest> requests;
-    
+   
     private static RentalRequest rentalInvoice;
-
+ 
     public static RentalRequest getRentalInvoice() {
         return rentalInvoice;
     }
-    
+   
     /**
      * Creates new form ClerkInvoiceGiveNumber
      */
     public ClerkInvoiceGiveNumber() {
         initComponents();
-        requests = SiteExtendQuestion.getReadyToReceiveTheInvoice();
-        
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        for(RentalRequest request : requests){
-            
-            model.addElement(Integer.toString(request.getRequestNumber()));
+        try {
+            requests = RentalRequest.getRentalRequests();
+        } catch (DBException ex) {
+            Logger.getLogger(ClerkInvoiceGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        DefaultListModel<String> model = new DefaultListModel<>();
+         for(RentalRequest request : requests)
+        {
+            System.out.println("3");
+            System.out.println(request.getRequestNumber());
+           
+            if(request.getCurrentStatus().equals(RentalStatus.readyForInvoice))
+            {
+                model.addElement(Integer.toString(request.getRequestNumber()));
+            }
+        }
+        if(model.isEmpty())
+            {
+            model.addElement("No invoices available.");
+           
+            }
         requestList.setModel(model);
-        
+       
     }
 
     /**

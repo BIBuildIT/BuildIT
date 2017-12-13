@@ -44,11 +44,10 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         for(RentalRequest request : requests){
             System.out.println("3");
             System.out.println(request.getRequestNumber());
-            RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
-            req.setRequestNumber(request.getRequestNumber());
-            System.out.println(req.getRequestNumber());
-            if(req.getCurrentStatus().toString().equals(RentalStatus.readyForApproval.toString()))
-                model.addElement(Integer.toString(req.getRequestNumber()));
+            
+            System.out.println(request.getRequestNumber());
+            if(request.getCurrentStatus().equals(RentalStatus.readyForApproval))
+                model.addElement(Integer.toString(request.getRequestNumber()));
         
         }
         if(model.isEmpty()){
@@ -154,7 +153,7 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
             req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus().toString());
+            System.out.println(req.getCurrentStatus());
             rentalWork = req;
             SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
             ok.setVisible(true);
