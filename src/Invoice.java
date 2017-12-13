@@ -1,6 +1,9 @@
 
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 /*
@@ -122,6 +125,111 @@ public class Invoice {
         this.nameSupplier = nameSupplier;
     }
     
+        public static void saveI(Invoice e) throws DBException {
+		Connection con = null;
+		try {
+                    
+                        
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT number "
+					+ "FROM Invoice "
+                                        +"WHERE name = " 
+                                        +e.getNumber();
+					
+			ResultSet srs = stmt.executeQuery(sql);
+			if (srs.next()) {
+				// UPDATE
+				sql = "UPDATE Invoice "
+						+ "SET supplierInvoiceNumber = "+ e.getSupplierInvoiceNumber()
+                                                +", date = '"+e.getDate()+"'"
+                                                +", supplier = '"+ e.getSupplier()+"'"
+                                                +", purchaseOrder = '"+e.getPurchaseOrder()+"'"
+                                                +", equipmentCode = "+e.getEquipmentCode()
+                                                +", rentalPeriodStart = '"+e.getRentalPeriodStart()+"'"
+                                                +", rentalPeriodEnd = '"+e.getRentalPeriodEnd()+"'"
+                                                +", price = "+e.getPrice()
+                                                +", nameSupplier = '"+e.getNameSupplier()+"'"
+                                                
+                                               
+                                                +" WHERE number = "+ e.getNumber();
+				stmt.executeUpdate(sql);
+			} else {
+				// INSERT
+				sql = "INSERT into Invoice "
+						+ "(number , supplierInvoiceNumber, date, supplier, purchaseOrder, equipmentCode, rentalPeriodStart, rentalPeriodEnd, price, nameSupplier) "
+						+ "VALUES (" + e.getNumber()
+                                                +", '"+e.getDate()+ "'"
+                                                +", '"+e.getSupplier()+"'"
+                                                +", '"+e.getPurchaseOrder()+"'"
+                                                +", "+e.getEquipmentCode()
+                                                +", '"+e.getRentalPeriodStart()+"'"
+                                                +", '"+e.getRentalPeriodEnd()+"'"
+                                                +", "+e.getPrice()
+                                                +", '"+e.getNameSupplier()+"'"
+                                        + ")";
+						
+				stmt.executeUpdate(sql);
+			}
+			
+			
+			DBConnector.closeConnection(con);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+	}
+    
+     public static Invoice getInvoice(int nr) throws DBException {
+		Connection con = null;
+		try {
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT number, supplierInvoiceNumber, date, supplier, purchaseOrder, equipmentCode, rentalPeriodStart, rentalPeriodEnd, price, nameSupplier "
+					+ "FROM Invoice "
+                                        + "WHERE number = " + nr;
+					
+			
+			ResultSet srs = stmt.executeQuery(sql);
+			String supplier, purchaseOrder, nameSupplier;
+                        int number, supplierInvoiceNumber, equipmentCode;
+                        Date date, rentalPeriodStart, rentalPeriodEnd;
+                        double price;  
+                        
+			
+
+			if (srs.next()) {
+				number = srs.getInt("number");
+				supplierInvoiceNumber = srs.getInt("supplierInvoiceNumber");
+				equipmentCode = srs.getInt("equipmentCode");
+                                supplier = srs.getString("supplier");
+                                purchaseOrder = srs.getString("purchaseOrder");
+                                nameSupplier = srs.getString("nameSupplier");
+                                date = srs.getDate("Date");
+                                rentalPeriodStart = srs.getDate("rentalPeriodStart");
+                                rentalPeriodEnd = srs.getDate("rentalPeriodEnd"); 
+                                price = srs.getDouble("price");
+                                
+				
+			} else {
+				DBConnector.closeConnection(con);
+				return null;
+			}
+
+			Invoice invoice = new Invoice(number, supplierInvoiceNumber, date, supplier, purchaseOrder, equipmentCode, rentalPeriodStart, rentalPeriodEnd, price, nameSupplier);
+			
+
+			DBConnector.closeConnection(con);
+			return invoice;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+	}
     
     
     

@@ -84,7 +84,7 @@ public class Supplier {
             throw new DBException(ex);
         }
     }
-    
+   
     
      public static Supplier getSupplier(String supplierName) throws DBException {
 		Connection con = null;

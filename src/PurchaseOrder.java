@@ -22,7 +22,6 @@ public class PurchaseOrder {
     private LocalDate date;
     private int handlingClerk;
     //identificatieCode
-    private String supplier;
     private String equipmentCode;
     //--> wat is dat?
     private double dailyRentalPrice;
@@ -35,11 +34,10 @@ public class PurchaseOrder {
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, int handlingClerk, String supplier, String equipmentCode, double dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, double dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;
-        this.supplier = supplier;
         this.equipmentCode =equipmentCode;
         this.dailyRentalPrice = dailyRentalPrice;
         this.rentStartDate = rentStartDate;
@@ -107,14 +105,6 @@ public class PurchaseOrder {
         this.handlingClerk = handlingClerk;
     }
 
-    public String getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
-
   
 
     public double getDailyRentalPrice() {
@@ -180,16 +170,16 @@ public class PurchaseOrder {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT  orderNr, date, handlingClerk, supplier, seqCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID "
+			String sql = "SELECT  orderNr, date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID "
 					+ "FROM PurchaseOrder "
                                         + "WHERE orderNr = " + nr;
 					
 			
 			ResultSet srs = stmt.executeQuery(sql);
 			
-                        String supplier, phoneSiteEngineer, nameSupplier;
-                        int orderNr, handlingClerk, seqCode, numberInvoice, employeeID;
-                        Date date, rentStartDate, endDate;  
+                        String  phoneSiteEngineer, nameSupplier, supplierEquipCode;
+                        int orderNr, handlingClerk, numberInvoice, employeeID;
+                        LocalDate date, rentStartDate, endDate;  
                         double dailyRentalPrice, totalPrice ;  
                         ConstructionSite constructionsite;
                         
@@ -198,15 +188,14 @@ public class PurchaseOrder {
 			if (srs.next()) {
 				orderNr = srs.getInt("orderNr");
 				handlingClerk = srs.getInt("handlingClerk");
-				seqCode = srs.getInt("seqCode");
+				supplierEquipCode = srs.getString("supplierEquipCode");
                                 numberInvoice = srs.getInt("numberInvoice");
                                 employeeID = srs.getInt("employeeID");
-                                supplier = srs.getString("supplier");
                                 phoneSiteEngineer = srs.getString("phoneSiteEngineer");
                                 nameSupplier = srs.getString("nameSupplier");
-                                date = srs.getDate("Date");
-                                rentStartDate = srs.getDate("rentStartDate");
-                                endDate = srs.getDate("endDate");
+                                date = srs.getDate("Date").toLocalDate();
+                                rentStartDate = srs.getDate("rentStartDate").toLocalDate();
+                                endDate = srs.getDate("endDate").toLocalDate();
                                 dailyRentalPrice = srs.getDouble("dailyRentalPrice");
                                 totalPrice = srs.getDouble("price");
                                 constructionsite = new ConstructionSite(srs.getString("constructionSite"));
@@ -217,8 +206,21 @@ public class PurchaseOrder {
 			}
 
 			PurchaseOrder purchaseOrder = new PurchaseOrder(srs.getInt("orderNr"));
+                        purchaseOrder.setOrderNr(orderNr);
+                        purchaseOrder.setHandlingClerk(handlingClerk);
+                        purchaseOrder.setEquipmentCode(	supplierEquipCode);
+                        purchaseOrder.setNumberInvoice(numberInvoice);
+                        purchaseOrder.setEmployeeID(employeeID);
+                        purchaseOrder.setPhoneSiteEngineer(phoneSiteEngineer);
+                        purchaseOrder.setNameSupplier(nameSupplier);
+                        purchaseOrder.setDate(date);
+                        purchaseOrder.setRentStartDate(rentStartDate);
+                        purchaseOrder.setEndDate(endDate);
+                        purchaseOrder.setDailyRentalPrice(dailyRentalPrice);
+                        purchaseOrder.setTotalPrice(totalPrice);
+                        purchaseOrder.setConstructionSite(constructionsite);
                         
-                        
+                     
 			DBConnector.closeConnection(con);
 			return purchaseOrder;
 		} catch (Exception ex) {
@@ -228,5 +230,67 @@ public class PurchaseOrder {
 		}
 	}
     
-    
+    public static void savePO(PurchaseOrder e) throws DBException{
+        Connection con = null;
+		try {
+                    
+			con = DBConnector.getConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "SELECT orderNumber "
+					+ "FROM PurchaseOrder "
+                                        +"WHERE orderNumber = " 
+                                        +e.getOrderNr();
+					
+			ResultSet srs = stmt.executeQuery(sql);
+			if (srs.next()) {
+				// UPDATE
+				sql = "UPDATE PurchaseOrder "
+						+ "SET date = '"+ e.getDate()+"'"
+                                                +", handlingClerk = "+e.getHandlingClerk()
+                                                +", supplierEquipCode = '"+e.getEquipmentCode()+"'"
+                                                +", dailyRentalPrice = "+e.getDailyRentalPrice()
+                                                +", rentStartDate = '"+e.getRentStartDate()+"'"
+                                                +", endDate = '"+e.getEndDate()+"'"
+                                                +", totalPrice = "+e.getTotalPrice()
+                                                +", constructionSite = '"+e.getConstructionSite()+"'"
+                                                +", phoneSiteEngineer = '"+e.getPhoneSiteEngineer()+"'"
+                                                +", numberInvoice = "+e.getNumberInvoice()
+                                                +", nameSupplier = '"+e.getNameSupplier()+"'"
+                                                +", employeeID = "+e.getEmployeeID()
+                                                
+                                               
+                                                +" WHERE orderNumber = "+ e.getOrderNr();
+				stmt.executeUpdate(sql);
+			} else {
+				// INSERT
+				sql = "INSERT into RentalRequest "
+						+ "(orderNumber , date, handlingClerk, supplier, sequenceCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID) "
+						+ "VALUES (" + e.getOrderNr()
+                                                +", '"+e.getDate()+ "'"
+                                                +", "+e.getHandlingClerk()
+                                                +", '"+e.getEquipmentCode()+"'"
+                                                +", "+e.getDailyRentalPrice()
+                                                +", '"+e.getRentStartDate()+"'"
+                                                +", '"+e.getEndDate()+"'"
+                                                +", "+e.getTotalPrice()
+                                                +", '"+e.getConstructionSite()+"'"
+                                                +", '"+e.getPhoneSiteEngineer()+"'"
+                                                +", "+e.getNumberInvoice()
+                                                +", '"+e.getNameSupplier()+"'"
+                                                +", "+e.getEmployeeID()
+                                        + ")";
+						
+				stmt.executeUpdate(sql);
+			}
+			
+			
+			DBConnector.closeConnection(con);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			DBConnector.closeConnection(con);
+			throw new DBException(ex);
+		}
+        
+    }
 }

@@ -71,10 +71,8 @@ public class ClerkPOMake extends javax.swing.JFrame {
         double totPrice= totalDailyPrice*daysdouble;
         
         totalPrice.setText(Double.toString(totPrice));
-        PurchaseOrder pO= new PurchaseOrder(ERROR, date, HAND_CURSOR, employee, ERROR, totPrice, rentStartDate, endDate, totPrice, constructionSite, ordernr, PROPERTIES, employee, PROPERTIES)
       
-        PurchaseOrder(int orderNr, Date date, int handlingClerk, String supplier, int seqCode, double dailyRentalPrice, Date rentStartDate, Date endDate, double totalPrice, ConstructionSite constructionSite, String phoneSiteEngineer, int numberInvoice, String nameSupplier, int employeeID) {
-       
+        
         /* KLOPT ONGEVEER --> KRIJGEN NULLPOINTEREXEPTION MAAR VOOR DE REST MOET DE CODE KLOPPEN
         int bedragDagelijks = 0;
         if(ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().indexOf(",")>=0)
