@@ -127,7 +127,7 @@ public class DBBuildIt {
                         stmt.executeUpdate(sql); 
                         
                         sql = "CREATE TABLE Event ("  
-                                + "rental VARCHAR(50) NOT NULL,"
+                                + "requestNumber int(15) NOT NULL,"
                                 + "initiatorID int(15) NOT NULL,"
                                 + "date DATE NOT NULL,"
                                 + "time TIME NOT NULL,"
