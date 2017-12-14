@@ -93,13 +93,14 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
     private void YESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YESActionPerformed
         this.dispose();
         ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.readyForApproval);
-        Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "YES");
+        /*Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "YES");
         try {
             Event.saveEvent(e);
         } catch (DBException ex) {
-            Logger.getLogger(ClerkAdjustApprovedSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkAdjustApprovedSupplier");
+            Startscherm.getB().setVisible(true);
         }
-        
+        */
         
         try {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
@@ -111,9 +112,15 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_YESActionPerformed
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
+        //Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "NO");
+        
         try {                                   
             this.dispose();
             ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.requested);
+            RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
+            
+           // Event.saveEvent(e);
+            
             JOptionPane.showMessageDialog(null, "Please adjust the rental request again.");
             ClerkAdjustChangingRR i = new ClerkAdjustChangingRR();
             i.setVisible(true);

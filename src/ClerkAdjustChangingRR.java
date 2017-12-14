@@ -130,16 +130,16 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Requested by:");
 
-        address.setText("jLabel5");
+        address.setText("site");
 
-        Requestor.setText("jLabel6");
+        Requestor.setText("site engineer");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Description of the rental request: ");
 
-        descriptionRentalRequest.setText("jLabel6");
+        descriptionRentalRequest.setText("discription");
 
-        equipmentTypes.setText("jLabel6");
+        equipmentTypes.setText("types");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,7 +212,16 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
     }//GEN-LAST:event_CancelActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-       
+
+        /*Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "SUBMIT");
+        try {
+            Event.saveEvent(e);
+        } catch (DBException ex) {
+            System.out.println("Error in ClerkAdjustChangingRR");
+            Startscherm.getB().setVisible(true);
+        }
+        */
+        
         try {
            
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
@@ -252,15 +261,9 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             req.setCurrentStatus(RentalStatus.processed);
             
             RentalRequest.saveRR(req);
-            System.out.println(RentalRequest.getRentalRequest(req.getRequestNumber()).getSelectedSupplier());
             this.setVisible(false);
             
-            // try {
-            //RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
-            //} catch (DBException ex) {
-            // Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
-            //}
-            //requested lijst ophalen en bijhouden?
+            
             ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
             sup.setVisible(true);
         } catch (DBException ex) {

@@ -177,12 +177,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="address">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel5"/>
+        <Property name="text" type="java.lang.String" value="site"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Requestor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel6"/>
+        <Property name="text" type="java.lang.String" value="site engineer"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -195,12 +195,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="descriptionRentalRequest">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel6"/>
+        <Property name="text" type="java.lang.String" value="discription"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="equipmentTypes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel6"/>
+        <Property name="text" type="java.lang.String" value="types"/>
       </Properties>
     </Component>
   </SubComponents>

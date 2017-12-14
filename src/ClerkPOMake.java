@@ -18,6 +18,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
     ArrayList<Supplier> suppliers;
     double totPrice;
     private static double totalePrijs;
+    private int teller;
 
     public static double getTotalePrijs() {
         return totalePrijs;
@@ -41,22 +42,24 @@ public class ClerkPOMake extends javax.swing.JFrame {
         rentalEnd.setText(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd().toString());
         construction.setText(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
         
+        
+        
         String[] code = ClerkPOGiveNumber.getRentalPO().getSelectedEquipment().split(",");
-        String a="";
-        for(int i=0; i<code.length; i++){
+        String a= code[0];
+        for(int i=1; i<code.length; i++){
             if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(ClerkPOSuppliers.getSelectedSupplier())){
             a=equipmentCodes.getText();
-            a+=code[i];
-            equipmentCodes.setText(a + ", ");
+            a+=", "+code[i];
+            equipmentCodes.setText(a);
         }
         }
         String[] price = ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
-        String z;
-        for(int i=0; i<price.length; i++){
+        String z = price[0];
+        for(int i=1; i<price.length; i++){
              if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(ClerkPOSuppliers.getSelectedSupplier())){
             z=rentalPrice.getText();
-            z+=price[i];
-            rentalPrice.setText(z + ", \n");
+            z+=", "+price[i];
+            rentalPrice.setText(z + "\n");
         }
         }
         Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
@@ -192,10 +195,10 @@ public class ClerkPOMake extends javax.swing.JFrame {
         orderNr.setText("jLabel19");
 
         construction.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        construction.setText("jLabel19");
+        construction.setText("construction site");
 
         telefoonSiteEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        telefoonSiteEngineer.setText("jLabel3");
+        telefoonSiteEngineer.setText("phone");
 
         rentalPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -208,7 +211,8 @@ public class ClerkPOMake extends javax.swing.JFrame {
         equipmentCodes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         equipmentCodes.setText(" ");
 
-        ListSupplier.setText("jLabel3");
+        ListSupplier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ListSupplier.setText("supplier");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Code(s) of equipment:");
@@ -217,9 +221,11 @@ public class ClerkPOMake extends javax.swing.JFrame {
 
         daysRented.setText("jLabel12");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("EmployeeID:");
 
-        emailAddress.setText("jLabel15");
+        emailAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailAddress.setText("email");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -372,7 +378,11 @@ public class ClerkPOMake extends javax.swing.JFrame {
         
         try {
             RentalRequest reRe= ClerkPOGiveNumber.getRentalPO();
-            reRe.setCurrentStatus(RentalStatus.ordered);
+            teller+=1;
+            if(ClerkPOSuppliers.getNumberOfSuppliers() == teller){
+                reRe.setCurrentStatus(RentalStatus.ordered);
+            }
+            
             Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
             ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
             String telNR = e.getPhoneNumber();

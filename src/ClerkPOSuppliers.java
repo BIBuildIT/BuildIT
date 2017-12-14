@@ -16,12 +16,18 @@ import javax.swing.DefaultListModel;
  */
 public class ClerkPOSuppliers extends javax.swing.JFrame {
 
+    private static int numberOfSuppliers;
     ArrayList<String> supplier;
     private static String selectedSupplier;
 
     public static String getSelectedSupplier() {
         return selectedSupplier;
     }
+
+    public static int getNumberOfSuppliers() {
+        return numberOfSuppliers;
+    }
+    
     
     
     
@@ -53,7 +59,7 @@ public class ClerkPOSuppliers extends javax.swing.JFrame {
              s.setVisible(true);
         }
        
-        
+        numberOfSuppliers = model.getSize();
         
     }
 

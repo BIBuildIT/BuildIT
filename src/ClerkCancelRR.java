@@ -170,15 +170,24 @@ public class ClerkCancelRR extends javax.swing.JFrame {
             System.out.println("request number: "+req.getRequestNumber()+  req.getReasonForCancelationOrRefusal());
             req.setCurrentStatus(RentalStatus.cancelled);
             
-            //String cancel = SiteCancelChoose.
-            //req.setReasonForCancelationOrRefusal();
             RentalRequest.saveRR(req);
-                    } 
+            
+            
+            //EVENT TOEVOEGEN
+            //Event e = new Event(req.getRequestNumber(), req.getCurrentStatus(), req.getEmployeeID(), "YES");
+            //Event.saveEvent(e);
+        
+        
+        
+        
+        } 
         catch (DBException ex) {
             System.out.println("Error in ClerkCancelRR");
             Startscherm.getB().setVisible(true);
         }
         Startscherm.getB().setVisible(true);
+        
+        
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed

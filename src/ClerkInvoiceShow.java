@@ -55,7 +55,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        SupplierOK = new javax.swing.JButton();
         invoiceNR = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,11 +85,11 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Invoice supplier is OK!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SupplierOK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        SupplierOK.setText("Invoice supplier is OK!");
+        SupplierOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SupplierOKActionPerformed(evt);
             }
         });
 
@@ -101,7 +101,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Date:");
 
-        datumVandaag.setText("jLabel4");
+        datumVandaag.setText("date");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Supplier:");
@@ -122,22 +122,22 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         jLabel9.setText("Price:");
 
         supplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        supplierName.setText("jLabel10");
+        supplierName.setText("supplier");
 
         purchaseOrder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        purchaseOrder.setText("jLabel11");
+        purchaseOrder.setText("PO");
 
         Equipmentcodes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Equipmentcodes.setText("jLabel12");
+        Equipmentcodes.setText("EqCodes");
 
         startPeriod.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        startPeriod.setText("jLabel13");
+        startPeriod.setText("Start period");
 
         endPeriod.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        endPeriod.setText("jLabel14");
+        endPeriod.setText("End period");
 
         price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        price.setText("jLabel15");
+        price.setText("Price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,7 +151,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cancel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(SupplierOK))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -226,7 +226,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
-                    .addComponent(jButton1))
+                    .addComponent(SupplierOK))
                 .addGap(28, 28, 28))
         );
 
@@ -240,7 +240,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SupplierOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierOKActionPerformed
         this.dispose();
         ClerkInvoiceGiveNumber.getRentalInvoice().setCurrentStatus(RentalStatus.submittedForPayment);
         try {
@@ -253,23 +253,28 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         String nummer = invoiceNR.toString();
         int number = Integer.parseInt(nummer);
         
-        //supplierInvoiceNumber = number;
-        LocalDate date = LocalDate.now();
-        String datum = date.toString();
-        Date datum1 = datum;
-        /*supplier = supplier;
-        purchaseOrder = purchaseOrder;
-        equipmentCode = equipmentCode;
-        rentalPeriodStart = rentalPeriodStart;
-        rentalPeriodEnd = rentalPeriodEnd;
-        price = price;
-        nameSupplier = nameSupplier;
-        */
-        Invoice inv = new Invoice(number, number, LocalDate.now(), supplier, purchaseOrder, EXIT_ON_CLOSE, rentalPeriodStart, rentalPeriodEnd, ERROR, nameSupplier)
+        int i = 1;
+        int a = 2;
+        Date dat = null;
+        String supplier = null;
+        String purchaseOrder = null;
+        int eqCo = 1;
+        Date rentalEnd = null;
+        Date rentalStart = null;
+        double price = 0.00;
+        String nameSupplier = null;
+        
+        Invoice inv = new Invoice(i, a, dat, supplier, purchaseOrder, eqCo, rentalStart, rentalEnd, price, nameSupplier);
+        try {
+            Invoice.saveI(inv);
+        } catch (DBException ex) {
+            System.out.println("Error in ClerkInvoice.");
+            Startscherm.getB().setVisible(true);
+        }
         
         JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
         Startscherm.getB().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SupplierOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,11 +314,11 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Equipmentcodes;
+    private javax.swing.JButton SupplierOK;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel datumVandaag;
     private javax.swing.JLabel endPeriod;
     private javax.swing.JLabel invoiceNR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
