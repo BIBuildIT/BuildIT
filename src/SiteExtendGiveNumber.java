@@ -29,17 +29,11 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
      */
     public SiteExtendGiveNumber() throws DBException {
         initComponents();
-        System.out.println("1");
-        
         requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        
-        
         for(RentalRequest request : requests){
-            
-            System.out.println(request.getRequestNumber());
             
             if(request.getCurrentStatus().equals(RentalStatus.accepted))
                 model.addElement(Integer.toString(request.getRequestNumber()));
@@ -138,19 +132,14 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
-            RentalRequest req;
+            
         try {
-            req = RentalRequest.getRentalRequest(selectedRequestNumber);
-            req.setRequestNumber(selectedRequestNumber);
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
-            rentalExtend = req;
+            rentalExtend = RentalRequest.getRentalRequest(selectedRequestNumber);
             SiteExtendQuestion ok = new SiteExtendQuestion();
             ok.setVisible(true);
             
             
         } catch (DBException ex) {
-            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
             System.out.println("Error in submit SiteInspectGiveNumber.");
             Startscherm.getB().setVisible(true);
         }
@@ -190,7 +179,7 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
                 try {
                     new SiteExtendGiveNumber().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(SiteExtendGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in SiteExtendGiveNumber");
                 }
             }
         });

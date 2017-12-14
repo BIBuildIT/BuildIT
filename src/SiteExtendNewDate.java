@@ -129,7 +129,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
             datum = getNewDate();
             
         } catch (ParseException ex) {
-            Logger.getLogger(SiteExtendNewDate.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SiteExtendNewDate");
         }
         
         SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();

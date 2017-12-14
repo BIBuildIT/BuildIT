@@ -167,7 +167,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             req.setRequestNumber(selectedRequestNumber);
             req.setCurrentStatus(RentalStatus.readyToCancel);
             String reason =ReasonForCancellationTextField.getText();
-            System.out.println(req.getCurrentStatus());
+            
             req.setReasonForCancelationOrRefusal(reason);
             
             RentalRequest.saveRR(req);
@@ -175,7 +175,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             
                     } 
         catch (DBException ex) {
-            Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SiteCancelChoose.");
         }
         
         
@@ -223,7 +223,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
                 try {
                     new SiteCancelChoose().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(SiteCancelChoose.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in SiteCancelChoose.");
                 }
             }
         });

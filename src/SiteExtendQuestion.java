@@ -16,11 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class SiteExtendQuestion extends javax.swing.JFrame {
 
-    private static ArrayList<RentalRequest> readyToReceiveTheInvoice = new ArrayList<>();
-
-    public static ArrayList<RentalRequest> getReadyToReceiveTheInvoice() {
-        return readyToReceiveTheInvoice;
-    }
     
     
     /**
@@ -104,7 +99,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please send equipment back, the invoice will arrive soon.");
             Startscherm.getB().setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(SiteExtendQuestion.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SiteExtendQuestion");
         }
     }//GEN-LAST:event_endActionPerformed
 

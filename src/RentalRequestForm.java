@@ -288,8 +288,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
             System.out.println("Error in RentalRequestForm");
         }
            this.dispose();
-           Startscherm ST = new Startscherm();
-           ST.setVisible(true);
+           Startscherm.getB().setVisible(true);
         
     }//GEN-LAST:event_SubmitButtonActionPerformed
 

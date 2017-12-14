@@ -24,34 +24,17 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
     public static RentalRequest getRental() {
         return rental;
     }
-
-    public static void setRental(RentalRequest rental) {
-        SiteInspectGiveNumber.rental = rental;
-    }
-     
-     
     /**
      * Creates new form SiteInspectGiveNumber
      */
     public SiteInspectGiveNumber() throws DBException {
         initComponents();
-        System.out.println("1");
-        
         requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        System.out.println("2");
-        
         for(RentalRequest request : requests){
-            System.out.println("3");
-            System.out.println(request.getRequestNumber());
-            System.out.println(request.getCurrentStatus());
-            System.out.println(request.getConstructionSite());
-            //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
-            //req.setRequestNumber(request.getRequestNumber());
-            //System.out.println(req.getRequestNumber());
-            //System.out.println(req.getCurrentStatus());
+            
           if(request.getCurrentStatus().equals(RentalStatus.ordered))
                model.addElement(Integer.toString(request.getRequestNumber()));
         
@@ -144,19 +127,15 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
-            RentalRequest req;
+            
         try {
-            req = RentalRequest.getRentalRequest(selectedRequestNumber);
-            req.setRequestNumber(selectedRequestNumber);
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
-            rental = req;
+            rental = RentalRequest.getRentalRequest(selectedRequestNumber);
             SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
             ok.setVisible(true);
             
             
         } catch (DBException ex) {
-            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
+            
             System.out.println("Error in submit SiteInspectGiveNumber.");
             Startscherm.getB().setVisible(true);
         }
@@ -202,7 +181,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
                 try {
                     new SiteInspectGiveNumber().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(SiteInspectGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in SiteInspectGiveNumber");
                 }
             }
         });
