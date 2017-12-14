@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  *
  * @author piverfai
  */
-public class suppliersPO extends javax.swing.JFrame {
+public class ClerkPOSuppliers extends javax.swing.JFrame {
 
     ArrayList<String> supplier;
     private static String selectedSupplier;
@@ -25,7 +25,7 @@ public class suppliersPO extends javax.swing.JFrame {
     
     
     
-    public suppliersPO() throws DBException {
+    public ClerkPOSuppliers() throws DBException {
         initComponents();
         
         requestNumber.setText(Integer.toString(ClerkPOGiveNumber.getRentalPO().getRequestNumber()));
@@ -134,6 +134,7 @@ public class suppliersPO extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -168,21 +169,22 @@ public class suppliersPO extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(suppliersPO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOSuppliers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(suppliersPO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOSuppliers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(suppliersPO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOSuppliers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(suppliersPO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClerkPOSuppliers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new suppliersPO().setVisible(true);
+                    new ClerkPOSuppliers().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in suppliersPO");
                     Startscherm.getB().setVisible(true);

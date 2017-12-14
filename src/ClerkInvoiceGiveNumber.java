@@ -134,6 +134,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+       this.dispose();
        try {
             String selectedRequest= requestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(selectedRequest);
@@ -148,7 +149,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
        }
         
         
-        this.dispose();
+        
         new ClerkInvoiceShow().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 
