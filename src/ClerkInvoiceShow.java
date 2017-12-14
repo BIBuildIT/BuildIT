@@ -32,9 +32,10 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         String start = ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodStart().toString();
         startPeriod.setText(start);
         String end = ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodEnd().toString();
-        startPeriod.setText(end);
+        endPeriod.setText(end);
         String p = ClerkInvoiceGiveNumber.getRentalInvoice().getDailyRentalPrice();
-       // heb de totale prijs nodig?
+        String totPrijs = Double.toString(ClerkPOMake.getTotalePrijs());
+        price.setText(totPrijs);
        String nummer = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());
        invoiceNR.setText(nummer);
         datumVandaag.setText(LocalDate.now().toString());
@@ -99,34 +100,40 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
 
         datumVandaag.setText("jLabel4");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Supplier:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Purchase order:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Equipment code(s):");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Start of rental period:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("End of rental period:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Price:");
 
+        supplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         supplierName.setText("jLabel10");
 
+        purchaseOrder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         purchaseOrder.setText("jLabel11");
 
+        Equipmentcodes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Equipmentcodes.setText("jLabel12");
 
+        startPeriod.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         startPeriod.setText("jLabel13");
 
+        endPeriod.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         endPeriod.setText("jLabel14");
 
+        price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         price.setText("jLabel15");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,7 +220,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(price))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(jButton1))

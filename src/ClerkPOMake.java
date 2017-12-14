@@ -17,6 +17,14 @@ public class ClerkPOMake extends javax.swing.JFrame {
     ArrayList<ConstructionSite> sites;
     ArrayList<Supplier> suppliers;
     double totPrice;
+    private static double totalePrijs;
+
+    public static double getTotalePrijs() {
+        return totalePrijs;
+    }
+    
+    
+    
     public ClerkPOMake() throws DBException {
         initComponents();
         Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
@@ -63,6 +71,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         double daysdouble = (double) days;
          totPrice= totalDailyPrice*daysdouble;
         
+        totalePrijs = totPrice; 
         totalPrice.setText(Double.toString(totPrice));
         
     }
