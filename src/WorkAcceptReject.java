@@ -112,6 +112,8 @@ public class WorkAcceptReject extends javax.swing.JFrame {
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.approved);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+            //Event e = new Event(WorkAcceptGiveNumber.getRentalWork().getRequestNumber(), WorkAcceptGiveNumber.getRentalWork().getCurrentStatus(), WorkAcceptGiveNumber.getRentalWork().getEmployeeID(), "ACCEPT RR");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAcceptReject");
             Startscherm.getB().setVisible(true);

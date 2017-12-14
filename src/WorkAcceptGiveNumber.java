@@ -147,7 +147,8 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
            System.out.println(rentalWork.getRequestNumber()+ " en "+ rentalWork.getCurrentStatus());
             WorkAcceptReject ok = new WorkAcceptReject();
             ok.setVisible(true);
-            
+            //Event e = new Event(rentalWork.getRequestNumber(), rentalWork.getCurrentStatus(), rentalWork.getEmployeeID(), "CHOOSE RR");
+             //Event.saveEvent(e);
             
         } catch (DBException ex) {
             System.out.println("Error in submit WorkAcceptGiveNumber.");

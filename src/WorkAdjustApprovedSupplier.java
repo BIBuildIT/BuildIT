@@ -93,7 +93,8 @@ public class WorkAdjustApprovedSupplier extends javax.swing.JFrame {
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.readyForApproval);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
-            
+            // Event e = new Event(WorkAcceptGiveNumber.getRentalWork().getRequestNumber(), WorkAcceptGiveNumber.getRentalWork().getCurrentStatus(), WorkAcceptGiveNumber.getRentalWork().getEmployeeID(), "SUPPLIER APPROVED: YES");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAdjustApprovedSupplier");
             Startscherm.getB().setVisible(true);
@@ -107,6 +108,8 @@ public class WorkAdjustApprovedSupplier extends javax.swing.JFrame {
             WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.requested); //komt van ready for approval bij the works engineer
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+            //Event e = new Event(WorkAcceptGiveNumber.getRentalWork().getRequestNumber(), WorkAcceptGiveNumber.getRentalWork().getCurrentStatus(), WorkAcceptGiveNumber.getRentalWork().getEmployeeID(), "SUPPLIER APPROVED: NO");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAdjustApprovedSupplier");
             Startscherm.getB().setVisible(true);
