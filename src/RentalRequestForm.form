@@ -150,7 +150,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="startRentalPeriod">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2017-11-11"/>
+        <Property name="text" type="java.lang.String" value="yyy-mm-dd"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startRentalPeriodActionPerformed"/>
@@ -163,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="endRentalPeriod">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2017-12-07"/>
+        <Property name="text" type="java.lang.String" value="yyy-mm-dd"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endRentalPeriodActionPerformed"/>
@@ -223,9 +223,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="DescriptionEquipment">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="twji bwormachienen en nen grwoten alombak vwo een bwormachine in te steekn"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescriptionEquipmentActionPerformed"/>
       </Events>

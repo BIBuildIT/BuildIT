@@ -94,7 +94,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
         try {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkAdjustApprovedSupplier");
         }
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_YESActionPerformed
@@ -108,7 +108,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
             i.setVisible(true);
             
         } catch (DBException ex) {
-            Logger.getLogger(ClerkAdjustApprovedSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkAdjustApprovedSupplier");
         }
     }//GEN-LAST:event_NoActionPerformed
 

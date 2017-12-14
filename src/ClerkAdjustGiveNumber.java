@@ -25,11 +25,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         return rentalAdjust;
     }
 
-    public static void setRentalAdjust(RentalRequest rentalAdjust) {
-        ClerkAdjustGiveNumber.rentalAdjust = rentalAdjust;
-    }
     
-   
     /**
      * Creates new form AdjustReRe
      */
@@ -40,13 +36,8 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-       
-        
         for(RentalRequest request : requests){
             
-            //RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
-            //req.setRequestNumber(request.getRequestNumber());
-            //System.out.println(req.getRequestNumber());
             if(request.getCurrentStatus().equals(RentalStatus.requested))
                 model.addElement(Integer.toString(request.getRequestNumber()));
         
@@ -174,13 +165,10 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
             
             
         } catch (DBException ex) {
-            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
             System.out.println("Error in submit SiteInspectGiveNumber.");
-            Startscherm.getB().setVisible(true);
+            
         }
-        //SCHERM MET APPROVED BY SUPPLIER --> DAAR VAN PROCESSED NAAR READY FOR APPROVAL
-        //hier terug naar eerste rental request gaan of nieuwe maken en daarin de gegevens die we al hadden
-        //vanzelf zetten met extra opties om toe te voegen?
+        
     }//GEN-LAST:event_submitnumberActionPerformed
 
     /**
@@ -219,7 +207,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
                 try {
                     new ClerkAdjustGiveNumber().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(ClerkAdjustGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error in ClerkAdjustGiveNumber");
                 }
             }
         });

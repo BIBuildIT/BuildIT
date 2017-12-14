@@ -93,7 +93,6 @@ public class SiteCancelChoose extends javax.swing.JFrame {
         });
         RentalRequestsToCancel.setViewportView(requestList);
 
-        ReasonForCancellationTextField.setText("Verfaillie ");
         ReasonForCancellationTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReasonForCancellationTextFieldActionPerformed(evt);
@@ -234,7 +233,6 @@ public class SiteCancelChoose extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> requestList;
     private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables

@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -100,6 +101,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
             RentalRequest reRe=SiteExtendGiveNumber.getRentalExtend();
             reRe.setCurrentStatus(RentalStatus.readyForInvoice);
             RentalRequest.saveRR(reRe);
+            JOptionPane.showMessageDialog(null, "Please send equipment back, the invoice will arrive soon.");
             Startscherm.getB().setVisible(true);
         } catch (DBException ex) {
             Logger.getLogger(SiteExtendQuestion.class.getName()).log(Level.SEVERE, null, ex);

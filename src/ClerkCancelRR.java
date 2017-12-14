@@ -21,15 +21,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
      * Creates new form ClerkCancelRR
      */
     private ArrayList<RentalRequest> requests;
-    
-    
-    
-    
-    //MOET EEN CANCELREQ AANMAKEN?
-            
-    
-    
-    
+   
     public ClerkCancelRR() throws DBException{
         initComponents();
         
@@ -38,10 +30,9 @@ public class ClerkCancelRR extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>();
         
         for(RentalRequest request : requests){
-            System.out.println(request.getConstructionSite());
-            System.out.println(request.getCurrentStatus());
+            
             if(request.getCurrentStatus().equals(RentalStatus.readyToCancel)){
-            model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
+            model.addElement(Integer.toString(request.getRequestNumber()));
             }
         }
         
@@ -175,16 +166,16 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                 }
             
         }
-            //req.setReasonForCancelationOrRefusal(req.getReasonForCancelationOrRefusal());
-            System.out.println(req.getCurrentStatus());
+            
             System.out.println("request number: "+req.getRequestNumber()+  req.getReasonForCancelationOrRefusal());
             req.setCurrentStatus(RentalStatus.cancelled);
             System.out.println(req.getCurrentStatus().toString());
             //String cancel = SiteCancelChoose.
             //req.setReasonForCancelationOrRefusal();
             RentalRequest.saveRR(req);
-                    } catch (DBException ex) {
-            Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+        catch (DBException ex) {
+            System.out.println("Error in ClerkCancelRR");
         }
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
@@ -228,7 +219,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                 try {
                     new ClerkCancelRR().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in ClerkCancelRR");
                 }
             }
         });

@@ -131,7 +131,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveStartRentalPeriod.setText("Start of rental period:");
 
-        startRentalPeriod.setText("2017-11-11");
+        startRentalPeriod.setText("yyy-mm-dd");
         startRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startRentalPeriodActionPerformed(evt);
@@ -140,7 +140,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEndofRentalPeriod.setText("End of rental period:");
 
-        endRentalPeriod.setText("2017-12-07");
+        endRentalPeriod.setText("yyy-mm-dd");
         endRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endRentalPeriodActionPerformed(evt);
@@ -172,7 +172,6 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         jLabel2.setText("More information about equipment (don't use any comma's please):");
 
-        DescriptionEquipment.setText("twji bwormachienen en nen grwoten alombak vwo een bwormachine in te steekn");
         DescriptionEquipment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DescriptionEquipmentActionPerformed(evt);

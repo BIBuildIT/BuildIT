@@ -29,8 +29,6 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
     public ClerkPOGiveNumber() throws DBException {
         initComponents();
         
-        
-        
         requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -38,11 +36,6 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
        
         
         for(RentalRequest request : requests){
-           
-            
-            /*RentalRequest req = RentalRequest.getRentalRequest(request.getRequestNumber());
-            req.setRequestNumber(request.getRequestNumber());
-            System.out.println(req.getRequestNumber());*/
             if(request.getCurrentStatus().equals(RentalStatus.approved))
                 model.addElement(Integer.toString(request.getRequestNumber()));
         
@@ -148,15 +141,14 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
         try {
             req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
-            System.out.println(req.getRequestNumber());
-            System.out.println(req.getCurrentStatus());
+            
             rentalPO = req;
             suppliersPO sup = new suppliersPO();
             sup.setVisible(true);
         } 
         catch (DBException ex) 
         {
-            //JOptionPane.showMessageDialog(null, "Sorry, there has been an error.");
+            
             System.out.println("Error in submit ClerkPOGiveNumber");
             StartschermClerk.getStartClerk().setVisible(true);
         }
@@ -197,7 +189,7 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
                 } 
                 catch (DBException ex) 
                 {
-                    Logger.getLogger(ClerkPOGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error in ClerkPOGiveNumber");
                 }
             }
         });

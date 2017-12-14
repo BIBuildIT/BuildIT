@@ -1,5 +1,8 @@
 
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -228,8 +231,16 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //RENTAL STATUS: submittedForPayment
-        //FINANCIAL DEPARTMENT LATEN BETALEN
+        this.setVisible(false);
+        ClerkInvoiceGiveNumber.getRentalInvoice().setCurrentStatus(RentalStatus.submittedForPayment);
+        try {
+            RentalRequest.saveRR(ClerkInvoiceGiveNumber.getRentalInvoice());
+                       
+        } catch (DBException ex) {
+            Logger.getLogger(ClerkInvoiceShow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -32,14 +32,11 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
         try {
             requests = RentalRequest.getRentalRequests();
         } catch (DBException ex) {
-            Logger.getLogger(ClerkInvoiceGiveNumber.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkInvoiceGiveNumber");
         }
         DefaultListModel<String> model = new DefaultListModel<>();
          for(RentalRequest request : requests)
         {
-            System.out.println("3");
-            System.out.println(request.getRequestNumber());
-           
             if(request.getCurrentStatus().equals(RentalStatus.readyForInvoice))
             {
                 model.addElement(Integer.toString(request.getRequestNumber()));
@@ -142,13 +139,12 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
             RentalRequest req = RentalRequest.getRentalRequest(selectedRequestNumber);
             req.setRequestNumber(selectedRequestNumber);
             System.out.println("request number: "+req.getRequestNumber());
-            System.out.println(req.getCurrentStatus().toString());
             
             rentalInvoice = req;
                     } 
        catch (DBException ex) {
-            Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("Error in ClerkInvoiceGiveNumber");
+       }
         
         
         this.setVisible(false);

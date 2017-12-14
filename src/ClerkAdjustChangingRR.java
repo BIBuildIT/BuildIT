@@ -36,11 +36,12 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         initComponents();
         
         address.setText(req.getConstructionSite());
+        
         Employee e= Employee.getEmployee(req.getEmployeeID());
         Requestor.setText(" e-mail: " + e.getEmailAdress() + "   &    Phone number: " + e.getPhoneNumber());
+        
         String[] eqType=req.getEquipmentType().split(",");
         descriptionRentalRequest.setText(eqType[eqType.length-1]);
-        
         types = Equipment.getEquipments(); 
         
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -212,8 +213,6 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             
             String coEq=String.join(",", codeEquipments);
             codesEq = coEq;
-            System.out.println(codesEq);//is wel juist
-            System.out.println(ClerkAdjustChangingRR.getCodesEq());
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();
             for(int i=0; i <codeEquipments.size(); i++){
@@ -223,7 +222,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                     String equi = Double.toString(eq.getPrice());
                     priceEquipment.add(equi);
                 } catch (DBException ex) {
-                    Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error in ClerkAdjustChangingRR");
                 }
                 
                 
@@ -249,7 +248,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
             sup.setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkAdjustChangingRR");
         }
     }//GEN-LAST:event_SubmitActionPerformed
 
@@ -287,7 +286,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                 try {
                     new ClerkAdjustChangingRR().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in ClerkAdjustChangingRR");
                 }
             }
         });

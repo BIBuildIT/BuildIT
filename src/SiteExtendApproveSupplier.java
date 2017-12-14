@@ -110,8 +110,18 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
         } catch (DBException ex) {
             Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //AANPASSEN RENTAL REQUEST
+        try {
+            
+            PurchaseOrder adjust = PurchaseOrder.getPurchaseOrder(SiteExtendGiveNumber.getRentalExtend().getRequestNumber());
+            adjust.setRentalEndDate(SiteExtendNewDate.getDatum());
+            PurchaseOrder.savePO(adjust);
+        } 
+        catch (DBException ex) {
+            Logger.getLogger(SiteExtendApproveSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         JOptionPane.showMessageDialog(null, "The rental request has been changed!");
+        Startscherm.getB().setVisible(true);
         
     }//GEN-LAST:event_yesActionPerformed
 
