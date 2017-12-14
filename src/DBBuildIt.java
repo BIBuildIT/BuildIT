@@ -114,15 +114,12 @@ public class DBBuildIt {
                                 + "totalPrice DOUBLE NOT NULL,"
                                 + "constructionSite VARCHAR(50) NOT NULL,"
                                 + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
-                                + "numberInvoice int(15),"
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
                                 + "employeeID int(15) NOT NULL,"
                                 + "PRIMARY KEY(orderNr)"
                                 +")";
 			stmt.executeUpdate(sql);
                         sql="ALTER TABLE PurchaseOrder "
-                                +" ADD FOREIGN KEY(numberInvoice) REFERENCES Invoice(number)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
                                 +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
                                 +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
                                 +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"

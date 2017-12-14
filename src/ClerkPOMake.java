@@ -400,14 +400,15 @@ public class ClerkPOMake extends javax.swing.JFrame {
         // RENTAL STATUS "ORDERED"
         this.setVisible(false);
         int clerkID = Integer.parseInt(idClerk.getText().trim());
-        ClerkPOGiveNumber.getRentalPO().setCurrentStatus(RentalStatus.ordered);
+        
         try {
-            
+            RentalRequest reRe= ClerkPOGiveNumber.getRentalPO();
+            reRe.setCurrentStatus(RentalStatus.ordered);
             Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
             ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
             String telNR = e.getPhoneNumber();
-            RentalRequest.saveRR(ClerkPOGiveNumber.getRentalPO());
-            PurchaseOrder purOrd = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), suppliersPO.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+            RentalRequest.saveRR(reRe);
+            PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), suppliersPO.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
             System.out.println(purOrd.getDate());
             PurchaseOrder.savePO(purOrd);
             //probleem met local date en gewone date

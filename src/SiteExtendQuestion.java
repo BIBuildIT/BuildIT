@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -93,9 +95,15 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void endActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endActionPerformed
-        this.setVisible(false);
-        SiteExtendGiveNumber.getRentalExtend().setCurrentStatus(RentalStatus.readyForInvoice);
-        Startscherm.getB().setVisible(true);
+        try {
+            this.setVisible(false);
+            RentalRequest reRe=SiteExtendGiveNumber.getRentalExtend();
+            reRe.setCurrentStatus(RentalStatus.readyForInvoice);
+            RentalRequest.saveRR(reRe);
+            Startscherm.getB().setVisible(true);
+        } catch (DBException ex) {
+            Logger.getLogger(SiteExtendQuestion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_endActionPerformed
 
     private void extendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extendActionPerformed

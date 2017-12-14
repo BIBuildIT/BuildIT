@@ -46,7 +46,13 @@ public class suppliersPO extends javax.swing.JFrame {
             }
         }
         supplierList.setModel(model);
-        
+        if(model.isEmpty()){
+            req.setCurrentStatus(RentalStatus.ordered);
+             RentalRequest.saveRR(req);
+             Startscherm s = new Startscherm();  
+             s.setVisible(true);
+        }
+       
         
         
     }
