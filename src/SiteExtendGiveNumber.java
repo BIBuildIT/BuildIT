@@ -137,6 +137,8 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
             rentalExtend = RentalRequest.getRentalRequest(selectedRequestNumber);
             SiteExtendQuestion ok = new SiteExtendQuestion();
             ok.setVisible(true);
+            //Event e = new Event(SiteExtendGiveNumber.getRentalExtend().getRequestNumber(), SiteExtendGiveNumber.getRentalExtend().getCurrentStatus(), SiteExtendGiveNumber.getRentalExtend().getEmployeeID(), "CHOOSE: SUBMIT");
+             //Event.saveEvent(e);
             
             
         } catch (DBException ex) {

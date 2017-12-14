@@ -131,7 +131,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveStartRentalPeriod.setText("Start of rental period:");
 
-        startRentalPeriod.setText("yyy-mm-dd");
+        startRentalPeriod.setText("yyyy-mm-dd");
         startRentalPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startRentalPeriodActionPerformed(evt);
@@ -211,7 +211,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
                                     .addComponent(giveEndofRentalPeriod))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(startRentalPeriod)
+                                    .addComponent(startRentalPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                                     .addComponent(endRentalPeriod)))
                             .addComponent(Titel)
                             .addComponent(giveEmployeeID)

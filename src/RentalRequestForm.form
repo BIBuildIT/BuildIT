@@ -56,7 +56,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="startRentalPeriod" max="32767" attributes="0"/>
+                                  <Component id="startRentalPeriod" pref="83" max="32767" attributes="0"/>
                                   <Component id="endRentalPeriod" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -150,7 +150,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="startRentalPeriod">
       <Properties>
-        <Property name="text" type="java.lang.String" value="yyy-mm-dd"/>
+        <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startRentalPeriodActionPerformed"/>

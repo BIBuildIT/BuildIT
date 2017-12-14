@@ -93,6 +93,8 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null , "You refused the equipment. If you still need equipment, please start over.");
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+            //Event e = new Event(SiteInspectGiveNumber.getRental().getRequestNumber(), SiteInspectGiveNumber.getRental().getCurrentStatus(), SiteInspectGiveNumber.getRental().getEmployeeID(), "MATERIAL OK: NO");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in SiteInspectMaterialOK");
             Startscherm.getB().setVisible(true);
@@ -107,6 +109,8 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
         
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
+             //Event e = new Event(SiteInspectGiveNumber.getRental().getRequestNumber(), SiteInspectGiveNumber.getRental().getCurrentStatus(), SiteInspectGiveNumber.getRental().getEmployeeID(), "MATERIAL OK: YES");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in SiteInspectMaterialOK");
             Startscherm.getB().setVisible(true);

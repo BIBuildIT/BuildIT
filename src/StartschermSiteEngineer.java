@@ -102,7 +102,7 @@ public class StartschermSiteEngineer extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel1.setText("BuildIt");
+        jLabel1.setText("BuildIT");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

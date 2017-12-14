@@ -48,7 +48,7 @@ public class Startscherm extends javax.swing.JFrame {
 
         tekstbuildit.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         tekstbuildit.setForeground(new java.awt.Color(51, 51, 255));
-        tekstbuildit.setText("BuildIt");
+        tekstbuildit.setText("BuildIT");
 
         siteEngineer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         siteEngineer.setText("I'm a site engineer");
@@ -90,7 +90,7 @@ public class Startscherm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tekstbuildit)
-                        .addContainerGap(433, Short.MAX_VALUE))
+                        .addContainerGap(426, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(worksEngineer)

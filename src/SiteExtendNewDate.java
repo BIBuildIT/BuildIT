@@ -131,6 +131,9 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
         } catch (ParseException ex) {
             System.out.println("Error in SiteExtendNewDate");
             Startscherm.getB().setVisible(true);
+            //Event e = new Event(SiteExtendGiveNumber.getRentalExtend().getRequestNumber(), SiteExtendGiveNumber.getRentalExtend().getCurrentStatus(), SiteExtendGiveNumber.getRentalExtend().getEmployeeID(), "NEW DATE: SUBMIT");
+             //Event.saveEvent(e);
+            
         }
         
         SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();

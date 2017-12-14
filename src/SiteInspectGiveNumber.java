@@ -132,6 +132,8 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
             rental = RentalRequest.getRentalRequest(selectedRequestNumber);
             SiteInspectMaterialOK ok = new SiteInspectMaterialOK();
             ok.setVisible(true);
+            //Event e = new Event(rental.getRequestNumber(), rental.getCurrentStatus(), rental.getEmployeeID(), "CHOOSE: SUBMIT");
+             //Event.saveEvent(e);
             
             
         } catch (DBException ex) {

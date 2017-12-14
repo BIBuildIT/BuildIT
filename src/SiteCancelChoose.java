@@ -172,14 +172,14 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             req.setReasonForCancelationOrRefusal(reason);
             
             RentalRequest.saveRR(req);
-            
-            
+              //Event e = new Event(req.getRequestNumber(), req.getCurrentStatus(), req.getEmployeeID(), "CANCEL: submit");
+              //Event.saveEvent(e);
                     } 
         catch (DBException ex) {
             System.out.println("Error in SiteCancelChoose.");
             Startscherm.getB().setVisible(true);
         }
-        
+      
         
         this.dispose();
         JOptionPane.showMessageDialog(null, "Your request has been send to the clerk!");

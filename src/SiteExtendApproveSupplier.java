@@ -116,6 +116,8 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
             PurchaseOrder adjust = PurchaseOrder.getPurchaseOrder(SiteExtendGiveNumber.getRentalExtend().getRequestNumber());
             adjust.setRentalEndDate(SiteExtendNewDate.getDatum());
             PurchaseOrder.savePO(adjust);
+            //Event e = new Event(SiteExtendGiveNumber.getRentalExtend().getRequestNumber(), SiteExtendGiveNumber.getRentalExtend().getCurrentStatus(), SiteExtendGiveNumber.getRentalExtend().getEmployeeID(), "APPROVED: YES");
+             //Event.saveEvent(e);
         } 
         catch (DBException ex) {
             System.out.println("Error in SiteExtendApproveSupplier");
@@ -137,9 +139,12 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
         SiteExtendGiveNumber.getRentalExtend().setCurrentStatus(RentalStatus.readyForInvoice);
         try {
             RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());
+            //Event e = new Event(SiteExtendGiveNumber.getRentalExtend().getRequestNumber(), SiteExtendGiveNumber.getRentalExtend().getCurrentStatus(), SiteExtendGiveNumber.getRentalExtend().getEmployeeID(), "APPROVED: NO");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in SiteExtendApproveSupplier");
             Startscherm.getB().setVisible(true);
+            
         }
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_noActionPerformed

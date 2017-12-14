@@ -98,6 +98,9 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
             RentalRequest.saveRR(reRe);
             JOptionPane.showMessageDialog(null, "Please send equipment back, the invoice will arrive soon.");
             Startscherm.getB().setVisible(true);
+            //Event e = new Event(SiteExtendGiveNumber.getRentalExtend().getRequestNumber(), SiteExtendGiveNumber.getRentalExtend().getCurrentStatus(), SiteExtendGiveNumber.getRentalExtend().getEmployeeID(), "CHOOSE: END");
+             //Event.saveEvent(e);
+            
         } catch (DBException ex) {
             System.out.println("Error in SiteExtendQuestion");
             Startscherm.getB().setVisible(true);
