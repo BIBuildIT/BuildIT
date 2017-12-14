@@ -1,4 +1,6 @@
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -91,6 +93,14 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
     private void YESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YESActionPerformed
         this.dispose();
         ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.readyForApproval);
+        Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "YES");
+        try {
+            Event.saveEvent(e);
+        } catch (DBException ex) {
+            Logger.getLogger(ClerkAdjustApprovedSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         try {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
         } catch (DBException ex) {

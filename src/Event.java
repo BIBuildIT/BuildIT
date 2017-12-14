@@ -33,12 +33,16 @@ public class Event {
     private LocalDate date;
     private LocalTime time;
     private String outcome;// knop waarop er geklikt wordt
-   
+    
    
     private static HashMap<Integer, Integer> requests;
-    private static HashMap<Integer, Employee> employees; // overbodig?
+    //private static HashMap<Integer, Employee> employees; // overbodig?
+
+    
  
-    public Event(RentalRequest rental, int initiatorID) {
+    
+
+    public Event(int requestNumber, RentalStatus status, int initiatorID, String outcome) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
        
@@ -47,23 +51,22 @@ public class Event {
  
         System.out.println(dtf.format(date));
         this.requestNumber = requestNumber;
+        this.status = status;
         this.initiatorID = initiatorID;
+        this.outcome = outcome;
         this.date = localDate;
         this.time = time;
-       
-   
     }
- 
    
  
     public void addRequest(int requestNumber){
         requests.put(initiatorID, requestNumber);
     }
    
-    public void addEmployee(Employee employee){
+   /* public void addEmployee(Employee employee){
        
         employees.put(employee.getEmployeeID(), employee);
-    }
+    }*/
 
     public int getRequestNumber() {
         return requestNumber;
@@ -97,12 +100,24 @@ public class Event {
         this.time = time;
     }
  
-    public static HashMap<Integer, Employee> getEmployees() {
+    /*public static HashMap<Integer, Employee> getEmployees() {
         return employees;
-    }
+    }*/
  
-    public void setEmployees(HashMap<Integer, Employee> employees) {
+   /* public void setEmployees(HashMap<Integer, Employee> employees) {
         this.employees = employees; 
+    }*/
+
+    public void setStatus(RentalStatus status) {
+        this.status = status;
+    }
+
+    public void setInitiatorID(int initiatorID) {
+        this.initiatorID = initiatorID;
+    }
+
+    public void setOutcome(String outcome) {
+        this.outcome = outcome;
     }
  
    
@@ -126,19 +141,12 @@ public class Event {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT rental "
+			String sql = "SELECT requestNumber "
 					+ "FROM Event "
-                                        +"WHERE rental = " 
+                                        +"WHERE requestNumber = " 
                                         +e.getRequestNumber();
 			requests.put(e.getInitiatorID(), e.getRequestNumber());
                         
-                        /* private RentalRequest rental;//private String activityType;
-    // niet beter request nummer?
-    private RentalStatus status;
-    private int initiatorID;// degene die aanpast
-    private LocalDate date;
-    private Date time;
-    private String outcome;*/
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
@@ -150,7 +158,7 @@ public class Event {
                                                 +", outcome = '"+e.getOutcome()+"'"                       
                                                 +" WHERE requestNumber = "+ e.getRequestNumber();
 				stmt.executeUpdate(sql);
-                                 
+   
 			} else {
 				// INSERT
 				sql = "INSERT into Event "
@@ -182,7 +190,7 @@ public class Event {
     private LocalDate date;
     private Date time;
     private String outcome;*/
-    public static String getEvent() throws DBException, SQLException{//moet aangepast worden aan constructor
+    public static String getEventTable() throws DBException, SQLException{//moet aangepast worden aan constructor
             Connection con= null; 
             String re = null;
         try {
