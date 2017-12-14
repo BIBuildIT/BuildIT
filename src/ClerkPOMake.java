@@ -381,6 +381,8 @@ public class ClerkPOMake extends javax.swing.JFrame {
             teller+=1;
             if(ClerkPOSuppliers.getNumberOfSuppliers() == teller){
                 reRe.setCurrentStatus(RentalStatus.ordered);
+                //Event e = new Event(reRe.getRequestNumber(),reRe.getCurrentStatus(), reRe.getEmployeeID(), "SUBMIT PO");
+            // Event.saveEvent(e);
             }
             
             Employee e= Employee.getEmployee(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
@@ -392,14 +394,16 @@ public class ClerkPOMake extends javax.swing.JFrame {
             PurchaseOrder.savePO(purOrd);
             //probleem met local date en gewone date
             //PurchaseOrder p = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), Date.valueOf(LocalDate.now()), clerkID,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier(), ERROR, 0, ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), 0, adres, telNR, 0,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier() , ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+        
+            
+        JOptionPane.showMessageDialog(null, "Purchase order "+purOrd.getOrderNr()+" is made.");
+        Startscherm.getB().setVisible(true);
+        
         } catch (DBException ex) {
             System.out.println("Error in ClerkPOMake");
             Startscherm.getB().setVisible(true);
         }
          
-        JOptionPane.showMessageDialog(null, "Purchase order "+ClerkPOGiveNumber.getRentalPO().getRequestNumber()+" is made.");
-        Startscherm.getB().setVisible(true);
-        
     }//GEN-LAST:event_submitActionPerformed
 
     private void idClerkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idClerkActionPerformed

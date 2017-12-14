@@ -140,7 +140,8 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
             int selectedRequestNumber = Integer.valueOf(selectedRequest);
             rentalInvoice = RentalRequest.getRentalRequest(selectedRequestNumber);
             System.out.println("request number: "+rentalInvoice.getRequestNumber());
-            
+            //Event e = new Event(rentalInvoice.getRequestNumber(), rentalInvoice.getCurrentStatus(), rentalInvoice.getEmployeeID(), "SUBMIT RR");
+            // Event.saveEvent(e);
             
                     } 
        catch (DBException ex) {

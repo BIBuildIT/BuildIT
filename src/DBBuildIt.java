@@ -97,11 +97,11 @@ public class DBBuildIt {
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
                                 + "PRIMARY KEY(number)"
                                 +")";
-            stmt.executeUpdate(sql);
-                        sql= "ALTER TABLE Invoice "
+            stmt.executeUpdate(sql); 
+                    /*    sql= "ALTER TABLE Invoice "
                                 +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
-                        stmt.executeUpdate(sql);
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT";
+                        stmt.executeUpdate(sql);*/
                        
                         sql = "CREATE TABLE PurchaseOrder ("
                                 + "orderNr int(15) NOT NULL AUTO_INCREMENT,,"

@@ -213,15 +213,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
 
-        /*Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "SUBMIT");
-        try {
-            Event.saveEvent(e);
-        } catch (DBException ex) {
-            System.out.println("Error in ClerkAdjustChangingRR");
-            Startscherm.getB().setVisible(true);
-        }
-        */
-        
+       
         try {
            
             List<String> selectedEquipment = EquipmentList.getSelectedValuesList();
@@ -266,6 +258,15 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             
             ClerkAdjustApprovedSupplier sup = new ClerkAdjustApprovedSupplier();
             sup.setVisible(true);
+            //Event e = new Event(ClerkAdjustGiveNumber.getRentalAdjust().getRequestNumber(), ClerkAdjustGiveNumber.getRentalAdjust().getCurrentStatus(), ClerkAdjustGiveNumber.getRentalAdjust().getEmployeeID(), "SUBMIT");
+        /*try {
+            Event.saveEvent(e);
+        } catch (DBException ex) {
+            System.out.println("Error in ClerkAdjustChangingRR");
+            Startscherm.getB().setVisible(true);
+        }
+        */
+        
         } catch (DBException ex) {
             System.out.println("Error in ClerkAdjustChangingRR");
             Startscherm.getB().setVisible(true);

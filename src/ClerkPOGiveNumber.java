@@ -145,6 +145,8 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
             rentalPO = req;
             ClerkPOSuppliers sup = new ClerkPOSuppliers();
             sup.setVisible(true);
+            //Event e = new Event(rentalPO.getRequestNumber(), rentalPO.getCurrentStatus(), rentalPO.getEmployeeID(), "CHOOSE RR");
+            // Event.saveEvent(e);
         } 
         catch (DBException ex) 
         {

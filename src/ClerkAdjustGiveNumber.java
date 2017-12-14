@@ -160,8 +160,8 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
             rentalAdjust = RentalRequest.getRentalRequest(numberToAdjust);
             ClerkAdjustChangingRR ok = new ClerkAdjustChangingRR();
             ok.setVisible(true);
-            
-            
+             //Event e = new Event(rentalAdjust.getRequestNumber(), rentalAdjust.getCurrentStatus(), rentalAdjust.getEmployeeID(), "SUBMIT");
+            //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in submit SiteInspectGiveNumber.");
             Startscherm.getB().setVisible(true);

@@ -120,7 +120,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
 
         giveEmployeeID.setText("EmployeeID:");
 
-        employeeID.setText("5");
+        employeeID.setText(" ");
         employeeID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 employeeIDActionPerformed(evt);
@@ -275,7 +275,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
             
             RentalRequest req = new RentalRequest(getStartRentalRequest(), getEndRentalRequest(), getEmployeeID(), selectedCS, selectedEquipmentString); 
             JOptionPane.showMessageDialog(null, "U chose " + selectedEquipmentString + " for constructionsite "+ selectedCS + ". \n"
-            + "On this date you made a request (number "+ req.getRequestNumber()+" ) : "+(req.getRequestDate().toString()));
+            + "On this date you made a request (number "+ req.getRequestNumber()+" ) : "+(req.getRequestDate().toString())+".");
            RentalRequest.saveRR(req);
            
         } 

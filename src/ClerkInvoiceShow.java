@@ -243,26 +243,28 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
     private void SupplierOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierOKActionPerformed
         this.dispose();
         ClerkInvoiceGiveNumber.getRentalInvoice().setCurrentStatus(RentalStatus.submittedForPayment);
+        JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
+        Startscherm.getB().setVisible(true);
+        
         try {
             RentalRequest.saveRR(ClerkInvoiceGiveNumber.getRentalInvoice());
+            //Event e = new Event(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber(), ClerkInvoiceGiveNumber.getRentalInvoice().getCurrentStatus(), ClerkInvoiceGiveNumber.getRentalInvoice().getEmployeeID(), "INVOICE OK ");
+            // Event.saveEvent(e);
                        
         } catch (DBException ex) {
             System.out.println("Error in ClerkInvoiceShow");
             Startscherm.getB().setVisible(true);
         }
-        String nummer = invoiceNR.toString();
-        int number = Integer.parseInt(nummer);
-        
         int i = 1;
         int a = 2;
-        Date dat = null;
-        String supplier = null;
-        String purchaseOrder = null;
+        Date dat = Date.valueOf(LocalDate.now());
+        String supplier = "NAAM";
+        String purchaseOrder = "NAAM";
         int eqCo = 1;
-        Date rentalEnd = null;
-        Date rentalStart = null;
+        Date rentalEnd = Date.valueOf(LocalDate.now());
+        Date rentalStart = Date.valueOf(LocalDate.now());
         double price = 0.00;
-        String nameSupplier = null;
+        String nameSupplier = "NAAM";
         
         Invoice inv = new Invoice(i, a, dat, supplier, purchaseOrder, eqCo, rentalStart, rentalEnd, price, nameSupplier);
         try {
@@ -272,8 +274,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
             Startscherm.getB().setVisible(true);
         }
         
-        JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
-        Startscherm.getB().setVisible(true);
+        
     }//GEN-LAST:event_SupplierOKActionPerformed
 
     /**

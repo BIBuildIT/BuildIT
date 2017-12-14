@@ -57,6 +57,8 @@ public class ClerkPOSuppliers extends javax.swing.JFrame {
              RentalRequest.saveRR(req);
              Startscherm s = new Startscherm();  
              s.setVisible(true);
+             //Event e = new Event(req.getRequestNumber(), req.getCurrentStatus(), req.getEmployeeID(), "MODEL EMPTY BACK TO ORDERED STATUS");
+            // Event.saveEvent(e);
         }
        
         numberOfSuppliers = model.getSize();

@@ -45,6 +45,11 @@ public class Invoice {
         
     }
 
+    public Invoice(int number) {
+        this.number = number;
+    }
+
+    
     public int getNumber() {
         return number;
     }
@@ -135,7 +140,7 @@ public class Invoice {
 
 			String sql = "SELECT number "
 					+ "FROM Invoice "
-                                        +"WHERE name = " 
+                                        +"WHERE number = " 
                                         +e.getNumber();
 					
 			ResultSet srs = stmt.executeQuery(sql);
@@ -160,6 +165,7 @@ public class Invoice {
 				sql = "INSERT into Invoice "
 						+ "(number , supplierInvoiceNumber, date, supplier, purchaseOrder, equipmentCode, rentalPeriodStart, rentalPeriodEnd, price, nameSupplier) "
 						+ "VALUES (" + e.getNumber()
+                                                + ", "+e.getSupplierInvoiceNumber()
                                                 +", '"+e.getDate()+ "'"
                                                 +", '"+e.getSupplier()+"'"
                                                 +", '"+e.getPurchaseOrder()+"'"
@@ -219,8 +225,16 @@ public class Invoice {
 				return null;
 			}
 
-			Invoice invoice = new Invoice(number, supplierInvoiceNumber, date, supplier, purchaseOrder, equipmentCode, rentalPeriodStart, rentalPeriodEnd, price, nameSupplier);
-			
+			Invoice invoice = new Invoice(srs.getInt("number"));
+                        invoice.setDate(date);
+                        invoice.setEquipmentCode(equipmentCode);
+                        invoice.setNameSupplier(nameSupplier);
+                        invoice.setPrice(price);
+                        invoice.setPurchaseOrder(purchaseOrder);
+                        invoice.setRentalPeriodEnd(rentalPeriodEnd);
+                        invoice.setRentalPeriodStart(rentalPeriodStart);
+                        invoice.setSupplier(supplier);
+                        invoice.setSupplierInvoiceNumber(supplierInvoiceNumber);
 
 			DBConnector.closeConnection(con);
 			return invoice;

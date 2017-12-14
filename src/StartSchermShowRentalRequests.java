@@ -36,9 +36,10 @@ public class StartSchermShowRentalRequests extends javax.swing.JFrame {
         
         DefaultListModel<String> model = new DefaultListModel<>();
         for(RentalRequest request : requests){
-            
-            String tomodel = request.getRequestNumber()+", "+request.getConstructionSite()+", "+request.getCurrentStatus();
+           
+            String tomodel = request.getRequestNumber()+", "+request.getConstructionSite()+", "+request.getCurrentStatus()+", "+ request.getEquipmentType();
             model.addElement(tomodel);
+             
         
         }
         if(model.isEmpty()){
