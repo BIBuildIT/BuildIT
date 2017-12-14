@@ -182,6 +182,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
                     new SiteInspectGiveNumber().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in SiteInspectGiveNumber");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

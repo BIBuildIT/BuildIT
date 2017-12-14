@@ -130,6 +130,7 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
             
         } catch (ParseException ex) {
             System.out.println("Error in SiteExtendNewDate");
+            Startscherm.getB().setVisible(true);
         }
         
         SiteExtendApproveSupplier a = new SiteExtendApproveSupplier();

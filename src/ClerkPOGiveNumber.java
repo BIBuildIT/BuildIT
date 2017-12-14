@@ -190,6 +190,7 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
                 catch (DBException ex) 
                 {
                 System.out.println("Error in ClerkPOGiveNumber");
+                Startscherm.getB().setVisible(true);
                 }
             }
         });

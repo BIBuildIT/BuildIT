@@ -89,16 +89,15 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
 
     private void materialNotOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialNotOKActionPerformed
         this.dispose();
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
-        JOptionPane.showMessageDialog(null , "You refused the equipment, if you still need equipment start over.");
+        JOptionPane.showMessageDialog(null , "You refused the equipment. If you still need equipment, please start over.");
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SiteInspectMaterialOK");
+            Startscherm.getB().setVisible(true);
         }
-        //OPTIE GEVEN OM NIEUWE RENTAL REQUEST AAN TE MAKEN?
+        
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_materialNotOKActionPerformed
 
@@ -110,6 +109,8 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {
             System.out.println("Error in SiteInspectMaterialOK");
+            Startscherm.getB().setVisible(true);
+            
         }
         
         Startscherm.getB().setVisible(true);

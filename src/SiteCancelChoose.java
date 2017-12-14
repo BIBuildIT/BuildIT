@@ -177,6 +177,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
                     } 
         catch (DBException ex) {
             System.out.println("Error in SiteCancelChoose.");
+            Startscherm.getB().setVisible(true);
         }
         
         
@@ -226,6 +227,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
                     new SiteCancelChoose().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in SiteCancelChoose.");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

@@ -164,6 +164,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
             
         } catch (DBException ex) {
             System.out.println("Error in submit SiteInspectGiveNumber.");
+            Startscherm.getB().setVisible(true);
             
         }
         
@@ -206,6 +207,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
                     new ClerkAdjustGiveNumber().setVisible(true);
                 } catch (DBException ex) {
                 System.out.println("Error in ClerkAdjustGiveNumber");
+                Startscherm.getB().setVisible(true);
                 }
             }
         });

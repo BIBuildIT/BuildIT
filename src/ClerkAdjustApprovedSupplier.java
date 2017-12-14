@@ -95,6 +95,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
         } catch (DBException ex) {
             System.out.println("Error in ClerkAdjustApprovedSupplier");
+            Startscherm.getB().setVisible(true);
         }
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_YESActionPerformed
@@ -109,6 +110,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
             
         } catch (DBException ex) {
             System.out.println("Error in ClerkAdjustApprovedSupplier");
+            Startscherm.getB().setVisible(true);
         }
     }//GEN-LAST:event_NoActionPerformed
 

@@ -100,6 +100,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
             Startscherm.getB().setVisible(true);
         } catch (DBException ex) {
             System.out.println("Error in SiteExtendQuestion");
+            Startscherm.getB().setVisible(true);
         }
     }//GEN-LAST:event_endActionPerformed
 

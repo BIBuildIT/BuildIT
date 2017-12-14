@@ -176,6 +176,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                     } 
         catch (DBException ex) {
             System.out.println("Error in ClerkCancelRR");
+            Startscherm.getB().setVisible(true);
         }
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
@@ -220,6 +221,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
                     new ClerkCancelRR().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in ClerkCancelRR");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

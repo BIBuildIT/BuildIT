@@ -282,10 +282,12 @@ public class RentalRequestForm extends javax.swing.JFrame {
         catch (ParseException ex) 
         {
             System.out.println("Error in RentalRequestForm");
+            Startscherm.getB().setVisible(true);
         } 
         catch (DBException ex) 
         {
             System.out.println("Error in RentalRequestForm");
+            Startscherm.getB().setVisible(true);
         }
            this.dispose();
            Startscherm.getB().setVisible(true);

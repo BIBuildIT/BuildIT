@@ -375,6 +375,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
             //PurchaseOrder p = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), Date.valueOf(LocalDate.now()), clerkID,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier(), ERROR, 0, ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), 0, adres, telNR, 0,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier() , ClerkPOGiveNumber.getRentalPO().getEmployeeID());
         } catch (DBException ex) {
             System.out.println("Error in ClerkPOMake");
+            Startscherm.getB().setVisible(true);
         }
          
         JOptionPane.showMessageDialog(null, "Purchase order "+ClerkPOGiveNumber.getRentalPO().getRequestNumber()+" is made.");
@@ -421,6 +422,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
                     new ClerkPOMake().setVisible(true);
                 } catch (DBException ex) {
                 System.out.println("Error in ClerkPOMake");
+                Startscherm.getB().setVisible(true);
                 }
             }
         });

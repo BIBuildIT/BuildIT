@@ -109,6 +109,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
             RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());
         } catch (DBException ex) {
             System.out.println("Error in SiteExtendApproveSupplier");
+            Startscherm.getB().setVisible(true);
         }
         try {
             
@@ -118,6 +119,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
         } 
         catch (DBException ex) {
             System.out.println("Error in SiteExtendApproveSupplier");
+            Startscherm.getB().setVisible(true);
         }
         
         JOptionPane.showMessageDialog(null, "The rental request has been changed!");
@@ -137,6 +139,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
             RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());
         } catch (DBException ex) {
             System.out.println("Error in SiteExtendApproveSupplier");
+            Startscherm.getB().setVisible(true);
         }
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_noActionPerformed

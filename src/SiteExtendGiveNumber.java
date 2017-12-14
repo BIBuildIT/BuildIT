@@ -180,6 +180,7 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
                     new SiteExtendGiveNumber().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in SiteExtendGiveNumber");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

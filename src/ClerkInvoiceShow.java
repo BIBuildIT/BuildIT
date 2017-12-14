@@ -238,6 +238,7 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
                        
         } catch (DBException ex) {
             System.out.println("Error in ClerkInvoiceShow");
+            Startscherm.getB().setVisible(true);
         }
         JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
         Startscherm.getB().setVisible(true);

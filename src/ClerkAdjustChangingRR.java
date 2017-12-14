@@ -40,6 +40,8 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         Employee e= Employee.getEmployee(req.getEmployeeID());
         Requestor.setText(" e-mail: " + e.getEmailAdress() + "   &    Phone number: " + e.getPhoneNumber());
         
+        
+        
         String[] eqType=req.getEquipmentType().split(",");
         descriptionRentalRequest.setText(eqType[eqType.length-1]);
         types = Equipment.getEquipments(); 
@@ -54,6 +56,12 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             }
             
         }
+        String equipmentType = eqType[0];
+        for(int i=1; i<eqType.length-1;i++){
+                equipmentType = equipmentType+", "+eqType[i];
+            }
+        equipmentTypes.setText(equipmentType);
+        
         
         EquipmentList.setModel(model);
       
@@ -83,6 +91,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         Requestor = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         descriptionRentalRequest = new javax.swing.JLabel();
+        equipmentTypes = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -130,6 +139,8 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
 
         descriptionRentalRequest.setText("jLabel6");
 
+        equipmentTypes.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,7 +157,10 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                             .addComponent(Submit))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(descriptionRentalRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(32, 32, 32)
+                        .addComponent(equipmentTypes))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -163,7 +177,9 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(equipmentTypes))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -190,7 +206,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermClerk.getStartClerk().setVisible(true);
         
     }//GEN-LAST:event_CancelActionPerformed
@@ -249,6 +265,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             sup.setVisible(true);
         } catch (DBException ex) {
             System.out.println("Error in ClerkAdjustChangingRR");
+            Startscherm.getB().setVisible(true);
         }
     }//GEN-LAST:event_SubmitActionPerformed
 
@@ -287,6 +304,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
                     new ClerkAdjustChangingRR().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in ClerkAdjustChangingRR");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });
@@ -299,6 +317,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
     private javax.swing.JButton Submit;
     private javax.swing.JLabel address;
     private javax.swing.JLabel descriptionRentalRequest;
+    private javax.swing.JLabel equipmentTypes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -33,6 +33,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
             requests = RentalRequest.getRentalRequests();
         } catch (DBException ex) {
             System.out.println("Error in ClerkInvoiceGiveNumber");
+            Startscherm.getB().setVisible(true);
         }
         DefaultListModel<String> model = new DefaultListModel<>();
          for(RentalRequest request : requests)
@@ -143,6 +144,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
                     } 
        catch (DBException ex) {
             System.out.println("Error in ClerkInvoiceGiveNumber");
+            Startscherm.getB().setVisible(true);
        }
         
         
