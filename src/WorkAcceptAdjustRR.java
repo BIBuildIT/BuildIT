@@ -36,7 +36,7 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
         
         address.setText(req.getConstructionSite());
         Employee e= Employee.getEmployee(req.getEmployeeID());
-        Requestor.setText(" e-mail: " + e.getEmailAdress() + " phonenumber: " + e.getPhoneNumber());
+        Requestor.setText(" e-mail: " + e.getEmailaddress() + " phonenumber: " + e.getPhoneNumber());
         String[] eqType=req.getEquipmentType().split(",");
         descriptionRentalRequest.setText(eqType[eqType.length-1]);
         

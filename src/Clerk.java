@@ -10,8 +10,8 @@
  */
 public class Clerk extends Employee {
     // 
-    public Clerk(int employeeID, String emailAdress, String phoneNumber) {
-        super(employeeID, Function.Clerk, emailAdress, phoneNumber);
+    public Clerk(int employeeID, String emailaddress, String phoneNumber) {
+        super(employeeID, Function.Clerk, emailaddress, phoneNumber);
     }
     
   /*  public void requestStatusAanpassen(RentalStatus currentStatus, RentalRequest request) { //werken met requestNumber ipv request

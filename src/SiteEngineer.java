@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class SiteEngineer extends Employee {
     private ArrayList<ConstructionSite> site;
     
-    public SiteEngineer(int employeeID, String emailAdress, String phoneNumber, ArrayList<ConstructionSite> site) {
-        super(employeeID, Function.SiteEngineer, emailAdress, phoneNumber);
+    public SiteEngineer(int employeeID, String emailaddress, String phoneNumber, ArrayList<ConstructionSite> site) {
+        super(employeeID, Function.SiteEngineer, emailaddress, phoneNumber);
         this.site = site;
     }
 

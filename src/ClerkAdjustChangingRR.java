@@ -38,7 +38,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
         address.setText(req.getConstructionSite());
         
         Employee e= Employee.getEmployee(req.getEmployeeID());
-        Requestor.setText(" e-mail: " + e.getEmailAdress() + "   &    Phone number: " + e.getPhoneNumber());
+        Requestor.setText(" e-mail: " + e.getEmailaddress() + "   &    Phone number: " + e.getPhoneNumber());
         
         
         

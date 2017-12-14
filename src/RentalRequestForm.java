@@ -47,7 +47,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
         sites = ConstructionSite.getConstructionSites();
        
         for(ConstructionSite site : sites){
-            ConstructionSiteList.add(site.getAdress());
+            ConstructionSiteList.add(site.getaddress());
         }
     }
     

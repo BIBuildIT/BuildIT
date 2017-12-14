@@ -16,18 +16,18 @@ import java.util.ArrayList;
  */
 public class ConstructionSite {
     
-    private String adress;
+    private String address;
 
-    public ConstructionSite(String adress) {
-        this.adress = adress;
+    public ConstructionSite(String address) {
+        this.address = address;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getaddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setaddress(String address) {
+        this.address = address;
     }
     
         public static ArrayList<ConstructionSite> getConstructionSites() throws DBException {
@@ -36,13 +36,13 @@ public class ConstructionSite {
             con= DBConnector.getConnection();
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-            String sql= "SELECT adress "
+            String sql= "SELECT address "
                        +"FROM ConstructionSite";
             ResultSet srs= stmt.executeQuery(sql);
             
             ArrayList<ConstructionSite> constructionsites= new ArrayList<>();
             while(srs.next())
-                constructionsites.add(new ConstructionSite(srs.getString("adress")));
+                constructionsites.add(new ConstructionSite(srs.getString("address")));
             
             DBConnector.closeConnection(con);
             return constructionsites;

@@ -18,14 +18,14 @@ public class Employee {
     
     private int employeeID;
     private Function grp;//subklasses vervangen dit!
-    private String emailAdress;
+    private String emailaddress;
     private String phoneNumber;
     
 
-    public Employee(int employeeID, Function grp, String emailAdress, String phoneNumber) {
+    public Employee(int employeeID, Function grp, String emailaddress, String phoneNumber) {
         this.employeeID = employeeID;
         this.grp = grp;
-        this.emailAdress = emailAdress;
+        this.emailaddress = emailaddress;
         this.phoneNumber = phoneNumber;
     }
 
@@ -45,12 +45,12 @@ public class Employee {
         this.grp = grp;
     }
     
-    public String getEmailAdress() {
-        return emailAdress;
+    public String getEmailaddress() {
+        return emailaddress;
     }
 
-    public void setEmailAdress(String emailAdress) {
-        this.emailAdress = emailAdress;
+    public void setEmailaddress(String emailaddress) {
+        this.emailaddress = emailaddress;
     }
 
     public String getPhoneNumber() {
@@ -67,11 +67,11 @@ public class Employee {
                 con= DBConnector.getConnection();
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT employeeID, grp, emailAdress, phoneNumber "
+                String sql = "SELECT employeeID, grp, emailaddress, phoneNumber "
 					+ "FROM Employee "
 					+ "WHERE EmployeeID = " + eID;
                 ResultSet srs = stmt.executeQuery(sql);
-                String emailAdress, phoneNumber;
+                String emailaddress, phoneNumber;
                 int employeeID;
                 Function grp;
             
@@ -79,14 +79,14 @@ public class Employee {
                 if (srs.next()){
                     employeeID = srs.getInt("employeeID");
                     grp = null; //group moet nog aangepast worden, function 
-                    emailAdress = srs.getString("emailAdress");
+                    emailaddress = srs.getString("emailaddress");
                     phoneNumber = srs.getString("phoneNumber");
             } else {
                     DBConnector.closeConnection(con);
                     return null;
                 }
             
-            Employee employee = new Employee(employeeID, grp ,emailAdress,phoneNumber);
+            Employee employee = new Employee(employeeID, grp ,emailaddress,phoneNumber);
             
             DBConnector.closeConnection(con);
             return employee;

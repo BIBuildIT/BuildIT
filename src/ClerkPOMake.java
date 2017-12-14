@@ -33,7 +33,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         
         String employee = Integer.toString(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
         requestor.setText(employee);
-        emailAddress.setText(e.getEmailAdress());
+        emailAddress.setText(e.getEmailaddress());
         ListSupplier.setText(ClerkPOSuppliers.getSelectedSupplier());
         String ordernr = Integer.toString(ClerkPOGiveNumber.getRentalPO().getRequestNumber());
         orderNr.setText(ordernr);
