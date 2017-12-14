@@ -1,4 +1,5 @@
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,8 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
        String nummer = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());
        invoiceNR.setText(nummer);
         datumVandaag.setText(LocalDate.now().toString());
+        String nummerI = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());
+        purchaseOrder.setText(nummerI);
     }
 
     /**
@@ -247,6 +250,23 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
             System.out.println("Error in ClerkInvoiceShow");
             Startscherm.getB().setVisible(true);
         }
+        String nummer = invoiceNR.toString();
+        int number = Integer.parseInt(nummer);
+        
+        //supplierInvoiceNumber = number;
+        LocalDate date = LocalDate.now();
+        String datum = date.toString();
+        Date datum1 = datum;
+        /*supplier = supplier;
+        purchaseOrder = purchaseOrder;
+        equipmentCode = equipmentCode;
+        rentalPeriodStart = rentalPeriodStart;
+        rentalPeriodEnd = rentalPeriodEnd;
+        price = price;
+        nameSupplier = nameSupplier;
+        */
+        Invoice inv = new Invoice(number, number, LocalDate.now(), supplier, purchaseOrder, EXIT_ON_CLOSE, rentalPeriodStart, rentalPeriodEnd, ERROR, nameSupplier)
+        
         JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

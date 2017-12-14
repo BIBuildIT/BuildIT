@@ -42,7 +42,7 @@ public class Invoice {
         this.rentalPeriodEnd = rentalPeriodEnd;
         this.price = price;
         this.nameSupplier = nameSupplier;
-        //OOK MET IF EN ELSE WERKEN?!
+        
     }
 
     public int getNumber() {

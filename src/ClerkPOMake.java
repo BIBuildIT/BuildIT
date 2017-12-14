@@ -33,7 +33,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         String employee = Integer.toString(ClerkPOGiveNumber.getRentalPO().getEmployeeID());
         requestor.setText(employee);
         emailAddress.setText(e.getEmailAdress());
-        ListSupplier.setText(suppliersPO.getSelectedSupplier());
+        ListSupplier.setText(ClerkPOSuppliers.getSelectedSupplier());
         String ordernr = Integer.toString(ClerkPOGiveNumber.getRentalPO().getRequestNumber());
         orderNr.setText(ordernr);
         datum.setText(LocalDate.now().toString());
@@ -44,7 +44,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         String[] code = ClerkPOGiveNumber.getRentalPO().getSelectedEquipment().split(",");
         String a="";
         for(int i=0; i<code.length; i++){
-            if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(suppliersPO.getSelectedSupplier())){
+            if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(ClerkPOSuppliers.getSelectedSupplier())){
             a=equipmentCodes.getText();
             a+=code[i];
             equipmentCodes.setText(a + ", ");
@@ -53,7 +53,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
         String[] price = ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice().split(",");
         String z;
         for(int i=0; i<price.length; i++){
-             if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(suppliersPO.getSelectedSupplier())){
+             if(Equipment.getEquipment(Integer.parseInt(code[i])).getSupplier().equals(ClerkPOSuppliers.getSelectedSupplier())){
             z=rentalPrice.getText();
             z+=price[i];
             rentalPrice.setText(z + ", \n");
@@ -377,7 +377,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
             ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
             String telNR = e.getPhoneNumber();
             RentalRequest.saveRR(reRe);
-            PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), suppliersPO.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+            PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), ClerkPOSuppliers.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
             System.out.println(purOrd.getDate());
             PurchaseOrder.savePO(purOrd);
             //probleem met local date en gewone date

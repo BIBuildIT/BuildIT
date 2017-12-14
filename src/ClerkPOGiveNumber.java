@@ -143,7 +143,7 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
             req.setRequestNumber(selectedRequestNumber);
             
             rentalPO = req;
-            suppliersPO sup = new suppliersPO();
+            ClerkPOSuppliers sup = new ClerkPOSuppliers();
             sup.setVisible(true);
         } 
         catch (DBException ex) 
