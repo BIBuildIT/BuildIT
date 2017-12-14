@@ -103,7 +103,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
         
         try {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
-        } catch (DBException ex) {
+        } catch (DBException ex) {    
             System.out.println("Error in ClerkAdjustApprovedSupplier");
             Startscherm.getB().setVisible(true);
         }
