@@ -145,7 +145,8 @@ public class suppliersPO extends javax.swing.JFrame {
             po = new ClerkPOMake();
             po.setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(suppliersPO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SuppliersPO");
+            Startscherm.getB().setVisible(true);
         }
             
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -183,7 +184,8 @@ public class suppliersPO extends javax.swing.JFrame {
                 try {
                     new suppliersPO().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(suppliersPO.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in suppliersPO");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

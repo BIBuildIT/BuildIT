@@ -53,6 +53,12 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
             
         }
         
+        String equipmentType = eqType[0];
+        for(int i=1; i<eqType.length-1;i++){
+                equipmentType = equipmentType+", "+eqType[i];
+            }
+        equipmentTypes.setText(equipmentType);
+        
         EquipmentList.setModel(model);
       
     }
@@ -79,6 +85,7 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
         Requestor = new javax.swing.JLabel();
         submit = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        equipmentTypes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +131,9 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
         cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancel.setText("Cancel");
 
+        equipmentTypes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        equipmentTypes.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,7 +143,10 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descriptionRentalRequest)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41)
+                        .addComponent(equipmentTypes))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +170,9 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(equipmentTypes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -200,8 +215,6 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
             
             String coEq=String.join(",", codeEquipments);
             codesEq = coEq;
-            System.out.println(codesEq);//is wel juist
-            System.out.println(ClerkAdjustChangingRR.getCodesEq());
             ArrayList<String> supplierEquipment= new ArrayList<>();
             ArrayList<String> priceEquipment= new ArrayList<>();
             for(int i=0; i <codeEquipments.size(); i++){
@@ -211,7 +224,9 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
                     String equi = Double.toString(eq.getPrice());
                     priceEquipment.add(equi);
                 } catch (DBException ex) {
-                    Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in WorkAcceptAdjustRR");
+                    Startscherm.getB().setVisible(true);
+                
                 }
                 
                 
@@ -225,19 +240,12 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
             req.setCurrentStatus(RentalStatus.processed);
             
             RentalRequest.saveRR(req);
-            System.out.println(RentalRequest.getRentalRequest(req.getRequestNumber()).getSelectedSupplier());
             this.setVisible(false);
-            
-            // try {
-            //RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
-            //} catch (DBException ex) {
-            // Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
-            //}
-            //requested lijst ophalen en bijhouden?
             WorkAdjustApprovedSupplier sup = new WorkAdjustApprovedSupplier();
             sup.setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(ClerkAdjustChangingRR.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in WorkAcceptAdjustRR");
+            Startscherm.getB().setVisible(true);
         }
     }//GEN-LAST:event_submitActionPerformed
 
@@ -274,8 +282,8 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
                 try {
                     new WorkAcceptAdjustRR().setVisible(true);
                 } catch (DBException ex) {
-                    Logger.getLogger(WorkAcceptAdjustRR.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                System.out.println("Error in WorkAcceptAdjustRR");
+                Startscherm.getB().setVisible(true);}
             }
         });
     }
@@ -286,6 +294,7 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
     private javax.swing.JLabel address;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel descriptionRentalRequest;
+    private javax.swing.JLabel equipmentTypes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

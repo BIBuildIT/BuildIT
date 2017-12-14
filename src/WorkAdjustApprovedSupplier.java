@@ -88,14 +88,15 @@ public class WorkAdjustApprovedSupplier extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        System.out.println(WorkAcceptGiveNumber.getRentalWork().getCurrentStatus());
+        this.dispose();
+        
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.readyForApproval);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
-            System.out.println(WorkAcceptGiveNumber.getRentalWork().getCurrentStatus());
+            
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in WorkAdjustApprovedSupplier");
+            Startscherm.getB().setVisible(true);
         }
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -104,6 +105,12 @@ public class WorkAdjustApprovedSupplier extends javax.swing.JFrame {
                                            
             this.setVisible(false);
             WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.requested); //komt van ready for approval bij the works engineer
+        try {
+            RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+        } catch (DBException ex) {
+            System.out.println("Error in WorkAdjustApprovedSupplier");
+            Startscherm.getB().setVisible(true);
+        }
             JOptionPane.showMessageDialog(null, "Please let the clerk choose other equipment.");
             Startscherm.getB().setVisible(true);
             

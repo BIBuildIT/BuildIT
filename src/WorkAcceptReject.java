@@ -102,25 +102,26 @@ public class WorkAcceptReject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+        this.dispose();
         WorkAcceptAdjustOrCancel wo = new WorkAcceptAdjustOrCancel();
         wo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+        this.dispose();
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.approved);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
         } catch (DBException ex) {
-            Logger.getLogger(WorkAcceptReject.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in WorkAcceptReject");
+            Startscherm.getB().setVisible(true);
         }
         JOptionPane.showMessageDialog(null, "Rental request has been approved.");
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 

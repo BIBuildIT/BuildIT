@@ -32,20 +32,12 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
      */
     public WorkAcceptGiveNumber() throws DBException {
         initComponents();
-        
-        System.out.println("1");
-        
         requests = RentalRequest.getRentalRequests();
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        System.out.println("2");
-        
         for(RentalRequest request : requests){
-            System.out.println("3");
-            System.out.println(request.getRequestNumber());
             
-            System.out.println(request.getRequestNumber());
             if(request.getCurrentStatus().equals(RentalStatus.readyForApproval))
                 model.addElement(Integer.toString(request.getRequestNumber()));
         
@@ -140,7 +132,7 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
@@ -148,13 +140,9 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
         this.setVisible(false);
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
-           // RentalRequest req;
+           
         try {
-           // req = RentalRequest.getRentalRequest(selectedRequestNumber);
-           // req.setRequestNumber(selectedRequestNumber);
-           // System.out.println(req.getRequestNumber());
-           // System.out.println(req.getCurrentStatus());
-           // rentalWork = req;
+           
            rentalWork = RentalRequest.getRentalRequest(selectedRequestNumber);
            System.out.println(rentalWork.getRequestNumber()+ " en "+ rentalWork.getCurrentStatus());
             WorkAcceptReject ok = new WorkAcceptReject();
@@ -202,6 +190,7 @@ public class WorkAcceptGiveNumber extends javax.swing.JFrame {
                     new WorkAcceptGiveNumber().setVisible(true);
                 } catch (DBException ex) {
                     System.out.println("Error in WorkAcceptGiveNumber.");
+                    Startscherm.getB().setVisible(true);
                 }
             }
         });

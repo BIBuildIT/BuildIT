@@ -103,38 +103,32 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermWorkEngineer.getStartWorkEngineer().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+        this.dispose();
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.cancelled);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
         } catch (DBException ex) {
-            Logger.getLogger(WorkAcceptReject.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in WorkAcceptAdjustOrCancel");
+            Startscherm.getB().setVisible(true);
         }
         JOptionPane.showMessageDialog(null, "Rental request has been cancelled.");
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //HIER FORMULIER OP RR AAN TE PASSEN TE TONEN (NIEUWE GUI VOOR AANMAKEN OF NIET?)
-        //VERVOLGENS INDIEN DAAR OP SUBMIT WORDT GEDRUKT --> RENTAL STAT = PROCESSED
-        this.setVisible(false);
-        
-        //FOUTMELDING --> MOET KUNNEN 
-        
-        //RentalRequest a = new RentalRequest(WorkAcceptGiveNumber.getRentalWork().getRequestNumber());
-        //ClerkAdjustGiveNumber.setRentalAdjust(a);
-        
-        
+        this.dispose();
+       
         try {
             WorkAcceptAdjustRR b = new WorkAcceptAdjustRR();
             b.setVisible(true);
         } catch (DBException ex) {
-            Logger.getLogger(WorkAcceptAdjustOrCancel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in WorkAcceptAdjustOrCancel");
+            Startscherm.getB().setVisible(true);
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
