@@ -243,6 +243,8 @@ public class WorkAcceptAdjustRR extends javax.swing.JFrame {
             this.setVisible(false);
             WorkAdjustApprovedSupplier sup = new WorkAdjustApprovedSupplier();
             sup.setVisible(true);
+            Event e = new Event(req.getRequestNumber(), req.getCurrentStatus(), req.getEmployeeID(), "SUBMIT ALTERNATIVE EQUIPMENT");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAcceptAdjustRR");
             Startscherm.getB().setVisible(true);

@@ -112,6 +112,8 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
         WorkAcceptGiveNumber.getRentalWork().setCurrentStatus(RentalStatus.cancelled);
         try {
             RentalRequest.saveRR(WorkAcceptGiveNumber.getRentalWork());
+            //Event e = new Event(WorkAcceptGiveNumber.getRentalWork().getRequestNumber(), WorkAcceptGiveNumber.getRentalWork().getCurrentStatus(), WorkAcceptGiveNumber.getRentalWork().getEmployeeID(), "ADJUST RR");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAcceptAdjustOrCancel");
             Startscherm.getB().setVisible(true);
@@ -126,6 +128,8 @@ public class WorkAcceptAdjustOrCancel extends javax.swing.JFrame {
         try {
             WorkAcceptAdjustRR b = new WorkAcceptAdjustRR();
             b.setVisible(true);
+            //Event e = new Event(WorkAcceptGiveNumber.getRentalWork().getRequestNumber(), WorkAcceptGiveNumber.getRentalWork().getCurrentStatus(), WorkAcceptGiveNumber.getRentalWork().getEmployeeID(), "CANCEL RR");
+             //Event.saveEvent(e);
         } catch (DBException ex) {
             System.out.println("Error in WorkAcceptAdjustOrCancel");
             Startscherm.getB().setVisible(true);
