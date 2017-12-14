@@ -25,8 +25,8 @@ public class PurchaseOrder {
     private String equipmentCode;
     //--> wat is dat?
     private String dailyRentalPrice;
-    private LocalDate rentStartDate;
-    private LocalDate endDate;
+    private LocalDate rentalStartDate;
+    private LocalDate rentalEndDate;
     private double totalPrice;
     private String constructionSite;
     private String phoneSiteEngineer;
@@ -34,14 +34,14 @@ public class PurchaseOrder {
     private String nameSupplier;
     private int employeeID;
 
-    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentStartDate, LocalDate endDate, double totalPrice, String constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) {
+    public PurchaseOrder(int orderNr, int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentalStartDate, LocalDate RentalEndDate, double totalPrice, String constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) {
         this.orderNr = orderNr;
         this.date = LocalDate.now();
         this.handlingClerk = handlingClerk;
         this.equipmentCode =equipmentCode;
         this.dailyRentalPrice = dailyRentalPrice;
-        this.rentStartDate = rentStartDate;
-        this.endDate = endDate;
+        this.rentalStartDate = rentalStartDate;
+        this.rentalEndDate = RentalEndDate;
         this.totalPrice = totalPrice;
         this.constructionSite = constructionSite;
         this.phoneSiteEngineer = phoneSiteEngineer;
@@ -79,20 +79,20 @@ public class PurchaseOrder {
         this.equipmentCode = equipmentCode;
     }
 
-    public LocalDate getRentStartDate() {
-        return rentStartDate;
+    public LocalDate getRentalStartDate() {
+        return rentalStartDate;
     }
 
-    public void setRentStartDate(LocalDate rentStartDate) {
-        this.rentStartDate = rentStartDate;
+    public void setRentalStartDate(LocalDate rentalStartDate) {
+        this.rentalStartDate = rentalStartDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getRentalEndDate() {
+        return rentalEndDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setRentalEndDate(LocalDate rentalEndDate) {
+        this.rentalEndDate = rentalEndDate;
     }
 
    
@@ -170,7 +170,7 @@ public class PurchaseOrder {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT  orderNr, date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID "
+			String sql = "SELECT  orderNr, date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentalStartDate, rentalEndDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID "
 					+ "FROM PurchaseOrder "
                                         + "WHERE orderNr = " + nr;
 					
@@ -179,7 +179,7 @@ public class PurchaseOrder {
 			
                         String  phoneSiteEngineer, nameSupplier, supplierEquipCode,dailyRentalPrice;
                         int orderNr, handlingClerk, numberInvoice, employeeID;
-                        LocalDate date, rentStartDate, endDate;  
+                        LocalDate date, rentalStartDate, rentalEndDate;  
                         double totalPrice ;  
                         String constructionsite;
                         
@@ -194,8 +194,8 @@ public class PurchaseOrder {
                                 phoneSiteEngineer = srs.getString("phoneSiteEngineer");
                                 nameSupplier = srs.getString("nameSupplier");
                                 date = srs.getDate("Date").toLocalDate();
-                                rentStartDate = srs.getDate("rentStartDate").toLocalDate();
-                                endDate = srs.getDate("endDate").toLocalDate();
+                                rentalStartDate = srs.getDate("rentalStartDate").toLocalDate();
+                                rentalEndDate = srs.getDate("rentalEndDate").toLocalDate();
                                 dailyRentalPrice = srs.getString("dailyRentalPrice");
                                 totalPrice = srs.getDouble("price");
                                 constructionsite = srs.getString("constructionSite");
@@ -214,8 +214,8 @@ public class PurchaseOrder {
                         purchaseOrder.setPhoneSiteEngineer(phoneSiteEngineer);
                         purchaseOrder.setNameSupplier(nameSupplier);
                         purchaseOrder.setDate(date);
-                        purchaseOrder.setRentStartDate(rentStartDate);
-                        purchaseOrder.setEndDate(endDate);
+                        purchaseOrder.setRentalStartDate(rentalStartDate);
+                        purchaseOrder.setRentalEndDate(rentalEndDate);
                         purchaseOrder.setDailyRentalPrice(dailyRentalPrice);
                         purchaseOrder.setTotalPrice(totalPrice);
                         purchaseOrder.setConstructionSite(constructionsite);
@@ -250,8 +250,8 @@ public class PurchaseOrder {
                                                 +", handlingClerk = "+e.getHandlingClerk()
                                                 +", supplierEquipCode = '"+e.getEquipmentCode()+"'"
                                                 +", dailyRentalPrice = "+e.getDailyRentalPrice()
-                                                +", rentStartDate = '"+e.getRentStartDate()+"'"
-                                                +", endDate = '"+e.getEndDate()+"'"
+                                                +", rentalStartDate = '"+e.getRentalStartDate()+"'"
+                                                +", rentalEndDate = '"+e.getRentalEndDate()+"'"
                                                 +", totalPrice = "+e.getTotalPrice()
                                                 +", constructionSite = '"+e.getConstructionSite()+"'"
                                                 +", phoneSiteEngineer = '"+e.getPhoneSiteEngineer()+"'"
@@ -265,19 +265,18 @@ public class PurchaseOrder {
 			} else {
 				// INSERT
 				sql = "INSERT into RentalRequest "
-						+ "(orderNr , date, handlingClerk, supplier, sequenceCode, dailyRentalPrice, rentStartDate, endDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID) "
+						+ "(orderNr , date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentalStartDate, rentalEndDate, totalPrice, constructionSite, phoneSiteEngineer, numberInvoice, nameSupplier, employeeID) "
 						+ "VALUES (" + e.getOrderNr()
                                                 +", '"+e.getDate()+ "'"
                                                 +", "+e.getHandlingClerk()
                                                 +", '"+e.getEquipmentCode()+"'"
-                                                +", "+e.getDailyRentalPrice()
-                                                +", '"+e.getRentStartDate()+"'"
-                                                +", '"+e.getEndDate()+"'"
+                                                +", '"+e.getDailyRentalPrice()+"'"
+                                                +", '"+e.getRentalStartDate()+"'"
+                                                +", '"+e.getRentalEndDate()+"'"
                                                 +", "+e.getTotalPrice()
                                                 +", '"+e.getConstructionSite()+"'"
                                                 +", '"+e.getPhoneSiteEngineer()+"'"
                                                 +", "+e.getNumberInvoice()
-                                                +", '"+e.getPhoneSiteEngineer()+"'"
                                                 +", '"+e.getNameSupplier()+"'"
                                                 +", "+e.getEmployeeID()
                                         + ")";
