@@ -35,10 +35,10 @@ public class SiteExtendGiveNumber extends javax.swing.JFrame {
         
         DefaultListModel<String> model = new DefaultListModel<>();
         
-        System.out.println("2");
+        
         
         for(RentalRequest request : requests){
-            System.out.println("3");
+            
             System.out.println(request.getRequestNumber());
             
             if(request.getCurrentStatus().equals(RentalStatus.accepted))

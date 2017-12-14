@@ -281,11 +281,11 @@ public class RentalRequestForm extends javax.swing.JFrame {
         } 
         catch (ParseException ex) 
         {
-            Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in RentalRequestForm");
         } 
         catch (DBException ex) 
         {
-            Logger.getLogger(RentalRequestForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in RentalRequestForm");
         }
            this.dispose();
            Startscherm ST = new Startscherm();

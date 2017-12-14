@@ -15,15 +15,7 @@ import javax.swing.DefaultListModel;
  * @author Lynn
  */
 public class SiteCancelChoose extends javax.swing.JFrame {
-    private static ArrayList<RentalRequest> cancelRequestAndRefuse = new ArrayList<>();
-// in sql tabel zetten moet pas bij clerk daarom arraylist meegeven
-    public static ArrayList<RentalRequest> getCancelRequestAndRefuse() {
-        return cancelRequestAndRefuse;
-    }
-
-    public static void setCancelRequestAndRefuse(ArrayList<RentalRequest> cancelRequestAndRefuse) {
-        SiteCancelChoose.cancelRequestAndRefuse = cancelRequestAndRefuse;
-    }
+    
     public String getReasonForCancellationTextField(){
         
         String reason =ReasonForCancellationTextField.getText();
@@ -42,11 +34,22 @@ public class SiteCancelChoose extends javax.swing.JFrame {
         
         for(RentalRequest request : requests){
             
-            model.addElement(Integer.toString(request.getRequestNumber()));//diegene die al op cancelled staan mogen hier niet in weergegeven worden!
+          if(request.getCurrentStatus().equals(RentalStatus.cancelled)){
+              System.out.println("Rental request number "+request.getRequestNumber()+" is cancelled");
+          }  
+          else
+            model.addElement(Integer.toString(request.getRequestNumber()));
+            
+        }
+        
+        if(model.isEmpty()){
+            model.addElement("All rental requests are cancelled.");
             
         }
         
         requestList.setModel(model);
+        
+        
         
         
         
@@ -168,10 +171,10 @@ public class SiteCancelChoose extends javax.swing.JFrame {
             req.setReasonForCancelationOrRefusal(reason);
             
             RentalRequest.saveRR(req);
-            System.out.println(RentalRequest.getRentalRequest(selectedRequestNumber).getRentalPeriodStart());
-            //System.out.println("de reden voor annulatie is: "+req.getReasonForCancelationOrRefusal());
-            //cancelRequestAndRefuse.add(req);
-                    } catch (DBException ex) {
+            
+            
+                    } 
+        catch (DBException ex) {
             Logger.getLogger(ClerkCancelRR.class.getName()).log(Level.SEVERE, null, ex);
         }
         
