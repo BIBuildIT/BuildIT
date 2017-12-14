@@ -118,12 +118,12 @@ public class SiteExtendNewDate extends javax.swing.JFrame {
     }//GEN-LAST:event_newDateActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        this.setVisible(false);
+        this.dispose();
         
         try {
             datum = getNewDate();

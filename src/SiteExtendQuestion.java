@@ -92,7 +92,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
 
     private void endActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endActionPerformed
         try {
-            this.setVisible(false);
+            this.dispose();
             RentalRequest reRe=SiteExtendGiveNumber.getRentalExtend();
             reRe.setCurrentStatus(RentalStatus.readyForInvoice);
             RentalRequest.saveRR(reRe);
@@ -104,7 +104,7 @@ public class SiteExtendQuestion extends javax.swing.JFrame {
     }//GEN-LAST:event_endActionPerformed
 
     private void extendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extendActionPerformed
-        this.setVisible(false);
+        this.dispose();
         SiteExtendNewDate a = new SiteExtendNewDate();
         a.setVisible(true);
         

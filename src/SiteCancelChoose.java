@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -154,7 +155,7 @@ public class SiteCancelChoose extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
@@ -179,8 +180,9 @@ public class SiteCancelChoose extends javax.swing.JFrame {
         }
         
         
-        this.setVisible(false);
-        new SiteCancelOK().setVisible(true);
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "Your request has been send to the clerk!");
+        Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_submitActionPerformed
 
     private void ReasonForCancellationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReasonForCancellationTextFieldActionPerformed

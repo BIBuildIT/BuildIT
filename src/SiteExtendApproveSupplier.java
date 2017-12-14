@@ -103,7 +103,7 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesActionPerformed
-        this.setVisible(false);
+        this.dispose();
         SiteExtendGiveNumber.getRentalExtend().setRentalPeriodEnd(SiteExtendNewDate.getDatum());
         try {
             RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());
@@ -126,12 +126,12 @@ public class SiteExtendApproveSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_yesActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
-        this.setVisible(false);
+        this.dispose();
         SiteExtendGiveNumber.getRentalExtend().setCurrentStatus(RentalStatus.readyForInvoice);
         try {
             RentalRequest.saveRR(SiteExtendGiveNumber.getRentalExtend());

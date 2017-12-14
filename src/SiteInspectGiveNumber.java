@@ -124,7 +124,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        this.setVisible(false);
+        this.dispose();
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
             
@@ -144,7 +144,7 @@ public class SiteInspectGiveNumber extends javax.swing.JFrame {
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 

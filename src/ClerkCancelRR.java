@@ -153,7 +153,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        this.setVisible(false);
+        this.dispose();
         Startscherm.getB().setVisible(true);
         try {
             String selectedRequest= requestList.getSelectedValue();
@@ -181,7 +181,7 @@ public class ClerkCancelRR extends javax.swing.JFrame {
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermClerk.getStartClerk().setVisible(true);
     }//GEN-LAST:event_ReturnActionPerformed
 

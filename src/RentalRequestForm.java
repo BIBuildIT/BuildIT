@@ -301,7 +301,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
     }//GEN-LAST:event_endRentalPeriodActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 

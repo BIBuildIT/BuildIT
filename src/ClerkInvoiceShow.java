@@ -225,19 +225,19 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermSiteEngineer.getStartSiteEngineer().setVisible(true);
         
     }//GEN-LAST:event_cancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+        this.dispose();
         ClerkInvoiceGiveNumber.getRentalInvoice().setCurrentStatus(RentalStatus.submittedForPayment);
         try {
             RentalRequest.saveRR(ClerkInvoiceGiveNumber.getRentalInvoice());
                        
         } catch (DBException ex) {
-            Logger.getLogger(ClerkInvoiceShow.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in ClerkInvoiceShow");
         }
         JOptionPane.showMessageDialog(null, "Please contact the financial department to pay the invoice.");
         Startscherm.getB().setVisible(true);

@@ -129,12 +129,12 @@ public class ClerkPOGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermClerk.getStartClerk().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        this.setVisible(false);
+        this.dispose();
         String number= RequestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(number);
             RentalRequest req;

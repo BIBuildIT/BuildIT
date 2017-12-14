@@ -128,7 +128,7 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        this.setVisible(false);
+        this.dispose();
         StartschermClerk.getStartClerk().setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
@@ -136,18 +136,17 @@ public class ClerkInvoiceGiveNumber extends javax.swing.JFrame {
        try {
             String selectedRequest= requestList.getSelectedValue();
             int selectedRequestNumber = Integer.valueOf(selectedRequest);
-            RentalRequest req = RentalRequest.getRentalRequest(selectedRequestNumber);
-            req.setRequestNumber(selectedRequestNumber);
-            System.out.println("request number: "+req.getRequestNumber());
+            rentalInvoice = RentalRequest.getRentalRequest(selectedRequestNumber);
+            System.out.println("request number: "+rentalInvoice.getRequestNumber());
             
-            rentalInvoice = req;
+            
                     } 
        catch (DBException ex) {
             System.out.println("Error in ClerkInvoiceGiveNumber");
        }
         
         
-        this.setVisible(false);
+        this.dispose();
         new ClerkInvoiceShow().setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 

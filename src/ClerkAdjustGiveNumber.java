@@ -136,7 +136,7 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        this.setVisible(false);
+        this.dispose();
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelMouseClicked
 
@@ -150,16 +150,14 @@ public class ClerkAdjustGiveNumber extends javax.swing.JFrame {
         chan.setVisible(true);
         */
         
-        this.setVisible(false);
+        this.dispose();
         String number= RequestList.getSelectedValue();
         
             numberToAdjust = Integer.valueOf(number);
             
-            RentalRequest req;
         try {
-            req = RentalRequest.getRentalRequest(numberToAdjust);
-            req.setRequestNumber(numberToAdjust);
-            rentalAdjust = req;
+            
+            rentalAdjust = RentalRequest.getRentalRequest(numberToAdjust);
             ClerkAdjustChangingRR ok = new ClerkAdjustChangingRR();
             ok.setVisible(true);
             

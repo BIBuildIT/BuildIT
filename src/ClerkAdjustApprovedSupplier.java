@@ -89,7 +89,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void YESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YESActionPerformed
-        this.setVisible(false);
+        this.dispose();
         ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.readyForApproval);
         try {
             RentalRequest.saveRR(ClerkAdjustGiveNumber.getRentalAdjust());
@@ -101,7 +101,7 @@ public class ClerkAdjustApprovedSupplier extends javax.swing.JFrame {
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
         try {                                   
-            this.setVisible(false);
+            this.dispose();
             ClerkAdjustGiveNumber.getRentalAdjust().setCurrentStatus(RentalStatus.requested);
             JOptionPane.showMessageDialog(null, "Please adjust the rental request again.");
             ClerkAdjustChangingRR i = new ClerkAdjustChangingRR();

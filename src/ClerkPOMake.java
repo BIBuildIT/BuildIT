@@ -352,13 +352,13 @@ public class ClerkPOMake extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        this.setVisible(false);
+        this.dispose();
         Startscherm.getB().setVisible(true);
     }//GEN-LAST:event_cancelMouseClicked
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // RENTAL STATUS "ORDERED"
-        this.setVisible(false);
+        this.dispose();
         int clerkID = Integer.parseInt(idClerk.getText().trim());
         
         try {

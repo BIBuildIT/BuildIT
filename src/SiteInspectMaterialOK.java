@@ -88,7 +88,7 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void materialNotOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialNotOKActionPerformed
-        this.setVisible(false);
+        this.dispose();
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.refused);
         System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
@@ -103,14 +103,13 @@ public class SiteInspectMaterialOK extends javax.swing.JFrame {
     }//GEN-LAST:event_materialNotOKActionPerformed
 
     private void materialOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialOKActionPerformed
-        this.setVisible(false);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
+        this.dispose();
         SiteInspectGiveNumber.getRental().setCurrentStatus(RentalStatus.accepted);
-        System.out.println(SiteInspectGiveNumber.getRental().getCurrentStatus());
+        
         try {
             RentalRequest.saveRR(SiteInspectGiveNumber.getRental());
         } catch (DBException ex) {
-            Logger.getLogger(SiteInspectMaterialOK.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error in SiteInspectMaterialOK");
         }
         
         Startscherm.getB().setVisible(true);
