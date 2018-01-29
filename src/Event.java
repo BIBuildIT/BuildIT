@@ -43,18 +43,18 @@ public class Event {
     
 
     public Event(int requestNumber, RentalStatus status, int initiatorID, String outcome) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate localDate = LocalDate.now();
+        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
        
         //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        LocalTime time = LocalTime.now();
- 
-        System.out.println(dtf.format(date));
+         LocalTime time = LocalTime.now();
+         LocalDate localDate = LocalDate.now();
+
+        //System.out.println(dtf.format(date));
         this.requestNumber = requestNumber;
         this.status = status;
         this.initiatorID = initiatorID;
         this.outcome = outcome;
-        this.date = localDate;
+       this.date = localDate;
         this.time = time;
     }
    
@@ -145,13 +145,13 @@ public class Event {
 					+ "FROM Event "
                                         +"WHERE requestNumber = " 
                                         +e.getRequestNumber();
-			requests.put(e.getInitiatorID(), e.getRequestNumber());
+			//requests.put(e.getInitiatorID(), e.getRequestNumber());
                         
 			ResultSet srs = stmt.executeQuery(sql);
 			if (srs.next()) {
 				// UPDATE
 				sql = "UPDATE Event "
-						+ "SET initiatorID = '"+Integer.toString(e.getInitiatorID())+"'" 
+						+ "SET initiatorID = "+e.getInitiatorID()
                                                 +", date = '"+ e.getDate().toString()+"'"
                                                 +", time = '"+e.getTime().toString()+"'"
                                                 +", status = '"+e.getStatus()+"'"
@@ -163,8 +163,8 @@ public class Event {
 				// INSERT
 				sql = "INSERT into Event "
 						+ "(requestNumber, initatorID, date, time, status, outcome) "
-						+ "VALUES ('" +e.getRequestNumber()+"'"
-                                                +", '"+Integer.toString(e.getInitiatorID())+"'"
+						+ "VALUES (" +e.getRequestNumber()
+                                                +", "+e.getInitiatorID()
                                                 +", '" +e.getDate().toString()+"'"
                                                 +", '"+e.getTime().toString()+"'"
                                                 +", '"+e.getStatus()+"'"
