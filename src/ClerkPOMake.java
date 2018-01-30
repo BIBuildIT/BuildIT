@@ -470,7 +470,7 @@ public class ClerkPOMake extends javax.swing.JFrame {
             ConstructionSite adres = new ConstructionSite(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
             String telNR = e.getPhoneNumber();
             RentalRequest.saveRR(reRe);
-            PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), ClerkPOSuppliers.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID());
+            PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), ClerkPOSuppliers.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID(), ClerkPOGiveNumber.getRentalPO().getRequestNumber());
             System.out.println(purOrd.getDate());
             PurchaseOrder.savePO(purOrd);
             //probleem met local date en gewone date

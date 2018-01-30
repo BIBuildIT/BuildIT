@@ -279,8 +279,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
            RentalRequest.saveRR(req);
            RentalRequest reRe=RentalRequest.getRentalRequest(req.getRequestNumber());
            
-           
-           Event e = new Event(reRe.getRequestNumber(), reRe.getCurrentStatus(), reRe.getEmployeeID(), "CHOOSE: SUBMIT");
+           System.out.println(req.getRequestNumber());
+           System.out.println(req.getEmployeeID());
+           Event e = new Event(req.getRequestNumber(), "Toevoegen rental request", req.getEmployeeID(), "CHOOSE: SUBMIT");
             System.out.println(e.getTime().toString());
            Event.saveEvent(e);
         } 

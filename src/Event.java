@@ -28,7 +28,7 @@ public class Event {
     //private RentalRequest rental;//private String activityType;
     // niet beter request nummer?
     private int requestNumber;
-    private RentalStatus status;
+    private String activityType ;
     private int initiatorID;// degene die aanpast
     private LocalDate date;
     private LocalTime time;
@@ -42,7 +42,7 @@ public class Event {
  
     
 
-    public Event(int requestNumber, RentalStatus status, int initiatorID, String outcome) {
+    public Event(int requestNumber, String activityType, int initiatorID, String outcome) {
         //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
        
         //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -51,7 +51,7 @@ public class Event {
 
         //System.out.println(dtf.format(date));
         this.requestNumber = requestNumber;
-        this.status = status;
+        this.activityType = activityType;
         this.initiatorID = initiatorID;
         this.outcome = outcome;
        this.date = localDate;
@@ -108,9 +108,15 @@ public class Event {
         this.employees = employees; 
     }*/
 
-    public void setStatus(RentalStatus status) {
-        this.status = status;
+    public String getActivityType() {
+        return activityType;
     }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+
+    
 
     public void setInitiatorID(int initiatorID) {
         this.initiatorID = initiatorID;
@@ -121,9 +127,7 @@ public class Event {
     }
  
    
-    public RentalStatus getStatus() {
-        return status;
-    }
+    
 
     public int getInitiatorID() {
         return initiatorID;
@@ -141,38 +145,50 @@ public class Event {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT requestNumber "
+                        System.out.println("eerste");
+                        
+			/*String sql = "SELECT date, time "
 					+ "FROM Event "
-                                        +"WHERE requestNumber = " 
-                                        +e.getRequestNumber();
+                                        +"WHERE date = " 
+                                        + e.getDate().toString()
+                                        +" AND time = "+e.getTime().toString();
 			//requests.put(e.getInitiatorID(), e.getRequestNumber());
                         
+                        System.out.println("tweede");
+                        
 			ResultSet srs = stmt.executeQuery(sql);
+                        System.out.println("aaah kwil dat vinden");
 			if (srs.next()) {
 				// UPDATE
+                                System.out.println("derde");
 				sql = "UPDATE Event "
-						+ "SET initiatorID = "+e.getInitiatorID()
-                                                +", date = '"+ e.getDate().toString()+"'"
-                                                +", time = '"+e.getTime().toString()+"'"
-                                                +", status = '"+e.getStatus()+"'"
-                                                +", outcome = '"+e.getOutcome()+"'"                       
-                                                +" WHERE requestNumber = "+ e.getRequestNumber();
+                                                +"SET requestNumber = "+e.getRequestNumber()
+						+", activityType = '"+e.getActivityType()+"'"
+                                                + ", initiatorID = "+e.getInitiatorID()
+                                                +", outcome = '"+e.getOutcome()+"'"  
+                                                +" WHERE date = " 
+                                                +e.getDate()
+                                                +" AND time = "+e.getTime();
 				stmt.executeUpdate(sql);
+                                System.out.println("vierde");
    
 			} else {
 				// INSERT
-				sql = "INSERT into Event "
-						+ "(requestNumber, initatorID, date, time, status, outcome) "
-						+ "VALUES (" +e.getRequestNumber()
+                        */
+                                System.out.println("vijfde");
+				String sql = "INSERT into Event "
+						+ "(date, time, requestNumber, activityType, initatorID, outcome) "
+						+ "VALUES ( " +e.getDate()
+                                                +", "+e.getTime()
+                                                +", "+e.getRequestNumber()
+                                                +", '"+e.getActivityType()+"'"
                                                 +", "+e.getInitiatorID()
-                                                +", '" +e.getDate().toString()+"'"
-                                                +", '"+e.getTime().toString()+"'"
-                                                +", '"+e.getStatus()+"'"
                                                 +", '"+e.getOutcome()+"'"
                                         + ")";
 						
 				stmt.executeUpdate(sql);
-			}
+                                
+			
 			
 			
 			DBConnector.closeConnection(con);
@@ -190,7 +206,7 @@ public class Event {
     private LocalDate date;
     private Date time;
     private String outcome;*/
-    public static String getEventTable() throws DBException, SQLException{//moet aangepast worden aan constructor
+    /*public static String getEventTable() throws DBException, SQLException{//moet aangepast worden aan constructor
             Connection con= null; 
             String re = null;
         try {
@@ -199,9 +215,9 @@ public class Event {
                 Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                
                 for( int id :Event.getRequests().keySet()){
-                String sql = "SELECT requestNumber, status, initiatorID, date, time, status, outcome "
+                String sql = "SELECT date, time, requestNumber, initatorID, activityType, outcome"
 					+ "FROM Event "
-					+ "WHERE initiatorID = " +id ;
+					+ "WHERE date = " +id ;
                 
                 ResultSet srs = stmt.executeQuery(sql);
 
@@ -247,6 +263,6 @@ public class Event {
         }
         return re;
     }
-    
+ */   
 
 }

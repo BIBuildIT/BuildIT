@@ -59,6 +59,14 @@ public class PurchaseOrder {
         this.rentalRequestNr = rentalRequestNr;
     }
 
+    public int getRentalRequestNr() {
+        return rentalRequestNr;
+    }
+
+    public void setRentalRequestNr(int rentalRequestNr) {
+        this.rentalRequestNr = rentalRequestNr;
+    }
+
     
     public PurchaseOrder(int orderNr) {
         this.orderNr = orderNr;
@@ -174,7 +182,7 @@ public class PurchaseOrder {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "SELECT orderNr, date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentalStartDate, rentalEndDate, totalPrice, constructionSite, phoneSiteEngineer, nameSupplier, employeeID "
+			String sql = "SELECT orderNr, date, handlingClerk, supplierEquipCode, dailyRentalPrice, rentalStartDate, rentalEndDate, totalPrice, constructionSite, phoneSiteEngineer, nameSupplier, employeeID, rentalRequestNr "
 					+ "FROM PurchaseOrder ";
 					
 			
@@ -201,6 +209,7 @@ public class PurchaseOrder {
                                 dailyRentalPrice = srs.getString("dailyRentalPrice");
                                 totalPrice = srs.getDouble("price");
                                 constructionsite = srs.getString("constructionSite");
+                               // rentalRequestNr = srs.getInt("rentalRequestNr");
 				
 			} else {
 				DBConnector.closeConnection(con);
