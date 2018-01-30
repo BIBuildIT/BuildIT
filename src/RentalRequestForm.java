@@ -280,9 +280,9 @@ public class RentalRequestForm extends javax.swing.JFrame {
            RentalRequest reRe=RentalRequest.getRentalRequest(req.getRequestNumber());
            
            
-           Event e = new Event(reRe.getRequestNumber(), reRe.getCurrentStatus(), reRe.getEmployeeID(), "CHOOSE: SUBMIT");
-            System.out.println(e.getTime().toString());
-           Event.saveEvent(e);
+           //Event e = new Event(reRe.getRequestNumber(), reRe.getCurrentStatus(), reRe.getEmployeeID(), "CHOOSE: SUBMIT");
+            //System.out.println(e.getTime().toString());
+           //Event.saveEvent(e);
         } 
         catch (ParseException ex) 
         {

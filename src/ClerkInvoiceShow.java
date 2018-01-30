@@ -1,6 +1,7 @@
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,9 +36,51 @@ public class ClerkInvoiceShow extends javax.swing.JFrame {
         String end = ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodEnd().toString();
         endPeriod.setText(end);
         String p = ClerkInvoiceGiveNumber.getRentalInvoice().getDailyRentalPrice();
-        String totPrijs = Double.toString(ClerkPOMake.getTotalePrijs());
-        price.setText(totPrijs);
-       String nummer = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());
+        
+        if(ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodEnd().toString().equals(ClerkPOMake.getEndDatum())){
+            
+            String totPrijs = Double.toString(ClerkPOMake.getTotalePrijs());
+            price.setText(totPrijs);
+        }
+        else{
+        LocalDate eind = ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodEnd();
+        LocalDate starte = ClerkInvoiceGiveNumber.getRentalInvoice().getRentalPeriodStart();
+        Period period = Period.between ( starte , eind );
+        
+        Integer monthsElapsed = period.getMonths();
+        Integer yearsElapsed = period.getYears();
+        Integer daysElapsed = period.getDays();
+        
+        int totalDays = 0;
+        
+        for(int i = 0; i<13; i++){
+            if (i == monthsElapsed)
+                totalDays += i*30;
+            
+        }
+        
+        for(int i = 0; i<100; i++){
+            if (i == yearsElapsed)
+                totalDays += i*365;
+            
+        } totalDays += daysElapsed;
+        
+        
+        
+    
+        double daysdouble = (double) totalDays;
+        double totPrice= ClerkPOMake.getTotalePrijs()*daysdouble;
+        
+        
+        price.setText(Double.toString(totPrice));
+        
+            
+        }
+        
+        
+        
+        
+        String nummer = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());
        invoiceNR.setText(nummer);
         datumVandaag.setText(LocalDate.now().toString());
         String nummerI = Integer.toString(ClerkInvoiceGiveNumber.getRentalInvoice().getRequestNumber());

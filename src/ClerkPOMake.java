@@ -1,8 +1,11 @@
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.DAYS;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +22,19 @@ public class ClerkPOMake extends javax.swing.JFrame {
     double totPrice;
     private static double totalePrijs;
     private int teller;
+    
+    private static String endDatum;
+    
 
     public static double getTotalePrijs() {
         return totalePrijs;
     }
+
+    public static String getEndDatum() {
+        return endDatum;
+    }
+
+    
     
     
     
@@ -40,6 +52,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
         datum.setText(LocalDate.now().toString());
         rentalStart.setText(ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().toString());
         rentalEnd.setText(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd().toString());
+        
+        endDatum = rentalEnd.getText();
+        
         construction.setText(ClerkPOGiveNumber.getRentalPO().getConstructionSite());
         
         
@@ -62,20 +77,82 @@ public class ClerkPOMake extends javax.swing.JFrame {
             rentalPrice.setText(z + "\n");
         }
         }
+        /*
         Period diff=  ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().until(ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd());
         int days = diff.getDays();
         String y = Integer.toString(days);
         daysRented.setText(y);
+        */
+        
+        /*SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+        String inputString1 = ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart().toString();
+        String inputString2 = ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd().toString();
+
+        
+        
+        
+        
+        try {
+            java.util.Date date1 = myFormat.parse(inputString1);
+            Date date2 = (Date) myFormat.parse(inputString2);
+            
+            long diff = date2.getTime() - date1.getTime();
+            String y = Integer.toString((int) diff);
+            daysRented.setText(y);
+            
+            
+            double totalDailyPrice=0.00;
+        for(int i=0; i<price.length;i++){
+        totalDailyPrice+=Double.parseDouble(price[i]);
+    }
+        double daysdouble = (double) diff;
+         totPrice= totalDailyPrice*daysdouble;
+        
+        totalePrijs = totPrice; 
+        totalPrice.setText(Double.toString(totPrice));
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(ClerkPOMake.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        
+        //System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+        LocalDate end = ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd();
+        LocalDate start = ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart();
+        Period period = Period.between ( start , end );
+        
+        Integer monthsElapsed = period.getMonths();
+        Integer yearsElapsed = period.getYears();
+        Integer daysElapsed = period.getDays();
+        
+        int totalDays = 0;
+        
+        for(int i = 0; i<13; i++){
+            if (i == monthsElapsed)
+                totalDays += i*30;
+            
+        }
+        
+        for(int i = 0; i<100; i++){
+            if (i == yearsElapsed)
+                totalDays += i*365;
+            
+        } totalDays += daysElapsed;
+        
+        String y = Integer.toString(totalDays);
+            daysRented.setText(y);
         
         double totalDailyPrice=0.00;
         for(int i=0; i<price.length;i++){
         totalDailyPrice+=Double.parseDouble(price[i]);
     }
-        double daysdouble = (double) days;
+        double daysdouble = (double) totalDays;
          totPrice= totalDailyPrice*daysdouble;
         
         totalePrijs = totPrice; 
         totalPrice.setText(Double.toString(totPrice));
+        
         
     }
     
