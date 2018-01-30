@@ -282,7 +282,7 @@ public class RentalRequestForm extends javax.swing.JFrame {
            System.out.println(req.getRequestNumber());
            System.out.println(req.getEmployeeID());
            Event e = new Event(req.getRequestNumber(), "Toevoegen rental request", req.getEmployeeID(), "CHOOSE: SUBMIT");
-            System.out.println(e.getTime().toString());
+           
            Event.saveEvent(e);
         } 
         catch (ParseException ex) 

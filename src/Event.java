@@ -145,49 +145,46 @@ public class Event {
 			con = DBConnector.getConnection();
 			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-                        System.out.println("eerste");
                         
-			/*String sql = "SELECT date, time "
+			String sql = "SELECT date, time "
 					+ "FROM Event "
-                                        +"WHERE date = " 
-                                        + e.getDate().toString()
-                                        +" AND time = "+e.getTime().toString();
+                                        + "WHERE date = '" 
+                                        + e.getDate().toString()+"'"
+                                        +" AND time = '"+e.getTime().toString()+"'";
 			//requests.put(e.getInitiatorID(), e.getRequestNumber());
                         
-                        System.out.println("tweede");
+                        
                         
 			ResultSet srs = stmt.executeQuery(sql);
-                        System.out.println("aaah kwil dat vinden");
 			if (srs.next()) {
 				// UPDATE
-                                System.out.println("derde");
 				sql = "UPDATE Event "
                                                 +"SET requestNumber = "+e.getRequestNumber()
-						+", activityType = '"+e.getActivityType()+"'"
-                                                + ", initiatorID = "+e.getInitiatorID()
+						+ ", initiatorID = "+e.getInitiatorID()
+                                                +", activityType = '"+e.getActivityType()+"'"  
                                                 +", outcome = '"+e.getOutcome()+"'"  
-                                                +" WHERE date = " 
-                                                +e.getDate()
-                                                +" AND time = "+e.getTime();
+                                                +" WHERE date = '" 
+                                                +e.getDate().toString()+"'"
+                                                +" AND time = '"+e.getTime().toString()+"'";
 				stmt.executeUpdate(sql);
-                                System.out.println("vierde");
+                                
    
 			} else {
 				// INSERT
-                        */
+                        
                                 System.out.println("vijfde");
-				String sql = "INSERT into Event "
-						+ "(date, time, requestNumber, activityType, initatorID, outcome) "
-						+ "VALUES ( " +e.getDate()
-                                                +", "+e.getTime()
+				sql = "INSERT into Event "
+						+ "(date, time, requestNumber, initiatorID, activityType,  outcome) "
+						+ "VALUES ( '" +e.getDate().toString()+"'"
+                                                +", '"+e.getTime().toString()+"'"
                                                 +", "+e.getRequestNumber()
-                                                +", '"+e.getActivityType()+"'"
                                                 +", "+e.getInitiatorID()
+                                                +", '"+e.getActivityType()+"'"
                                                 +", '"+e.getOutcome()+"'"
                                         + ")";
 						
 				stmt.executeUpdate(sql);
-                                
+                        }        
 			
 			
 			

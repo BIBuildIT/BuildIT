@@ -253,6 +253,7 @@ public class ClerkAdjustChangingRR extends javax.swing.JFrame implements ListSel
             req.setCurrentStatus(RentalStatus.processed);
             
             RentalRequest.saveRR(req);
+            
             this.setVisible(false);
             
             

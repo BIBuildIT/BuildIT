@@ -473,6 +473,9 @@ public class ClerkPOMake extends javax.swing.JFrame {
             PurchaseOrder purOrd = new PurchaseOrder( getHandlingClerk(), ClerkPOGiveNumber.getRentalPO().getSelectedEquipment(), ClerkPOGiveNumber.getRentalPO().getDailyRentalPrice(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), getTotPrice(), ClerkPOGiveNumber.getRentalPO().getConstructionSite(), e.getPhoneNumber(), ClerkPOSuppliers.getSelectedSupplier(), ClerkPOGiveNumber.getRentalPO().getEmployeeID(), ClerkPOGiveNumber.getRentalPO().getRequestNumber());
             System.out.println(purOrd.getDate());
             PurchaseOrder.savePO(purOrd);
+            
+            Event f = new Event(reRe.getRequestNumber(),"made PO", Integer.parseInt(idClerk.getText().trim()),"");
+            Event.saveEvent(f);
             //probleem met local date en gewone date
             //PurchaseOrder p = new PurchaseOrder(ClerkPOGiveNumber.getRentalPO().getRequestNumber(), Date.valueOf(LocalDate.now()), clerkID,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier(), ERROR, 0, ClerkPOGiveNumber.getRentalPO().getRentalPeriodStart(), ClerkPOGiveNumber.getRentalPO().getRentalPeriodEnd(), 0, adres, telNR, 0,ClerkPOGiveNumber.getRentalPO().getSelectedSupplier() , ClerkPOGiveNumber.getRentalPO().getEmployeeID());
         
