@@ -98,13 +98,13 @@ public class DBBuildIt {
                                 + "PRIMARY KEY(number)"
                                 +")";
             stmt.executeUpdate(sql); 
-                    /*    sql= "ALTER TABLE Invoice "
+                        sql= "ALTER TABLE Invoice "
                                 +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT";
-                        stmt.executeUpdate(sql);*/
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
+                        stmt.executeUpdate(sql);
                        
                         sql = "CREATE TABLE PurchaseOrder ("
-                                + "orderNr int(15) NOT NULL AUTO_INCREMENT,,"
+                                + "orderNr int(15) NOT NULL AUTO_INCREMENT,"
                                 + "date DATE NOT NULL,"
                                 + "handlingClerk int(15) NOT NULL,"
                                 + "supplierEquipCode VARCHAR(100) NOT NULL,"
@@ -116,24 +116,32 @@ public class DBBuildIt {
                                 + "phoneSiteEngineer VARCHAR(50) NOT NULL,"
                                 + "nameSupplier VARCHAR(50) NOT NULL,"
                                 + "employeeID int(15) NOT NULL,"
+                                + "rentalRequestNr int(15) NOT NULL,"
                                 + "PRIMARY KEY(orderNr)"
                                 +")";
             stmt.executeUpdate(sql);
                         sql="ALTER TABLE PurchaseOrder "
-                                +" ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT,"
-                                +" ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"
-                                +" ON DELETE RESTRICT ON UPDATE RESTRICT";
+                                + "ADD FOREIGN KEY(nameSupplier) REFERENCES Supplier (name)"
+                                + "ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "ADD FOREIGN KEY(employeeID) REFERENCES Employee (employeeID)"
+                                + "ON DELETE RESTRICT ON UPDATE RESTRICT,"
+                                + "ADD FOREIGN KEY(rentalRequestNr) REFERENCES RentalRequest (requestNumber)"
+                                + "ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
                        
                         sql = "CREATE TABLE Event ("  
+                                + "date DATE NOT NULL,"
+                                + "time TIME NOT NULL,"   
                                 + "requestNumber int(15) NOT NULL,"
                                 + "initiatorID int(15) NOT NULL,"
-                                + "date DATE NOT NULL,"
-                                + "time TIME NOT NULL,"
-                                + "status ENUM('requested', 'processed', 'readyForApproval', 'approved', 'cancelled', 'ordered', 'refused', 'accepted', 'submittedForPayment', 'readyToCancel', 'readyForInvoice') NOT NULL,"
-                                + "outcome VARCHAR(50)"
+                                + "activityType VARCHAR(200) NOT NULL,"
+                                + "outcome VARCHAR(50) NOT NULL,"
+                                + "PRIMARY KEY (date, time)"
                                 + ")";
+                        stmt.executeUpdate(sql);
+                        sql="ALTER TABLE Event "
+                                +" ADD FOREIGN KEY(initiatorID) REFERENCES Employee (employeeID)"
+                                +" ON DELETE RESTRICT ON UPDATE RESTRICT;";
                         stmt.executeUpdate(sql);
                        
             DBConnector.closeConnection(con);

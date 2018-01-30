@@ -33,8 +33,9 @@ public class PurchaseOrder {
     private String phoneSiteEngineer;
     private String nameSupplier;
     private int employeeID;
+    private int rentalRequestNr;
 
-    public PurchaseOrder( int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentalStartDate, LocalDate RentalEndDate, double totalPrice, String constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID) throws DBException {
+    public PurchaseOrder( int handlingClerk, String equipmentCode, String dailyRentalPrice, LocalDate rentalStartDate, LocalDate RentalEndDate, double totalPrice, String constructionSite, String phoneSiteEngineer, String nameSupplier, int employeeID, int rentalRequestNr) throws DBException {
        ArrayList<PurchaseOrder> puOr= getPurchaseOrders();
         int orderNumber=1;//1 geeft hij niet goed weer!!!!
         
@@ -55,8 +56,10 @@ public class PurchaseOrder {
         
         this.nameSupplier = nameSupplier;
         this.employeeID = employeeID;
+        this.rentalRequestNr = rentalRequestNr;
     }
 
+    
     public PurchaseOrder(int orderNr) {
         this.orderNr = orderNr;
     }
